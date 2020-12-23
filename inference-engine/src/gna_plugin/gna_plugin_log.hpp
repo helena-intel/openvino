@@ -8,6 +8,8 @@
 #include <details/ie_exception.hpp>
 
 // #define GNA_DEBUG
+#define GEN_STATS
+
 #ifdef  GNA_DEBUG
 #include <iostream>
 /**

@@ -84,8 +84,125 @@ class ModelQuantizer {
             scaleIndex++;
         }
 
-        propagateScaleFactor(sortedNewNet, T::mandatory().getWeightsPrecision().size());
+        StatisticsDao* stats = StatisticsDao::Deserialize("layer_statistics.txt");
+        const float MIN_DYNAMIC_RANGE = 1e-20;
 
+        int index = 0;
+        // set minimum dynamic range
+        for (auto& layer : sortedNewNet) {
+            auto curr_quant_data = InferenceEngine::getInjectedData<QuantizedLayerParams>(layer);
+            auto it = LayerNameToType.find(layer->type);
+            if (it != LayerNameToType.end() && it->second != LayerType::Input && curr_quant_data) {
+                    curr_quant_data->_src_quant.agg_dynamic_range = 1.75f;
+                    curr_quant_data->_dst_quant.agg_dynamic_range = 1.75f;
+            }
+            index++;
+        }
+
+        if (stats) {
+            for (auto& layer : sortedNewNet) {
+                auto quantData = InferenceEngine::getInjectedData<QuantizedLayerParams>(layer);
+                int layer_id = stats->GetLayerId(layer->name.c_str());
+                if (quantData && layer_id >= 0) {
+                    float min, max;
+                    stats->GetMinMax(layer_id, StatisticsDao::stats_type_e::OUTPUT, min, max);
+                    // if min > max - scale factor not set
+                    if (max > min) {
+                        float absmax = max > -min ? max : -min;
+                        quantData->_dst_quant.dynamic_range = absmax;
+                        quantData->_dst_quant.dynamic_range_set = true;
+                    }
+                }
+            }
+            delete stats;
+            bool finished = false;
+            // overwrite dynamic range of input base on scale factor of input
+            // this is done to unify scaling factor for all chunks of inputs
+            for (auto& layer : sortedNewNet) {
+                auto it = LayerNameToType.find(layer->type);
+                if (it != LayerNameToType.end() && it->second == LayerType::Input)
+                {
+                    auto in_quant_data = InferenceEngine::getInjectedData<QuantizedLayerParams>(layer);
+                    in_quant_data->_src_quant.dynamic_range = MAX_VAL_2B_FEAT / in_quant_data->_src_quant.scale;
+                    in_quant_data->_src_quant.agg_dynamic_range = MAX_VAL_2B_FEAT / in_quant_data->_src_quant.scale;
+                    in_quant_data->_src_quant.dynamic_range_set = true;
+                    in_quant_data->_dst_quant.dynamic_range = MAX_VAL_2B_FEAT / in_quant_data->_src_quant.scale;
+                    in_quant_data->_dst_quant.agg_dynamic_range = MAX_VAL_2B_FEAT / in_quant_data->_src_quant.scale;
+                    in_quant_data->_dst_quant.dynamic_range_set = true;
+                }
+            }
+            while (!finished) {
+                finished = true;
+                for (auto& layer : sortedNewNet) {
+                    auto curr_quant_data = InferenceEngine::getInjectedData<QuantizedLayerParams>(layer);
+                    if (curr_quant_data) {
+                        if (layer->insData.size()) {
+                            float agg_dynamic_range = -1.0f;
+                            for (auto in_layer_ptr : layer->insData) {
+                                const auto& in_layer = getCreatorLayer(in_layer_ptr.lock()).lock();
+
+                                auto in_quant_data = InferenceEngine::getInjectedData<QuantizedLayerParams>(in_layer);
+                                if (in_quant_data && (in_quant_data->_dst_quant.dynamic_range_set)) {
+                                    // if this is first visit - we need to take dynamic range, which is not aggregated yet
+                                    agg_dynamic_range = agg_dynamic_range > in_quant_data->_dst_quant.dynamic_range ?
+                                        agg_dynamic_range : in_quant_data->_dst_quant.dynamic_range;
+                                    // and aggregated one too
+                                    agg_dynamic_range = agg_dynamic_range > in_quant_data->_dst_quant.agg_dynamic_range ?
+                                        agg_dynamic_range : in_quant_data->_dst_quant.agg_dynamic_range;
+                                }
+                            }
+
+                            if (!LayerInfo(layer).isChangingDynamicRange()) {
+                                agg_dynamic_range = agg_dynamic_range > curr_quant_data->_src_quant.agg_dynamic_range ?
+                                    agg_dynamic_range : curr_quant_data->_src_quant.agg_dynamic_range;
+                                agg_dynamic_range = agg_dynamic_range > curr_quant_data->_dst_quant.agg_dynamic_range ?
+                                    agg_dynamic_range : curr_quant_data->_dst_quant.agg_dynamic_range;
+                                if (agg_dynamic_range > curr_quant_data->_src_quant.agg_dynamic_range ||
+                                    agg_dynamic_range > curr_quant_data->_dst_quant.agg_dynamic_range)
+                                {
+                                    if (!curr_quant_data->_src_quant.dynamic_range_set)
+                                        finished = false;
+                                    curr_quant_data->_src_quant.agg_dynamic_range = agg_dynamic_range;
+                                    curr_quant_data->_src_quant.dynamic_range_set = true;
+
+                                    if (!curr_quant_data->_dst_quant.dynamic_range_set)
+                                        finished = false;
+                                    curr_quant_data->_dst_quant.agg_dynamic_range = agg_dynamic_range;
+                                    curr_quant_data->_dst_quant.dynamic_range_set = true;
+                                }
+                            } else {
+                                if (curr_quant_data->_src_quant.agg_dynamic_range < agg_dynamic_range)
+                                    finished = false;
+                                curr_quant_data->_src_quant.agg_dynamic_range = agg_dynamic_range;
+                            }
+                            if (agg_dynamic_range > 0.0f) {
+                                for (auto& in_layer_ptr : layer->insData)
+                                {
+                                    const auto& in_layer = getCreatorLayer(in_layer_ptr.lock()).lock();
+                                    auto in_quant_data = InferenceEngine::getInjectedData<QuantizedLayerParams>(in_layer);
+                                    if (in_quant_data)
+                                    {
+                                        if (in_quant_data->_dst_quant.agg_dynamic_range < agg_dynamic_range)
+                                        {
+                                            in_quant_data->_dst_quant.agg_dynamic_range = agg_dynamic_range;
+                                            in_quant_data->_dst_quant.dynamic_range_set = true;
+                                            finished = false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        propagateScaleFactor(sortedNewNet, T::mandatory().getWeightsPrecision().size());
+        for (auto&& layer : sortedNewNet) {
+            auto quantData = InferenceEngine::getInjectedData<QuantizedLayerParams>(layer);
+            printf("%s I: %0.5f W: %0.5f B: %0.5f O: %0.5f\n", layer->name.c_str(), quantData->_src_quant.scale, quantData->_weights_quant.scale, quantData->_bias_quant.scale, quantData->_dst_quant.scale);
+        }
+        
         // sorted order gives possibility for propagate quantisation along depended layers
         for (auto &&layer : sortedNewNet) {
             transformLayer(layer, lc);

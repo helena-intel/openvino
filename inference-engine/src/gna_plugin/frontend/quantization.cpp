@@ -119,10 +119,20 @@ float ScaleFactorForQuantization(void *ptr_float_memory, float target_max, size_
     if (max == 0) {
         scale_factor = -1.0f;  // need to handle all zeros as a special case
     } else {
-        scale_factor = target_max / max;
+        scale_factor = target_max / (max);
     }
 
     return (scale_factor);
+}
+
+float CalcDynamicRange(void* ptr_float_memory, size_t num_elements) {
+    float* ptr_float_feat = reinterpret_cast<float*>(ptr_float_memory);
+    float max = 0.0f;
+    for (size_t i = 0; i < num_elements; i++) {
+        float abs_value = fabs(ptr_float_feat[i]);
+        max = max > abs_value ? max : abs_value;
+    }
+    return (max);
 }
 
 void QuantizeVector16(float *ptr_float_memory, int16_t *ptr_int_memory, uint32_t num_elements, float scale_factor) {

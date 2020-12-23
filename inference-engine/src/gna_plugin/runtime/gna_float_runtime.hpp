@@ -5,6 +5,9 @@
 #pragma once
 #include <backend/am_intel_dnn.hpp>
 
+#ifdef GEN_STATS
+#include <backend/stats_dao.hpp>
+#endif
 namespace GNAPluginNS {
 namespace runtime {
 /**
@@ -12,9 +15,24 @@ namespace runtime {
  */
 class FP {
     std::shared_ptr<backend::AMIntelDNN> dnn;
+    StatisticsDao* stats_;
  public:
-    FP(std::shared_ptr<backend::AMIntelDNN> dnn) : dnn(dnn) {
+    FP(std::shared_ptr<backend::AMIntelDNN> dnn)
+        : dnn(dnn)
+#ifdef GEN_STATS
+        , stats_(nullptr)
+#endif
+    {
     }
+#ifdef GEN_STATS
+    ~FP() {
+        if (stats_) {
+            stats_->Serialize("layer_statistics.txt");
+            delete stats_;
+        }
+    }
+#endif
+
     virtual void infer();
 
     /**

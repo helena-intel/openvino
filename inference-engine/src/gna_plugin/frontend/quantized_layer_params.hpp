@@ -10,6 +10,9 @@ struct Quantization {
     float scale = 1.0f;
     float offset = 0.0f;
     int shift = 0.0f;
+    float dynamic_range = 0.0f;
+    float agg_dynamic_range = 0.0f;
+    bool  dynamic_range_set;
 };
 
 struct QuantizedLayerParams {

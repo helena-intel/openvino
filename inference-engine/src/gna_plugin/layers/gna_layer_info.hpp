@@ -129,6 +129,11 @@ class LayerInfo {
     bool isRelu() const noexcept {
         return isOfType("relu");
     }
+
+    bool isClamp() const noexcept {
+        return isOfType("clamp");
+    }
+
     bool isConvolution() const noexcept {
         return isOfType("convolution");
     }
@@ -282,6 +287,10 @@ class LayerInfo {
 
     bool isCopyDelayed() const noexcept {
         return isOfType(DelayedCopyLayerName);
+    }
+
+    bool isChangingDynamicRange() const noexcept {
+        return (isFullyConnected() || isConvolution() || isActivation() || isScaleShift() || isEltwise() || isPower());
     }
 
     size_t paddingSize() const {
