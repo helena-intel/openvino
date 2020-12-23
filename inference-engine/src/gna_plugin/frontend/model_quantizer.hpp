@@ -198,10 +198,6 @@ class ModelQuantizer {
         }
 
         propagateScaleFactor(sortedNewNet, T::mandatory().getWeightsPrecision().size());
-        for (auto&& layer : sortedNewNet) {
-            auto quantData = InferenceEngine::getInjectedData<QuantizedLayerParams>(layer);
-            printf("%s I: %0.5f W: %0.5f B: %0.5f O: %0.5f\n", layer->name.c_str(), quantData->_src_quant.scale, quantData->_weights_quant.scale, quantData->_bias_quant.scale, quantData->_dst_quant.scale);
-        }
         
         // sorted order gives possibility for propagate quantisation along depended layers
         for (auto &&layer : sortedNewNet) {
