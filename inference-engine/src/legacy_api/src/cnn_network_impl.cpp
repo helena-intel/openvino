@@ -382,7 +382,7 @@ StatusCode CNNNetworkImpl::reshape(const std::map<std::string, std::vector<size_
 
     return OK;
 }
-
+#define ENABLE_V7_SERIALIZE
 StatusCode CNNNetworkImpl::serialize(const std::string& xmlPath, const std::string& binPath, ResponseDesc* resp) const
     noexcept {
     try {

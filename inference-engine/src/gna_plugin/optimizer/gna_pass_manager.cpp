@@ -1673,18 +1673,18 @@ void FuseMultipleIdentitiesPass::run() {
 }
 
 int PassManager::run(int index) {
-#ifdef PLOT
+//#ifdef PLOT
     auto dumpNetworkAfterPass = [&index, this] (std::shared_ptr<Pass> pass) {
         std::string name = std::string("gna_passes_") + (index < 10 ? "0" : "") + std::to_string(index) + "_" + pass->getName();
-        std::ofstream out(name + ".dot");
-        saveGraphToDot(*network.get(), out, [](const CNNLayerPtr layer,
-                                               ordered_properties &printed_properties,
-                                               ordered_properties &node_properties) {});
+        //std::ofstream out(name + ".dot");
+        //saveGraphToDot(*network.get(), out, [](const CNNLayerPtr layer,
+        //                                       ordered_properties &printed_properties,
+        //                                       ordered_properties &node_properties) {});
         network->serialize(name + ".xml", name + ".bin", nullptr);
     };
-#else
-    auto dumpNetworkAfterPass = [] (std::shared_ptr<Pass> ) {};
-#endif
+//#else
+//    auto dumpNetworkAfterPass = [] (std::shared_ptr<Pass> ) {};
+//#endif
 
     for (auto && pass : passes) {
         if (settings.runBeforeCopy != pass->runBeforeCopyPass()) {

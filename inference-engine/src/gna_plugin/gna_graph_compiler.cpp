@@ -243,7 +243,10 @@ void GNAGraphCompiler::ConvolutionPrimitive(InferenceEngine::CNNLayerPtr layer) 
         THROW_GNA_LAYER_EXCEPTION(layer) << "I/O layout mismatch: " << inputs->getLayout() << " vs " << outputs->getLayout();
     }
 
-    auto in_order = getFromIRDimsOrderNCHW(inputs->getLayout());
+    //auto input_layout_overwrite = outputs->getLayout();
+    auto input_layout_overwrite = Layout::NHWC;
+    auto in_order = getFromIRDimsOrderNCHW(input_layout_overwrite);
+
     auto in_batch = FROM_IR_DIM(inputs, in_order[0]);
     auto in_channels = FROM_IR_DIM(inputs, in_order[1]);
     auto in_height = FROM_IR_DIM(inputs, in_order[2]);
@@ -268,7 +271,7 @@ void GNAGraphCompiler::ConvolutionPrimitive(InferenceEngine::CNNLayerPtr layer) 
         // TODO: Issue 24839
         THROW_GNA_LAYER_EXCEPTION(layer) << "with dilation is not supported on GNA";
     }
-    if (inputs->getLayout() != Layout::NHWC && in_height != 1) {
+    if (input_layout_overwrite != Layout::NHWC && in_height != 1) {
         // TensorFlow default layout is NHWC
         // OpenVino Default layout is   NCHW
         // GNA Convolution input is     NHCW

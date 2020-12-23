@@ -331,7 +331,7 @@ void GNAModelSerial::Export(void * basePointer, size_t gnaGraphSize, std::ostrea
     header.layersCount = layers.size();
     header.nGroup = guessGrouping(*gna2Model);
     header.nInputs = inputs.size();
-    header.nOutputs = outputs.size();
+    header.nOutputs = 1;
     header.nRotateRows = nRotateRows;
     header.nRotateColumns = nRotateColumns;
     header.doRotateInput = doRotateInput;
@@ -347,14 +347,17 @@ void GNAModelSerial::Export(void * basePointer, size_t gnaGraphSize, std::ostrea
     for (const auto &input : inputs) {
         writeBits(convert_to_serial(input), os);
     }
-    for (auto &name : outputNames) {
+    // serialize only one output
+    auto name = *outputNames.rbegin();
+    //for (auto &name : outputNames) {
         const auto nameSize = strlen(name.c_str()) + 1;
         writeBits(static_cast<uint32_t>(nameSize), os);
         writeNBytes(name.c_str(), nameSize, os);
-    }
-    for (const auto &output : outputs) {
-        writeBits(convert_to_serial(output), os);
-    }
+    //}
+    writeBits(convert_to_serial(*outputs.rbegin()), os);
+    //for (const auto &output : outputs) {
+    //    writeBits(convert_to_serial(output), os);
+    //}
 
     for (const auto & layer : layers) {
         writeBits(static_cast<uint32_t>(layer.Type), os);
