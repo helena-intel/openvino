@@ -54,8 +54,9 @@ class ScaleFactorPerLayer {
 template<>
 class ScaleFactorPerLayer<InferenceEngine::CNNLayer *> {
  private :
-    const float activation_scale_factor = 2048.0f; //; 2311.f;
-    const float identity_scale_factor = ID_WEIGHT_SCALE; // 2309.0f;
+    const float activation_scale_factor = 2311.0f; //; 2311.f;
+    const float identity_scale_factor = 2309.0f;
+
     const float k = 5;
     const float k_identity = 6;
     const double pow_domain = 16;
@@ -70,9 +71,10 @@ class ScaleFactorPerLayer<InferenceEngine::CNNLayer *> {
                              QuantizedLayerParams const* quantizedParams) {
         // todo: calculate proper scale factor where we need to expand it a bit to be safe to stay in int16 weights
         // set the initial value
-
         if (!layer.isClamp() && quantizedParams->_dst_quant.dynamic_range_set)
+        {
             return (float)32768.0f / ceil(quantizedParams->_dst_quant.agg_dynamic_range * SCALE_FACTOR_GUARDBAND);
+        }
 
         float result = activation_scale_factor;
         if (layer.isIdentity()) {
@@ -150,6 +152,7 @@ class ScaleFactorPerLayer<InferenceEngine::CNNLayer *> {
             float abs_max = min > max ? min : max;
             result = (abs_max < 1) ? (float)INT16_MAX : (float)INT16_MAX / abs_max;
         }
+
         return result;
     }
 
@@ -308,6 +311,7 @@ class ScaleFactorPerLayer<InferenceEngine::EltwiseLayer*> {
         if ( !eltwiseLayer ) {
             THROW_GNA_EXCEPTION << "Incorrect Eltwise Layer pointer \n";
         }
+        
         auto in0 = InferenceEngine::CNNNetPrevLayer(eltwiseLayer, 0);
         auto in1 = InferenceEngine::CNNNetPrevLayer(eltwiseLayer, 1);
 
@@ -412,7 +416,7 @@ class ScaleFactorPerLayer<InferenceEngine::ConcatLayer*> {
         if (concatLayer->insData.size() < 2) {
             THROW_GNA_EXCEPTION << "Concat layer has unsupported number of incoming layers.";
         }
-
+        
         auto fp32eq = [](float p1, float p2) -> bool {
             return (std::abs(p1 - p2) <= 0.00001f * std::min(std::abs(p1), std::abs(p2)));
         };
@@ -598,7 +602,7 @@ class ScaleFactorPerLayer<InferenceEngine::WeightableLayer*> {
         } else if (!wl->_weights) {
             THROW_GNA_EXCEPTION << "Incorrect weight value for " << wl->name << ":" << wl->type << "\n";
         }
-
+        
         auto prevLayer = CNNNetPrevLayer(wl);
         auto quantDataForInputLayer =
             InferenceEngine::getInjectedData<QuantizedLayerParams>(*InferenceEngine::CNNNetPrevLayer(wl).get());
@@ -635,13 +639,14 @@ class ScaleFactorPerLayer<InferenceEngine::WeightableLayer*> {
                     if (quant->_dst_quant.dynamic_range_set)
                     {
                         float scale = MAX_VAL_4B_BIAS / ceil(quant->_dst_quant.agg_dynamic_range * SCALE_FACTOR_GUARDBAND);
-                        quant->_bias_quant.scale = std::min(scale, quant->_bias_quant.scale);
+                        if (scale < quant->_bias_quant.scale)
+                        {
+                            quant->_bias_quant.scale = scale;
+                        }
                     }
                     quant->_weights_quant.scale = quant->_bias_quant.scale / quant->_src_quant.scale;
-
                 }
             }
-
 
             double weights_reducer = 1.0;
             auto conv = dynamic_cast<InferenceEngine::ConvolutionLayer*>(wl);

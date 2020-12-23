@@ -83,23 +83,23 @@ class ModelQuantizer {
             quantData->_src_quant.scale = scaleFactor[scaleIndex];
             scaleIndex++;
         }
-
+#ifdef GEN_STATS
         StatisticsDao* stats = StatisticsDao::Deserialize("layer_statistics.txt");
         const float MIN_DYNAMIC_RANGE = 1e-20;
-
         int index = 0;
         // set minimum dynamic range
-        for (auto& layer : sortedNewNet) {
-            auto curr_quant_data = InferenceEngine::getInjectedData<QuantizedLayerParams>(layer);
-            auto it = LayerNameToType.find(layer->type);
-            if (it != LayerNameToType.end() && it->second != LayerType::Input && curr_quant_data) {
-                    curr_quant_data->_src_quant.agg_dynamic_range = 1.75f;
-                    curr_quant_data->_dst_quant.agg_dynamic_range = 1.75f;
-            }
-            index++;
-        }
-
         if (stats) {
+            for (auto& layer : sortedNewNet) {
+                auto curr_quant_data = InferenceEngine::getInjectedData<QuantizedLayerParams>(layer);
+                auto it = LayerNameToType.find(layer->type);
+                if (it != LayerNameToType.end() && it->second != LayerType::Input && curr_quant_data) {
+                        curr_quant_data->_src_quant.agg_dynamic_range = 2.25f;
+                        curr_quant_data->_dst_quant.agg_dynamic_range = 2.25f;
+                }
+                index++;
+            }
+
+
             for (auto& layer : sortedNewNet) {
                 auto quantData = InferenceEngine::getInjectedData<QuantizedLayerParams>(layer);
                 int layer_id = stats->GetLayerId(layer->name.c_str());
@@ -196,7 +196,7 @@ class ModelQuantizer {
                 }
             }
         }
-
+#endif
         propagateScaleFactor(sortedNewNet, T::mandatory().getWeightsPrecision().size());
         
         // sorted order gives possibility for propagate quantisation along depended layers

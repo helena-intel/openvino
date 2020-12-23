@@ -15,9 +15,10 @@
 #define MAX_VAL_1B_WEIGHT 127
 #define MAX_VAL_2B_WEIGHT 16384
 #define MAX_VAL_2B_FEAT 16384
-#define ID_WEIGHT_SCALE 8192.0f
+#define ID_WEIGHT_SCALE 4096.0f
 
-#define MAX_VAL_4B_BIAS 1073741824
+#define MAX_VAL_4B_BIAS 2147483647
+//1073741824
 #ifdef DEBUG
 #define QUANTWARNING(...) (fprintf(stderr, __VA_ARGS__))
 #else

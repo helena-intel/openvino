@@ -15,7 +15,9 @@ namespace runtime {
  */
 class FP {
     std::shared_ptr<backend::AMIntelDNN> dnn;
+#ifdef GEN_STATS
     StatisticsDao* stats_;
+#endif
  public:
     FP(std::shared_ptr<backend::AMIntelDNN> dnn)
         : dnn(dnn)
