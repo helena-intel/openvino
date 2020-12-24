@@ -231,6 +231,9 @@ public:
     virtual IExecutableNetwork::Ptr ImportNetwork(const std::string& modelFileName,
                                                   const std::map<std::string, std::string>& config) = 0;
 
+    virtual IExecutableNetwork::Ptr ImportNetwork(uint8_t *modelBuffer, size_t modelLen,
+                                                  const std::map<std::string, std::string>& config) = 0;
+
     /**
      * @brief Creates an executable network from an previously exported network using plugin implementation
      *        and removes Inference Engine magic and plugin name

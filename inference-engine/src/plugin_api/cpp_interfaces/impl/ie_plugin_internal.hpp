@@ -73,6 +73,14 @@ public:
         THROW_IE_EXCEPTION << NOT_IMPLEMENTED_str;
     }
 
+    IExecutableNetwork::Ptr ImportNetwork(uint8_t *modelBuffer, size_t modelLen,
+                                          const std::map<std::string, std::string>& config) override {
+        (void)modelBuffer;
+        (void)modelLen;
+        (void)config;
+        THROW_IE_EXCEPTION << NOT_IMPLEMENTED_str;
+    }
+
     ExecutableNetwork ImportNetwork(std::istream& networkModel,
                                     const std::map<std::string, std::string>& config) override {
         parsePluginName(networkModel);
@@ -214,6 +222,14 @@ protected:
     virtual ExecutableNetwork ImportNetworkImpl(std::istream& networkModel,
                                                 const std::map<std::string, std::string>& config) {
         (void)networkModel;
+        (void)config;
+        THROW_IE_EXCEPTION << NOT_IMPLEMENTED_str;
+    }
+
+    virtual ExecutableNetwork ImportNetworkImpl(uint8_t *modelBuff, size_t modelLen,
+                                                const std::map<std::string, std::string>& config) {
+        (void)modelBuff;
+        (void)modelLen;
         (void)config;
         THROW_IE_EXCEPTION << NOT_IMPLEMENTED_str;
     }

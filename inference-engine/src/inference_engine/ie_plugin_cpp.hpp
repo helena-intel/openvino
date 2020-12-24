@@ -92,6 +92,11 @@ public:
         CALL_STATEMENT(return ExecutableNetwork(actual->ImportNetwork(modelFileName, config), actual));
     }
 
+    ExecutableNetwork ImportNetwork(uint8_t *modelBuffer, size_t modelLen,
+                                    const std::map<std::string, std::string>& config) {
+        CALL_STATEMENT(return ExecutableNetwork(actual->ImportNetwork(modelBuffer, modelLen, config), actual));
+    }
+
     void QueryNetwork(const ICNNNetwork& network, const std::map<std::string, std::string>& config,
                       QueryNetworkResult& res) const {
         CALL_STATEMENT(actual->QueryNetwork(network, config, res));

@@ -150,6 +150,12 @@ public:
     ExecutableNetwork ImportNetwork(std::istream& networkModel, const std::string& deviceName = {},
                                     const std::map<std::string, std::string>& config = {});
 
+    ExecutableNetwork ImportNetwork(
+        uint8_t *modelBuffer,
+        size_t modelLen,
+        const std::string& deviceName = {},
+        const std::map<std::string, std::string>& config = {});
+
     /**
      * @brief Creates an executable network from a previously exported network within a specified
      * remote context.

@@ -682,6 +682,19 @@ ExecutableNetwork Core::ImportNetwork(const std::string& modelFileName, const st
     return _impl->GetCPPPluginByName(parsed._deviceName).ImportNetwork(modelFileName, parsed._config);
 }
 
+ExecutableNetwork Core::ImportNetwork(uint8_t *modelBuffer, size_t modelLen, const std::string& deviceName,
+                                      const std::map<std::string, std::string>& config) {
+    if (deviceName.find("HETERO") == 0) {
+        THROW_IE_EXCEPTION << "HETERO device does not support ImportNetwork";
+    }
+    if (deviceName.find("MULTI") == 0) {
+        THROW_IE_EXCEPTION << "MULTI device does not support ImportNetwork";
+    }
+
+    auto parsed = parseDeviceNameIntoConfig(deviceName, config);
+    return _impl->GetCPPPluginByName(parsed._deviceName).ImportNetwork(modelBuffer, modelLen, parsed._config);
+}
+
 ExecutableNetwork Core::ImportNetwork(std::istream& networkModel, const std::string& deviceName,
                                       const std::map<std::string, std::string>& config) {
     return _impl->ImportNetwork(networkModel, deviceName, config);
