@@ -44,7 +44,6 @@ To avoid dependency conflicts, use a virtual environment. Skip this
 
 Create virtual environment:
 ```sh
-python -m pip install --user virtualenv 
 python -m venv openvino_env --system-site-packages
 ```
 

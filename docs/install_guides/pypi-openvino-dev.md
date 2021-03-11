@@ -47,7 +47,6 @@ To avoid dependency conflicts, use a virtual environment. Skip this
 
 Create virtual environment:
 ```sh
-python -m pip install --user virtualenv 
 python -m venv openvino_env --system-site-packages
 ```
 
@@ -80,7 +79,7 @@ Run the command below: <br>
 
 Run the command below:
 ```sh
-python -c "pot -h"
+pot -h
 ```
    
 You will see the help message for Post-Training Optimization Tool if installation finished successfully.
