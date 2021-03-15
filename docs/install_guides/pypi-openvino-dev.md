@@ -45,13 +45,16 @@ The table below lists the supported operating systems and Python* versions requi
 To avoid dependency conflicts, use a virtual environment. Skip this
    step only if you do want to install all dependencies globally.
 
-Create virtual environment:
+Create a virtual environment:
 ```sh
 python -m pip install --user virtualenv 
 python -m venv openvino_env --system-site-packages
 ```
 
-Activate virtual environment:<br>
+*NOTE:* Linux users: Depending on your Linux configuration and distribution, you may need to type `python3` instead of
+`python`. You may also need to [install pip](https://pip.pypa.io/en/stable/installing/).
+
+Activate the virtual environment:<br>
 On Linux and macOS:
 ```sh
 source openvino_env/bin/activate
@@ -78,9 +81,9 @@ Run the command below: <br>
 
 ### Step 4. Verify that the Package is Installed
 
-Run the command below:
+Run the command below (this may take a few seconds):
 ```sh
-python -c "pot -h"
+pot -h
 ```
    
 You will see the help message for Post-Training Optimization Tool if installation finished successfully.
@@ -89,5 +92,4 @@ You will see the help message for Post-Training Optimization Tool if installatio
 
 - Intel® Distribution of OpenVINO™ toolkit home page: [https://software.intel.com/en-us/openvino-toolkit](https://software.intel.com/en-us/openvino-toolkit)
 - OpenVINO™ toolkit online documentation: [https://docs.openvinotoolkit.org](https://docs.openvinotoolkit.org)
-
 
