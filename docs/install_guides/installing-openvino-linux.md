@@ -119,6 +119,7 @@ sudo sed -i 's/decline/accept/g' silent.cfg
 sudo ./install.sh -s silent.cfg
 ```   
    You can select which OpenVINO components will be installed by modifying the `COMPONENTS` parameter in the `silent.cfg` file. For example, to install only CPU runtime for the Inference Engine, set `COMPONENTS=intel-openvino-ie-rt-cpu__x86_64` in `silent.cfg`. To get a full list of available components for installation, run the `./install.sh --list_components` command from the unpacked OpenVINO™ toolkit package.
+   
 6. Follow the instructions on your screen. Watch for informational messages such as the following in case you must complete additional steps:
 
    ![](../img/openvino-install-linux-01.png)
@@ -131,9 +132,9 @@ sudo ./install.sh -s silent.cfg
 8. **Optional**: You can choose **Customize** to change the installation directory or the components you want to install:
 > **NOTE**: If there is an OpenVINO™ toolkit version previously installed on your system, the installer will use the same destination directory for next installations. If you want to install a newer version to a different directory, you need to uninstall the previously installed versions.
    > **NOTE**: The Intel® Media SDK component is always installed in the `/opt/intel/mediasdk` directory regardless of the OpenVINO installation path chosen.
-9. A Complete screen indicates that the core components have been installed:
+9. This screen indicates that the components have been successfully installed:
 
-   ![](../img/openvino-install-linux-04.png)
+   ![](../img/openvino-install-linux-04.png)   
 
 > **NOTE**: After you click Finish to close the installation wizard, a new browser window opens with the document you’re reading now (in case you installed without it) and jumps to the section on setting environment variables.
 
