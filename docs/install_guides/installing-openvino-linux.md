@@ -1,27 +1,17 @@
-# Install Intel® Distribution of OpenVINO™ toolkit for Linux* {#openvino_docs_install_guides_installing_openvino_linux}
+# Install and Configure for Linux* {#openvino_docs_install_guides_installing_openvino_linux}
 
-> **NOTES**:
-> - These steps apply to Ubuntu\*, CentOS\*, and Yocto\*.
-> - If you are using Intel® Distribution of OpenVINO™ toolkit on Windows\* OS, see the [Installation Guide for Windows*](installing-openvino-windows.md).
-> - CentOS and Yocto installations will require some modifications that are not covered in this guide.
-> - An internet connection is required to follow the steps in this guide.
-> - [Intel® System Studio](https://software.intel.com/en-us/system-studio) is an all-in-one, cross-platform tool suite, purpose-built to simplify system bring-up and improve system and IoT device application performance on Intel® platforms. If you are using the Intel® Distribution of OpenVINO™ with Intel® System Studio, go to [Get Started with Intel® System Studio](https://software.intel.com/en-us/articles/get-started-with-openvino-and-intel-system-studio-2019).
+> **Applicable Linux Version**:
+> - These steps apply to Ubuntu\*, CentOS\*, and Yocto\*, but CentOS and Yocto installations will require some modifications that are not covered in this guide.
 
 ## Introduction
 
-OpenVINO™ toolkit is a comprehensive toolkit for quickly developing applications and solutions that solve a variety of tasks including emulation of human vision, automatic speech recognition, natural language processing, recommendation systems, and many others. Based on latest generations of artificial neural networks, including Convolutional Neural Networks (CNNs), recurrent and attention-based networks, the toolkit extends computer vision and non-vision workloads across Intel® hardware, maximizing performance. It accelerates applications with high-performance, AI and deep learning inference deployed from edge to cloud.
 
-The Intel® Distribution of OpenVINO™ toolkit for Linux\*:
-- Enables CNN-based deep learning inference on the edge
-- Supports heterogeneous execution across Intel® CPU, Intel® Integrated Graphics, Intel® Neural Compute Stick 2, and Intel® Vision Accelerator Design with Intel® Movidius™ VPUs
-- Speeds time-to-market via an easy-to-use library of computer vision functions and pre-optimized kernels
-- Includes optimized calls for computer vision standards including OpenCV\* and OpenCL™
+By default, the [OpenVINO™ Toolkit](https://docs.openvinotoolkit.org/latest/index.html) installation on this page installs the following components:
 
-**Included with the Installation and installed by default:**
 
 | Component                                                                                           | Description                                                                                                                                                                                                                                                                                                   |  
 |-----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [Model Optimizer](../MO_DG/Deep_Learning_Model_Optimizer_DevGuide.md) | This tool imports, converts, and optimizes models that were trained in popular frameworks to a format usable by Intel tools, especially the Inference Engine. <br>Popular frameworks include Caffe\*, TensorFlow\*, MXNet\*, and ONNX\*.                                                                              |
+| [Model Optimizer](../MO_DG/Deep_Learning_Model_Optimizer_DevGuide.md) | This tool imports, converts, and optimizes models that were trained in popular frameworks to a format usable by Intel tools, especially the Inference Engine. <br>Popular frameworks include Caffe\*, TensorFlow\*, MXNet\*, and ONNX\*.                                                                              |
 | [Inference Engine](../IE_DG/Deep_Learning_Inference_Engine_DevGuide.md)               | This is the engine that runs the deep learning model. It includes a set of libraries for an easy inference integration into your applications.                                                                                                                                                                |
 | Intel® Media SDK                                                                                    | Offers access to hardware accelerated video codecs and frame processing                                                                                                                                                                                                                                       |
 | [OpenCV](https://docs.opencv.org/master/)                                                           | OpenCV\* community version compiled for Intel® hardware                                                                                                                                                                                                                                                       |
@@ -60,7 +50,7 @@ Proceed to an [easy installation from Docker](@ref workbench_docs_Workbench_DG_I
 
 **Processor Notes:**
 
-- Processor graphics are not included in all processors. See [Product Specifications](https://ark.intel.com/) for information about your processor.
+- Processor graphics are not included in all processors. See [Product Specifications](https://ark.intel.com/) for information about your processor.
 - A chipset that supports processor graphics is required for Intel® Xeon® processors.
 
 **Operating Systems**
@@ -76,16 +66,18 @@ This guide provides step-by-step instructions on how to install the Intel® Dist
 
 1. <a href="#install-openvino">Install the Intel® Distribution of OpenVINO™ Toolkit </a>
 2. <a href="#install-external-dependencies">Install External software dependencies</a>
-3. <a href="#set-the-environment-variables">Set the OpenVINO™ Environment Variables: Optional Update to .bashrc</a>.
-4. <a href="#configure-model-optimizer">Configure the Model Optimizer </a>
-5. <a href="#additional-GPU-steps">Steps for Intel® Processor Graphics (GPU)</a>
-6. <a href="#additional-NCS-steps">Steps for Intel® Neural Compute Stick 2</a>
-7. <a href="#install-VPU">Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPU</a><br>
-After installing your Intel® Movidius™ VPU, you will return to this guide to complete OpenVINO™ installation.
-8. <a href="#get-started">Get Started with Code Samples and Demo Applications</a>
-9. <a href="#uninstall">Steps to uninstall the Intel® Distribution of OpenVINO™ Toolkit.</a>
+3. <a href="#set-the-environment-variables">Configure the Environment</a>
 
-## <a name="install-openvino"></a>Install the Intel® Distribution of OpenVINO™ Toolkit Core Components
+**Configure inference on non-CPU devices:**
+   - <a href="#additional-GPU-steps">Steps for Intel® Processor Graphics (GPU)</a>
+   - <a href="#additional-NCS-steps">Steps for Intel® Neural Compute Stick 2</a>
+   - <a href="#install-VPU">Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPU</a><br>
+   After installing your Intel® Movidius™ VPU, you will return to this guide to complete OpenVINO™ installation.<br>
+   
+<a href="#get-started">Get Started with Code Samples and Demo Applications</a><br>
+[Steps to uninstall the Intel® Distribution of OpenVINO™ Toolkit.](../uninstalling-openvino.md)
+
+## <a name="install-openvino"></a>Step 1: Install the Intel® Distribution of OpenVINO™ Toolkit Core Components
 
 Download the Intel® Distribution of OpenVINO™ toolkit package file from [Intel® Distribution of OpenVINO™ toolkit for Linux*](https://software.intel.com/en-us/openvino-toolkit/choose-download).
 Select the Intel® Distribution of OpenVINO™ toolkit for Linux package from the dropdown menu.
@@ -97,13 +89,13 @@ If you downloaded the package file to the current user's `Downloads` directory:
 ```sh
 cd ~/Downloads/
 ```
-   By default, the file is saved as `l_openvino_toolkit_p_<version>.tgz`.
-3. Unpack the .tgz file:
+   By default, the file is saved as `l_openvino_toolkit_p_<version>.tgz`.
+3. Unpack the .tgz file:
 ```sh
 tar -xvzf l_openvino_toolkit_p_<version>.tgz
 ```
-   The files are unpacked to the `l_openvino_toolkit_p_<version>` directory.
-4. Go to the `l_openvino_toolkit_p_<version>` directory:
+   The files are unpacked to the `l_openvino_toolkit_p_<version>` directory.
+4. Go to the `l_openvino_toolkit_p_<version>` directory:
 ```sh
 cd l_openvino_toolkit_p_<version>
 ```
@@ -129,23 +121,23 @@ sudo ./install.sh -s silent.cfg
    You can select which OpenVINO components will be installed by modifying the `COMPONENTS` parameter in the `silent.cfg` file. For example, to install only CPU runtime for the Inference Engine, set `COMPONENTS=intel-openvino-ie-rt-cpu__x86_64` in `silent.cfg`. To get a full list of available components for installation, run the `./install.sh --list_components` command from the unpacked OpenVINO™ toolkit package.
 6. Follow the instructions on your screen. Watch for informational messages such as the following in case you must complete additional steps:
    ![](../img/openvino-install-linux-01.png)
-7. If you select the default options, the **Installation summary** GUI screen looks like this:
-   ![](../img/openvino-install-linux-02.png)
-   By default, the Intel® Distribution of OpenVINO™ is installed to the following directory, referred to as `<INSTALL_DIR>`:
+7. By default, the Intel® Distribution of OpenVINO™ is installed to the following directory, referred to as `<INSTALL_DIR>`:
       * For root or administrator: `/opt/intel/openvino_<version>/`
       * For regular users: `/home/<USER>/intel/openvino_<version>/`
    For simplicity, a symbolic link to the latest installation is also created: `/opt/intel/openvino_2021/`.
 
 8. **Optional**: You can choose **Customize** to change the installation directory or the components you want to install:
 > **NOTE**: If there is an OpenVINO™ toolkit version previously installed on your system, the installer will use the same destination directory for next installations. If you want to install a newer version to a different directory, you need to uninstall the previously installed versions.
-   ![](../img/openvino-install-linux-03.png)
    > **NOTE**: The Intel® Media SDK component is always installed in the `/opt/intel/mediasdk` directory regardless of the OpenVINO installation path chosen.
-9. A Complete screen indicates that the core components have been installed:
+9. A Complete screen indicates that the core components have been installed:
    ![](../img/openvino-install-linux-04.png)
+
+> **NOTE**: After you click Finish to close the installation wizard, a new browser window opens with the document you’re reading now (in case you installed without it) and jumps to the section on setting environment variables.
+
 
 The first core components are installed. Continue to the next section to install additional dependencies.
 
-## <a name="install-external-dependencies"></a>Install External Software Dependencies
+## <a name="install-external-dependencies"></a>Step 2: Install External Software Dependencies
 
 > **NOTE**: If you installed the Intel® Distribution of OpenVINO™ to the non-default install directory, replace `/opt/intel` with the directory in which you installed the software.
 
@@ -165,15 +157,9 @@ sudo -E ./install_openvino_dependencies.sh
 ```
    The dependencies are installed. Continue to the next section to set your environment variables.
 
-## <a name="set-the-environment-variables"></a>Set the Environment Variables
+## <a name="set-the-environment-variables"></a>Step 3: Configure the Environment
 
-You must update several environment variables before you can compile and run OpenVINO™ applications. Run the following script to temporarily set your environment variables:
-
-```sh
-source /opt/intel/openvino_2021/bin/setupvars.sh
-```  
-
-**Optional:** The OpenVINO environment variables are removed when you close the shell. As an option, you can permanently set the environment variables as follows:
+You must update several environment variables before you can compile and run OpenVINO™ applications. Permanently set the environment variables as follows:
 
 1. Open the `.bashrc` file in `<user_directory>`:
 ```sh
@@ -189,9 +175,13 @@ source /opt/intel/openvino_2021/bin/setupvars.sh
 
 4. To test your change, open a new terminal. You will see `[setupvars.sh] OpenVINO environment initialized`.
 
-The environment variables are set. Continue to the next section to configure the Model Optimizer.
+**Optional:** The OpenVINO environment variables are removed when you close the shell. As an option, you can run the following script to temporarily set your environment variables:
 
-## <a name="configure-model-optimizer"></a>Configure the Model Optimizer
+```sh
+source /opt/intel/openvino_2021/bin/setupvars.sh
+```  
+
+The environment variables are set. Next, you will configure the Model Optimizer.
 
 The Model Optimizer is a Python\*-based command line tool for importing
 trained models from popular deep learning frameworks such as Caffe\*,
@@ -204,67 +194,36 @@ Intermediate Representation (IR) of the network. The Intermediate Representation
 - `.xml`: Describes the network topology
 - `.bin`: Contains the weights and biases binary data
 
-For more information about the Model Optimizer, refer to the [Model Optimizer Developer Guide](../MO_DG/Deep_Learning_Model_Optimizer_DevGuide.md). 
+For more information about the Model Optimizer, refer to the [Model Optimizer Developer Guide](../MO_DG/Deep_Learning_Model_Optimizer_DevGuide.md). 
 
 ### Model Optimizer Configuration Steps
-
-You can choose to either configure all supported frameworks at once **OR** configure one framework at a time. Choose the option that best suits your needs. If you see error messages, make sure you installed all dependencies.
 
 > **NOTE**: Since the TensorFlow framework is not officially supported on CentOS*, the Model Optimizer for TensorFlow can't be configured and ran on those systems.  
 
 > **IMPORTANT**: The Internet access is required to execute the following steps successfully. If you have access to the Internet through the proxy server only, please make sure that it is configured in your OS environment.
-
-**Option 1: Configure all supported frameworks at the same time**
 
 1.  Go to the Model Optimizer prerequisites directory:
 ```sh
 cd /opt/intel/openvino_2021/deployment_tools/model_optimizer/install_prerequisites
 ```
 2.  Run the script to configure the Model Optimizer for Caffe,
-    TensorFlow 1.x, MXNet, Kaldi\*, and ONNX:
+    TensorFlow 1.x, TensorFlow 2.x, MXNet, Kaldi\*, and ONNX:
 ```sh
 sudo ./install_prerequisites.sh
 ```
 
-**Option 2: Configure each framework separately**
+**Optional:** You can configure each framework separately. If you see error messages, make sure you installed all dependencies.
 
-Configure individual frameworks separately **ONLY** if you did not select **Option 1** above.
+Configure individual frameworks separately **ONLY** if you did not follow the steps above.
 
 1.  Go to the Model Optimizer prerequisites directory:
 ```sh
 cd /opt/intel/openvino_2021/deployment_tools/model_optimizer/install_prerequisites
 ```
-2.  Run the script for your model framework. You can run more than one script:
+2.  Run the script for your model framework. You can run more than one script.
 
-   - For **Caffe**:
-   ```sh
-   sudo ./install_prerequisites_caffe.sh
-   ```
-
-   - For **TensorFlow 1.x**:
-   ```sh
-   sudo ./install_prerequisites_tf.sh
-   ```
-
-   - For **TensorFlow 2.x**:
-   ```sh
-   sudo ./install_prerequisites_tf2.sh
-   ```
-
-   - For **MXNet**:
-   ```sh
-   sudo ./install_prerequisites_mxnet.sh
-   ```
-
-   - For **ONNX**:
-   ```sh
-   sudo ./install_prerequisites_onnx.sh
-   ```
-
-   - For **Kaldi**:
-   ```sh
-   sudo ./install_prerequisites_kaldi.sh
-   ```
+> **NOTE**: Prerequisites are not large, but you can choose to install Model Optimizer support only for certain frameworks. In the same directory are individual scripts for Caffe, TensorFlow 1.x, TensorFlow 2.x, MXNet, Kaldi*, and ONNX (install_prerequisites_caffe.sh, etc.).
+   
 The Model Optimizer is configured for one or more frameworks.
 
 You have completed all required installation, configuration and build steps in this guide to use your CPU to work with your trained models. 
@@ -356,37 +315,12 @@ cd /opt/intel/openvino_2021/deployment_tools/demo
 You've completed all required configuration steps to perform inference on Intel® Vision Accelerator Design with Intel® Movidius™ VPUs. 
 Proceed to the <a href="#get-started">Get Started</a> to get started with running code samples and demo applications.
 
-## <a name="get-started"></a>Get Started
+## <a name="get-started"></a>Start Using the Toolkit
 
 Now you are ready to get started. To continue, see the following pages:
 * [OpenVINO™ Toolkit Overview](../index.md)
 * [Get Started Guide for Linux](../get_started/get_started_linux.md) to learn the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
 
-## <a name="uninstall"></a>Uninstall the Intel® Distribution of OpenVINO™ Toolkit
-Choose one of the options provided below to uninstall the Intel® Distribution of OpenVINO™ Toolkit from your system.
-
-### Uninstall with GUI
-1. Run the uninstallation script from `<INSTALL_DIR>/openvino_toolkit_uninstaller`:
-   ```sh
-   sudo ./uninstall_GUI.sh
-   ```
-2. Follow the uninstallation wizard instructions.
-
-
-### Uninstall with Command Line (Interactive Mode)
-1. Run the uninstallation script from `<INSTALL_DIR>/openvino_toolkit_uninstaller`:
-   ```sh
-   sudo ./uninstall.sh
-   ```
-2. Follow the instructions on your screen.
-4. When uninstallation is complete, press **Enter**.
-
-### Uninstall with Command Line (Silent Mode)
-1. Run the following command from `<INSTALL_DIR>/openvino_toolkit_uninstaller`:
-   ```sh
-   sudo ./uninstall.sh -s
-   ```
-2. Intel® Distribution of OpenVINO™ Toolkit is now uninstalled from your system.
 
 ## Troubleshooting
 
