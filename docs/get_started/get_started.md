@@ -138,6 +138,8 @@ You will perform the following steps:
 2. <a href="#convert-models-to-intermediate-representation">Convert the models with the Model Optimizer.</a> 
 3. <a href="download-media">Download media files to run inference on.</a>
 4. <a href="run-image-classification">Run inference on the sample and see the results.</a>
+    - <a href="run-image-classification">Image Classification Code Sample</a>
+    - <a href="run-security-barrier">Security Barrier Camera Demo application</a>
 
 ### Build Samples
 
@@ -258,7 +260,7 @@ Your screen looks similar to this after the download:
 
 </details>  
 
-### Step 2: Convert the Model with Model Optimizer
+### Step 2: <a name="convert-models-to-intermediate-representation">Convert the Model with Model Optimizer</a>
 
 In this step, your trained models are ready to run through the Model Optimizer to convert them to the Intermediate Representation format. This is required before using the Inference Engine with the model.
 
@@ -306,52 +308,47 @@ As an alternative, the Intel® Distribution of OpenVINO™ toolkit includes two 
 
 ### <a name="run-image-classification"></a>Step 4: Run Inference on the Sample
 
-> **NOTE**: The Image Classification code sample is automatically compiled when you ran the Image Classification demo script. If you want to compile it manually, see the *Build the Sample Applications on Linux* section in the [Inference Engine Code Samples Overview](../IE_DG/Samples_Overview.md). 
+#### Run the Image Classification Code Sample
 
 To run the **Image Classification** code sample with an input image on the IR: 
 
 1. Set up the OpenVINO environment variables:
    ```sh
-   source /opt/intel/openvino_2021/bin/setupvars.sh
+   source /opt/intel/openvino/bin/setupvars.sh
    ``` 
 2. Go to the code samples build directory:
    ```sh
-   cd ~/inference_engine_samples_build/intel64/Release
+   cd ~/inference_engine_cpp_samples_build/intel64/Release
    ```
 3. Run the code sample executable, specifying the input media file, the IR of your model, and a target device on which you want to perform inference:
    ```sh
-   classification_sample_async -i <path_to_media> -m <path_to_model> -d <target_device>
+   classification_sample -i <path_to_media> -m <path_to_model> -d <target_device>
    ```
 <details>
     <summary><strong>Click for examples of running the Image Classification code sample on different devices</strong></summary>
 
-The following commands run the Image Classification Code Sample using the `car.png` file from the `/opt/intel/openvino_2021/deployment_tools/demo/` directory as an input image, the IR of your model from `~/models/public/squeezenet1.1/ir` and on different hardware devices:
+The following commands run the Image Classification Code Sample using the `car.png` file from the `/opt/intel/openvino/deployment_tools/demo/` directory as an input image, the IR of your model from `~/models/public/squeezenet1.1/ir` and on different hardware devices:
 
 **CPU:**
    ```sh
-   ./classification_sample_async -i /opt/intel/openvino_2021/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d CPU
+   ./classification_sample -i /opt/intel/openvino/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d CPU
    ```
 
    **GPU:**
-   
-   > **NOTE**: Running inference on Intel® Processor Graphics (GPU) requires additional hardware configuration steps. For details, see the Steps for Intel® Processor Graphics (GPU) section in the [installation instructions](../install_guides/installing-openvino-linux.md).
+   >**NOTE**: Running inference on Intel® Processor Graphics (GPU) requires 
+    [additional hardware configuration steps](https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_linux.html#additional-GPU-steps).
    ```sh
-   ./classification_sample_async -i /opt/intel/openvino_2021/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d GPU
+   ./classification_sample -i /opt/intel/openvino/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d GPU
    ```
    
    **MYRIAD:** 
 
-   > **NOTE**: Running inference on VPU devices (Intel® Neural Compute Stick 2) with the MYRIAD plugin requires additional hardware configuration steps. For details, see the Steps for Intel® Neural Compute Stick 2 section in the [installation instructions](../install_guides/installing-openvino-linux.md).
+   >**NOTE**: Running inference on VPU devices (Intel® Movidius™ Neural Compute 
+   Stick or Intel® Neural Compute Stick 2) with the MYRIAD plugin requires 
+    [additional hardware configuration steps](inference-engine/README.md#optional-additional-installation-steps-for-the-intel-movidius-neural-compute-stick-and-neural-compute-stick-2).
    ```sh   
-   ./classification_sample_async -i /opt/intel/openvino_2021/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d MYRIAD
+   ./classification_sample -i /opt/intel/openvino/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d MYRIAD
    ```
-   
-   **HDDL:**
-
-  > **NOTE**: Running inference on the Intel® Vision Accelerator Design with Intel® Movidius™ VPUs device with the HDDL plugin requires additional hardware configuration steps. For details, see the Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPUs section in the [installation instructions](../install_guides/installing-openvino-linux.md).
-  ```sh   
-  ./classification_sample_async -i /opt/intel/openvino_2021/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d HDDL
-  ```
 
 When the Sample Application completes, you see the label and confidence for the top-10 categories on the display. Below is a sample output with inference results on CPU:    
 ```sh
@@ -380,6 +377,48 @@ Throughput: 375.3339402 FPS
 
 [ INFO ] Execution successful
 ```
+</details>
+
+#### <a name="run-security-barrier"></a>Run the Security Barrier Camera Demo Application
+
+To run the **Security Barrier Camera Demo Application** using an input image on the prepared IRs:
+
+1. Set up the OpenVINO environment variables:
+   ```sh
+   source /opt/intel/openvino/bin/setupvars.sh
+   ``` 
+2. Go to the demo application build directory:
+   ```sh
+   cd ~/inference_engine_demos_build/intel64/Release
+   ```
+3. Run the demo executable, specifying the input media file, list of model IRs, and a target device on which to perform inference:
+   ```sh
+   ./security_barrier_camera_demo -i <path_to_media> -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_vehicle_attributes model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_license_plate_recognition_model>/license-plate-recognition-barrier-0001.xml -d <target_device>
+   ```
+
+<details>
+    <summary><strong>Click for examples of running the Security Barrier Camera demo application on different devices</strong></summary>
+
+
+**CPU:**
+```sh
+./security_barrier_camera_demo -i /opt/intel/openvino/deployment_tools/demo/car_1.bmp -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_model>/license-plate-recognition-barrier-0001.xml -d CPU
+```
+
+**GPU:**
+>**NOTE**: Running inference on Intel® Processor Graphics (GPU) requires 
+    [additional hardware configuration steps](https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_linux.html#additional-GPU-steps).
+```sh
+./security_barrier_camera_demo -i /opt/intel/openvino/deployment_tools/demo/car_1.bmp -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_model>/license-plate-recognition-barrier-0001.xml -d GPU
+```
+
+**MYRIAD:** 
+   >**NOTE**: Running inference on VPU devices (Intel® Movidius™ Neural Compute 
+   Stick or Intel® Neural Compute Stick 2) with the MYRIAD plugin requires 
+    [additional hardware configuration steps](https://docs.openvinotoolkit.org/latest/_docs_install_guides_installing_openvino_linux.html#additional-NCS-steps).
+   ```sh   
+   ./classification_sample -i <DLDT_DIR>/inference-engine/samples/sample_data/car.png -m <ir_dir>/squeezenet1.1.xml -d MYRIAD
+   ```
 
 </details>
 
