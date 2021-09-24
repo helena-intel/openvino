@@ -1,3 +1,4 @@
+
 # Install and Configure for Linux* {#openvino_docs_install_guides_installing_openvino_linux}
 
 > **Applicable Linux Version**:
@@ -119,11 +120,8 @@ sudo sed -i 's/decline/accept/g' silent.cfg
 sudo ./install.sh -s silent.cfg
 ```   
    You can select which OpenVINO components will be installed by modifying the `COMPONENTS` parameter in the `silent.cfg` file. For example, to install only CPU runtime for the Inference Engine, set `COMPONENTS=intel-openvino-ie-rt-cpu__x86_64` in `silent.cfg`. To get a full list of available components for installation, run the `./install.sh --list_components` command from the unpacked OpenVINO™ toolkit package.
-   
 6. Follow the instructions on your screen. Watch for informational messages such as the following in case you must complete additional steps:
-
    ![](../img/openvino-install-linux-01.png)
-   
 7. By default, the Intel® Distribution of OpenVINO™ is installed to the following directory, referred to as `<INSTALL_DIR>`:
       * For root or administrator: `/opt/intel/openvino_<version>/`
       * For regular users: `/home/<USER>/intel/openvino_<version>/`
@@ -132,9 +130,8 @@ sudo ./install.sh -s silent.cfg
 8. **Optional**: You can choose **Customize** to change the installation directory or the components you want to install:
 > **NOTE**: If there is an OpenVINO™ toolkit version previously installed on your system, the installer will use the same destination directory for next installations. If you want to install a newer version to a different directory, you need to uninstall the previously installed versions.
    > **NOTE**: The Intel® Media SDK component is always installed in the `/opt/intel/mediasdk` directory regardless of the OpenVINO installation path chosen.
-9. This screen indicates that the components have been successfully installed:
-
-   ![](../img/openvino-install-linux-04.png)   
+9. A Complete screen indicates that the core components have been installed:
+   ![](../img/openvino-install-linux-04.png)
 
 > **NOTE**: After you click Finish to close the installation wizard, a new browser window opens with the document you’re reading now (in case you installed without it) and jumps to the section on setting environment variables.
 
@@ -204,7 +201,7 @@ For more information about the Model Optimizer, refer to the [Model Optimizer De
 
 > **NOTE**: Since the TensorFlow framework is not officially supported on CentOS*, the Model Optimizer for TensorFlow can't be configured and ran on those systems.  
 
-> **IMPORTANT**: Internet access is required to execute the following steps successfully. If you have access to the Internet through the proxy server only, please make sure that it is configured in your OS environment.
+> **IMPORTANT**: The Internet access is required to execute the following steps successfully. If you have access to the Internet through the proxy server only, please make sure that it is configured in your OS environment.
 
 1.  Go to the Model Optimizer prerequisites directory:
 ```sh
