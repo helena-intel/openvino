@@ -2,35 +2,36 @@
 
 ## Demo Scripts
 
-The demo scripts in `/opt/intel/openvino_2021/deployment_tools/demo` give you a starting point to learn the OpenVINO workflow. These scripts automatically perform the workflow steps to demonstrate running inference pipelines for different scenarios. The demo steps let you see how to: 
+The demo scripts in `/opt/intel/openvino_2021/deployment_tools/demo` give you a starting point for learning the OpenVINO workflow. These scripts automatically perform the workflow steps to demonstrate running inference pipelines for different scenarios. The demo steps let you see how to: 
 * Compile several samples from the source files delivered as part of the OpenVINO toolkit.
 * Download trained models.
+* Convert the models to IR (Intermediated Representation format used by OpenVINO™) with Model Optimizer.
 * Perform pipeline steps and see the output on the console.
 
-> **NOTE**: You must have Internet access to run the demo scripts. If your Internet access is through a proxy server, make sure the operating system environment proxy information is configured.
+> **NOTE**: You must have Internet access to run the demo scripts.
 
-The demo scripts can run inference on any [supported target device](https://software.intel.com/en-us/openvino-toolkit/hardware). Although the default inference device is CPU, you can use the `-d` parameter to change the inference device. The general command to run the scripts looks as follows:
+The demo scripts can run inference on any [supported target device](https://software.intel.com/en-us/openvino-toolkit/hardware). Although the default inference device (i.e., processor) is the CPU, you can use the `-d` parameter to specify another inference device. The general command to run the scripts looks as follows:
 
 ```sh
 ./<script_name> -d [CPU, GPU, MYRIAD, HDDL]
 ```
 
-Before running the demo applications on Intel® Processor Graphics or on an Intel® Neural Compute Stick 2 device, you must complete the additional configuration steps. For details, see:
+Before running the demo applications on Intel® Processor Graphics or on an Intel® Neural Compute Stick 2 device, you must complete additional configuration steps. For details, see:
 * Steps for Intel® Processor Graphics (GPU) section in the [installation instructions](../install_guides/installing-openvino-linux.md)
-* Steps for Intel® Neural Compute Stick 2 section in the [installation instructions](../install_guides/installing-openvino-linux.md).
+* Steps for Intel® Neural Compute Stick 2 section in the [installation instructions](../install_guides/installing-openvino-linux.md)
 
-The following paragraphs describe each demo script.
+The following sections describe each demo script.
 
 ### Image Classification Demo Script
 The `demo_squeezenet_download_convert_run` script illustrates the image classification pipeline.
 
 The script: 
 1. Downloads a SqueezeNet model. 
-2. Runs the Model Optimizer to convert the model to the IR.
+2. Runs the Model Optimizer to convert the model to the IR format used by OpenVINO™.
 3. Builds the Image Classification Sample Async application.
 4. Runs the compiled sample with the `car.png` image located in the `demo` directory.
 
-**LINUX**
+***There will be a "Linux" language tab for each code block or code section.***
 
 <details>
     <summary><strong>Click for an example of running the Image Classification demo script</strong></summary>
@@ -42,13 +43,13 @@ cd ${INTEL_OPENVINO_DIR}/deployment_tools/demo
 eog car.png
 ```
 
-To run the script to perform inference on a CPU:
+To run the script and perform inference on a CPU:
 
 ```sh
 ./demo_squeezenet_download_convert_run.sh
 ```
 
-When the script completes, you see the label and confidence for the top-10 categories:
+When the script completes, you see the label and confidence for the top 10 categories:
 
 ```sh
 
@@ -77,16 +78,15 @@ Throughput: 375.3339402 FPS
 
 [ INFO ] Execution successful
 ```
-
 </details>
 
 ### Inference Pipeline Demo Script
-The `demo_security_barrier_camera` uses vehicle recognition in which vehicle attributes build on each other to narrow in on a specific attribute.
+The `demo_security_barrier_camera` application uses vehicle recognition in which vehicle attributes build on each other to narrow in on a specific attribute.
 
 The script:
-1. Downloads three pre-trained model IRs.
+1. Downloads three pre-trained models, already converted to IR format.
 2. Builds the Security Barrier Camera Demo application.
-3. Runs the application with the downloaded models and the `car_1.bmp` image from the `demo` directory to show an inference pipeline. 
+3. Runs the application with the three models and the `car_1.bmp` image from the `demo` directory to show an inference pipeline.
 
 This application:
 
@@ -103,7 +103,7 @@ To run the script performing inference on Intel® Processor Graphics:
 ./demo_security_barrier_camera.sh -d GPU
 ```
 
-When the verification script completes, you see an image that displays the resulting frame with detections rendered as bounding boxes, and text:
+When the verification script completes, you see an image that displays the resulting frame with detections rendered as bounding boxes and overlaid text:
 
 ![](../img/inference_pipeline_script_lnx.png)
 
@@ -114,7 +114,7 @@ The `demo_benchmark_app` script illustrates how to use the Benchmark Application
 
 The script: 
 1. Downloads a SqueezeNet model.
-2. Runs the Model Optimizer to convert the model to the IR.
+2. Runs the Model Optimizer to convert the model to IR format.
 3. Builds the Inference Engine Benchmark tool.
 4. Runs the tool with the `car.png` image located in the `demo` directory.
 
@@ -137,15 +137,13 @@ You will perform the following steps:
 1. <a href="#download-models">Use the Model Downloader to download suitable models.</a>
 2. <a href="#convert-models-to-intermediate-representation">Convert the models with the Model Optimizer.</a> 
 3. <a href="download-media">Download media files to run inference on.</a>
-4. <a href="run-image-classification">Run inference on the sample and see the results.</a>
+4. <a href="run-image-classification">Run inference on the sample and see the results:</a>
     - <a href="run-image-classification">Image Classification Code Sample</a>
     - <a href="run-security-barrier">Security Barrier Camera Demo application</a>
 
 ### Build Samples
 
-If samples have been manually built, skip this section. This step will take about 5-10 minutes, depending on your system.
-
-**LINUX**
+If samples have been manually built, skip this section. The build will take about 5-10 minutes, depending on your system.
 
 Build OpenVINO Demos
 ```
@@ -158,48 +156,47 @@ cd /opt/intel/openvino/inference_engine/samples/cpp
 ./build_samples
 ```
 
-
 ### <a name="download-models"></a> Step 1: Download the Models
 
-You must have a model that is specific for you inference task. Example model types are:
-- Classification (AlexNet, GoogleNet, SqueezeNet, others) - Detects one type of element in a frame.
-- Object Detection (SSD, YOLO) - Draws bounding boxes around multiple types of objects.
-- Custom (Often based on SSD)
+You must have a model that is specific for your inference task. Example model types are:
+- Classification (AlexNet, GoogleNet, SqueezeNet, others): Detects one type of element in a frame.
+- Object Detection (SSD, YOLO): Draws bounding boxes around multiple types of objects.
+- Custom: Often based on SSD
 
-Options to find a model suitable for the OpenVINO™ toolkit are:
-- Download public and Intel's pre-trained models from the [Open Model Zoo](https://github.com/openvinotoolkit/open_model_zoo) using [Model Downloader tool](@ref omz_tools_downloader).
+Options to find a model suitable for the OpenVINO™ toolkit:
+- Download public or Intel pre-trained models from the [Open Model Zoo](https://github.com/openvinotoolkit/open_model_zoo) using the [Model Downloader tool](@ref omz_tools_downloader)
 - Download from GitHub*, Caffe* Zoo, TensorFlow* Zoo, etc.
-- Train your own model.
+- Train your own model
         
-This guide uses the Model Downloader to get pre-trained models. You can use one of the following options to find a model:
+This guide uses the Model Downloader to get pre-trained models. You can use one of the following commands to find a model:
 
 * **List the models available in the downloader**: 
-```sh
-cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader/
-```
-```sh
-python3 info_dumper.py --print_all
-```
+   ```sh
+   cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader/
+   ```
+   ```sh
+   python3 info_dumper.py --print_all
+   ```
 
 * **Use `grep` to list models that have a specific name pattern**: 
-```sh
-python3 info_dumper.py --print_all | grep <model_name>
-```
+   ```sh
+   python3 info_dumper.py --print_all | grep <model_name>
+   ```
 
-Use the Model Downloader to download the models to a models directory. This guide uses `<models_dir>` as the models directory and `<models_name>` as the model name:
+Use the Model Downloader to download the models to a models directory. This guide uses `<models_dir>` and `<models_name>' as placeholders for the models directory and model name:
 ```sh
 sudo python3 ./downloader.py --name <model_name> --output_dir <models_dir>
 ```
-> **NOTE:** Always run the downloader with `sudo`.
+> **NOTE:** Always run the downloader with the `sudo` command.
 
-Download the following models if you want to run the Image Classification Sample and Security Barrier Camera Demo application:
+Download the following models to run the Image Classification Sample and Security Barrier Camera Demo applications:
 
-|Model Name                                     | Code Sample or Demo App                             |
-|-----------------------------------------------|-----------------------------------------------------|
-|`squeezenet1.1`                                | Image Classification Sample                         |
-|`vehicle-license-plate-detection-barrier-0106` | Security Barrier Camera Demo application            |
-|`vehicle-attributes-recognition-barrier-0039`  | Security Barrier Camera Demo application            |
-|`license-plate-recognition-barrier-0001`       | Security Barrier Camera Demo application            |
+|Model Name                                     | Code Sample or Demo App                  |
+|-----------------------------------------------|------------------------------------------|
+|`squeezenet1.1`                                | Image Classification Sample              |
+|`vehicle-license-plate-detection-barrier-0106` | Security Barrier Camera Demo             |
+|`vehicle-attributes-recognition-barrier-0039`  | Security Barrier Camera Demo             |
+|`license-plate-recognition-barrier-0001`       | Security Barrier Camera Demo             |
 
 <details>
     <summary><strong>Click for an example of downloading the SqueezeNet Caffe* model</strong></summary>
@@ -210,7 +207,7 @@ To download the SqueezeNet 1.1 Caffe* model to the `~/models` folder:
 sudo python3 ./downloader.py --name squeezenet1.1 --output_dir ~/models
 ```
 
-Your screen looks similar to this after the download:
+Your screen looks similar to this after the download and shows the paths of downloaded files:
 ```
 ###############|| Downloading models ||###############
 
@@ -262,15 +259,15 @@ Your screen looks similar to this after the download:
 
 ### Step 2: <a name="convert-models-to-intermediate-representation">Convert the Model with Model Optimizer</a>
 
-In this step, your trained models are ready to run through the Model Optimizer to convert them to the Intermediate Representation format. This is required before using the Inference Engine with the model.
+In this step, your trained models are ready to run through the Model Optimizer to convert them to the IR (Intermediate Representation) format. This is required before using the Inference Engine with the model.
 
-Models in the IR format always include an `.xml` and `.bin` file and may also include other files such as `.json` or `.mapping`. Make sure you have these files in the same directory for the Inference Engine to find them.
+Models in the IR format always include an `.xml` and `.bin` file and may also include other files such as `.json` or `.mapping`. Make sure you have these files together in a single directory so the Inference Engine can find them.
 
 REQUIRED: `model_name.xml` REQUIRED: `model_name.bin` OPTIONAL: `model_name.json`,  `model_name.mapping`, etc.
 
-This guide uses the public SqueezeNet 1.1 Caffe* model to run the Image Classification Sample. See the example to download a model in the Download Models section to learn how to download this model.
+This tutorial uses the public SqueezeNet 1.1 Caffe* model to run the Image Classification Sample. See the example in the Download Models section to learn how to download this model.
 
-The SqueezeNet1.1 model is downloaded in the Caffe* format. You must use the Model Optimizer to convert the model to the IR. The `vehicle-license-plate-detection-barrier-0106`, `vehicle-attributes-recognition-barrier-0039`, `license-plate-recognition-barrier-0001` models are downloaded in the Intermediate Representation format. You don't need to use the Model Optimizer to covert these models.
+The SqueezeNet1.1 model is downloaded in the Caffe* format. You must use the Model Optimizer to convert the model to IR. The `vehicle-license-plate-detection-barrier-0106`, `vehicle-attributes-recognition-barrier-0039`, and `license-plate-recognition-barrier-0001` models are downloaded in IR format. You don't need to use the Model Optimizer on them because they are Intel models that have already been converted. Public models will need converting with Model Optimizer.
 
 Create an `<ir_dir>` directory to contain the model's Intermediate Representation (IR).
 
@@ -280,15 +277,14 @@ mkdir ~/ir
 
 The Inference Engine can perform inference on different precision formats, such as FP32, FP16, INT8. To prepare an IR with specific precision, run the Model Optimizer with the appropriate `--data_type` option.
 
-**LINUX**:
-
-Run the Model Optimizer Script:
+Generic Model Optimizer script:
 
 ```
 cd /opt/intel/openvino/deployment_tools/model_optimizer
+python3 ./mo_py --input_model <model_dir>/<model_file> --data_type <model_precision> --output_dir <ir_dir>
 ```
 
-`python3 ./mo_py --input_model <model_dir>/<model_file> --data_type <model_precision> --output_dir <ir_dir>`produced IR files are in the <ir_dir> directory.
+IR files produced by the script are written to the <ir_dir> directory.
 
 The actual command:
 
@@ -316,7 +312,7 @@ To run the **Image Classification** code sample with an input image on the IR:
    ```sh
    source /opt/intel/openvino/bin/setupvars.sh
    ``` 
-2. Go to the code samples build directory:
+2. Go to the code samples release directory created when you built the samples earlier:
    ```sh
    cd ~/inference_engine_cpp_samples_build/intel64/Release
    ```
@@ -327,9 +323,9 @@ To run the **Image Classification** code sample with an input image on the IR:
 <details>
     <summary><strong>Click for examples of running the Image Classification code sample on different devices</strong></summary>
 
-The following commands run the Image Classification Code Sample using the `car.png` file from the `/opt/intel/openvino/deployment_tools/demo/` directory as an input image, the IR of your model from `~/models/public/squeezenet1.1/ir` and on different hardware devices:
+The following commands run the Image Classification Code Sample using the `car.png` file from the `/opt/intel/openvino/deployment_tools/demo/` directory as an input image, the model in IR format from `~/models/public/squeezenet1.1/ir`, and on different hardware devices:
 
-**CPU:**
+   **CPU:**  
    ```sh
    ./classification_sample -i /opt/intel/openvino/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d CPU
    ```
