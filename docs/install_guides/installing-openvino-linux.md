@@ -59,15 +59,15 @@ This guide provides step-by-step instructions on how to install the Intel® Dist
 1. <a href="#install-openvino">Install the Intel® Distribution of OpenVINO™ Toolkit </a>
 2. <a href="#install-external-dependencies">Install External software dependencies</a>
 3. <a href="#set-the-environment-variables">Configure the Environment</a>
-
-**Configure inference on non-CPU devices:**
+4. Configure inference on non-CPU devices:
    - <a href="#additional-GPU-steps">Steps for Intel® Processor Graphics (GPU)</a>
    - <a href="#additional-NCS-steps">Steps for Intel® Neural Compute Stick 2</a>
    - <a href="#install-VPU">Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPU</a><br>
    After installing your Intel® Movidius™ VPU, you will return to this guide to complete OpenVINO™ installation.<br>
    
-<a href="#get-started">Get Started with Code Samples and Demo Applications</a><br>
-[Steps to uninstall the Intel® Distribution of OpenVINO™ Toolkit.](../uninstalling-openvino.md)
+5. <a href="#get-started">Start Using the Toolkit</a>
+
+- [Steps to uninstall the Intel® Distribution of OpenVINO™ Toolkit](../uninstalling-openvino.md)
 
 ## <a name="install-openvino"></a>Step 1: Install the Intel® Distribution of OpenVINO™ Toolkit Core Components
 
