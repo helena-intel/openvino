@@ -2,7 +2,7 @@
 # Install and Configure for Linux* {#openvino_docs_install_guides_installing_openvino_linux}
 
 > **Applicable Linux Version**:
-> - These steps apply to Ubuntu\*, CentOS\*, and Yocto\*, but CentOS and Yocto installations will require some modifications that are not covered in this guide.
+> - These steps apply to Ubuntu\* and with some modifications shown below, also Red Hat\* Enterprise Linux\*.
 
 ## Introduction
 
