@@ -770,6 +770,11 @@ In these exercises, you will:
    TBD
 @endsphinxdirective
 
+@sphinxdirective
+.. raw:: html
+    <div class="collapsible-section">
+@endsphinxdirective
+    
 ### Exercise 1: Run A Sample Application
 Convert a model using the Model Optimizer, then use a sample application to load the model and run inference.
 
@@ -866,7 +871,152 @@ Once your setup is complete, you're ready to run a sample application:
 .. tab:: macOS
 .. code-block:: bat
    TBD
+@endsphinxdirective
+    
+@sphinxdirective
+.. raw:: html
+    </div>
+@endsphinxdirective
+    
+@sphinxdirective
+.. raw:: html
+    <div class="collapsible-section">
+@endsphinxdirective
+    
+### Exercise 2: Human Pose Estimation
 
+This demo detects people and draws a stick figure to show limb positions. This model has already been converted for use with the Intel® Distribution of OpenVINO™ toolkit.
+
+- Requires downloading the human-pose-estimation-0001 (ICV) Model.
+- Requires video or camera input.
+
+Example Syntax:
+
+@sphinxdirective
+.. tab:: Linux
+.. code-block:: sh
+    human_pose_estimation_demo -i path/to/video -m path/to/model/human-pose-estimation-0001.xml -d CPU
+.. tab:: Windows
+.. code-block:: bat
+   TBD
+.. tab:: macOS
+.. code-block:: bat
+   TBD    
+@endsphinxdirective
+    
+**Steps to Run the Human Pose Demo:**
+
+1. Set up the environment variables:
+    
+@sphinxdirective
+.. tab:: Linux
+.. code-block:: sh
+   source /opt/intel/openvino/bin/setupvars.sh
+.. tab:: Windows
+.. code-block:: bat
+   TBD
+.. tab:: macOS
+.. code-block:: bat
+   TBD    
+@endsphinxdirective    
+
+
+2. Move to the Model Downloader Directory:
+        
+@sphinxdirective
+.. tab:: Linux
+.. code-block:: sh
+   cd /opt/intel/openvino/deployment_tools/tools/model_downloader/
+.. tab:: Windows
+.. code-block:: bat
+   TBD
+.. tab:: macOS
+.. code-block:: bat
+   TBD    
+@endsphinxdirective  
+
+
+3. Find a suitable model:
+        
+@sphinxdirective
+.. tab:: Linux
+.. code-block:: sh
+   python3 info_dumper.py --print_all |grep pose
+.. tab:: Windows
+.. code-block:: bat
+   TBD
+.. tab:: macOS
+.. code-block:: bat
+   TBD    
+@endsphinxdirective  
+
+**Note:** `info_dumper.py` is a script that can list details about every model available in the Intel® Model Zoo. Models can also be manually downloaded from the Open Model Zoo GitHub page.
+
+4. Download the model:
+        
+@sphinxdirective
+.. tab:: Linux
+.. code-block:: sh
+   sudo ./downloader.py --name human-pose*
+.. tab:: Windows
+.. code-block:: bat
+   TBD
+.. tab:: macOS
+.. code-block:: bat
+   TBD    
+@endsphinxdirective
+
+5. Move the model to a more convenient location:
+        
+@sphinxdirective
+.. tab:: Linux
+.. code-block:: sh
+   mkdir ~/ir
+   cp /opt/intel/openvino/deployment_tools/tools/model_downloader/intel/human-pose-estimation-0001/FP32/human-pose-estimation-0001* ~/ir/
+.. tab:: Windows
+.. code-block:: bat
+   TBD
+.. tab:: macOS
+.. code-block:: bat
+   TBD    
+@endsphinxdirective
+
+6. Download an appropriate video:
+        
+@sphinxdirective
+.. tab:: Linux
+   Open a web browser to the following URL and download the video: 
+   https://www.pexels.com/video/couple-dancing-on-sunset-background-2035509/
+        
+   Rename the video for convenience:
+.. code-block:: sh
+   mv ~/Downloads/Pexels\ Videos\ 2035509.mp4 ~/Videos/humpose.mp4
+.. tab:: Windows
+.. code-block:: bat
+   TBD
+.. tab:: macOS
+.. code-block:: bat
+   TBD    
+@endsphinxdirective
+
+7. Run the sample:
+        
+@sphinxdirective
+.. tab:: Linux
+.. code-block:: sh
+   cd ~/omz_demos_build/intel64/Release/
+   ./human_pose_estimation_demo -i ~/Videos/humpose.mp4 -m ~/ir/human-pose-estimation-0001.xml -d CPU
+.. tab:: Windows
+.. code-block:: bat
+   TBD
+.. tab:: macOS
+.. code-block:: bat
+   TBD    
+@endsphinxdirective
+
+@sphinxdirective
+.. raw:: html
+    </div>
 @endsphinxdirective
 
 
