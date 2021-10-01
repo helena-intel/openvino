@@ -1019,6 +1019,58 @@ Example Syntax:
     </div>
 @endsphinxdirective
 
+@sphinxdirective
+.. raw:: html
+    <div class="collapsible-section">
+@endsphinxdirective
+
+### Exercise 3: Interactive Face Detection
+	
+The face detection demo draws bounding boxes around faces, and optionally feeds the output of the primary model to additional models. This model has already been converted for use with OpenVINO™.
+
+The Face Detection Demo supports face detection, plus optional functions:
+
+- Age-gender recognition
+- Emotion recognition
+- Head pose
+- Facial landmark display
+
+Example Syntax:
+- interactive_face_detection_demo -i path/to/video -m path/to/face/model -d CPU
+
+Steps:
+
+1.	Find and download an appropriate face detection model.  There are several available in the Intel® Model Zoo.
+    - You can access the [Pretrained Models](https://software.intel.com/en-us/openvino-toolkit/documentation/pretrained-models) page from the OpenVINO™ documentation to review model options.
+    - You may need to try out different models to find one that works, or that works best for your scenario.
+2.	Find and download a video that features faces.
+3.	Run the demo with just the face detection model.
+4.	**OPTIONAL:** Run the demo using additional models (age-gender, emotion recognition, head pose, etc.).
+    Note that when you use multiple models, there is always a primary model that is used followed by a number of optional models that use the output from the initial model.
+
+@sphinxdirective
+.. raw:: html
+    </div>
+@endsphinxdirective
+
+@sphinxdirective
+.. raw:: html
+    <div class="collapsible-section">
+@endsphinxdirective
+	
+### Exercise 4: DL Streamer
+	
+The DL Streamer is a command-line tool and API for integrating OpenVINO into a media analytics pipeline.  It supports OpenVINO, GStreamer, Mosquitto, Kafka, and a variety of other technologies.
+
+Follow the link below, read through the documentation, then do the tutorial.
+	
+[DL Streamer Documentation and Tutorial](DL_Streamer/README.md)
+
+@sphinxdirective
+.. raw:: html
+    </div>
+@endsphinxdirective
+
 
 ## Other Demos/Samples
 
