@@ -895,7 +895,7 @@ Example Syntax:
 @sphinxdirective
 .. tab:: Linux
 .. code-block:: sh
-    human_pose_estimation_demo -i path/to/video -m path/to/model/human-pose-estimation-0001.xml -d CPU
+   ./human_pose_estimation_demo -i path/to/video -m path/to/model/human-pose-estimation-0001.xml -d CPU
 .. tab:: Windows
 .. code-block:: bat
    TBD
