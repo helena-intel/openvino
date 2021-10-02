@@ -186,7 +186,7 @@ trained models from popular deep learning frameworks such as Caffe\*,
 TensorFlow\*, Apache MXNet\*, ONNX\* and Kaldi\*.
 
 The Model Optimizer is a key component of the Intel Distribution of OpenVINO toolkit. Performing inference on a model 
-(with the exception of ONNX and Paddle models) requires running the model through the Model Optimizer. When you run a pre-trained 
+(with the exception of ONNX and nGraph models) requires running the model through the Model Optimizer. When you run a pre-trained 
 model through the Model Optimizer, your output is an Intermediate Representation (IR) of the network. The Intermediate 
 Representation is a pair of files that describe the whole model:
 
