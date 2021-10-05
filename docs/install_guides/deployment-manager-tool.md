@@ -26,12 +26,9 @@ There are two ways to create a deployment package that includes inference-relate
 
 ### Run Interactive Mode
 @sphinxdirective
-
 .. raw:: html
     <div class="collapsible-content”>
-  
 @endsphinxdirective
-
 Click to expand/collapse
   
 Interactive mode provides a user-friendly command-line interface that will guide you through the process with text prompts.
@@ -39,28 +36,18 @@ Interactive mode provides a user-friendly command-line interface that will guide
 1. To launch the Deployment Manager in the interactive mode, open a new terminal window, go to the Deployment Manager tool directory and run the tool script without parameters:
   
 @sphinxdirective
-  
-.. tab:: Linux
-  
-.. code-block:: sh
-  
+.. tab:: Linux  
+.. code-block:: sh  
    cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
-   ./deployment_manager.py
-  
-.. tab:: Windows
-  
-.. code-block:: bat
-  
+   ./deployment_manager.py  
+.. tab:: Windows  
+.. code-block:: bat  
   cd <INSTALL_DIR>\deployment_tools\tools\deployment_manager
-  .\deployment_manager.py
-  
-.. tab:: macOS
-  
-.. code-block:: sh
-  
+  .\deployment_manager.py  
+.. tab:: macOS  
+.. code-block:: sh  
    cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
-   ./deployment_manager.py
-  
+   ./deployment_manager.py  
 @endsphinxdirective
 
   2. The target device selection dialog is displayed:
@@ -85,24 +72,16 @@ Interactive mode provides a user-friendly command-line interface that will guide
 
 The script successfully completes and the deployment package is generated in the output directory specified. 
 @sphinxdirective
-  
-.. raw:: html
-  
-    </div>
-  
+.. raw:: html  
+    </div>  
 @endsphinxdirective
-
 
 ### Run Standard CLI Mode
   
-@sphinxdirective
-  
-.. raw:: html
-  
-    <div class="collapsible-content”>
-  
+@sphinxdirective  
+.. raw:: html  
+    <div class="collapsible-content”>  
 @endsphinxdirective
-
 Click to expand/collapse
 
 Alternatively, you can run the Deployment Manager tool in the standard CLI mode. In this mode, you specify the target devices and other parameters as command-line arguments of the Deployment Manager Python script. This mode facilitates integrating the tool in an automation pipeline.
@@ -110,25 +89,18 @@ Alternatively, you can run the Deployment Manager tool in the standard CLI mode.
 To launch the Deployment Manager tool in the standard mode, open a new terminal window, go to the Deployment Manager tool directory and run the tool command with the following syntax:
 
 @sphinxdirective
-
 .. tab:: Linux
-
 .. code-block:: sh
-
 cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
-./deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]
+./deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]  
   
-.. tab:: Windows
-  
-.. code-block:: bat
-  
+.. tab:: Windows  
+.. code-block:: bat  
 cd <INSTALL_DIR>\deployment_tools\tools\deployment_manager
 .\deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]
   
-.. tab:: macOS
-  
-.. code-block:: sh
-  
+.. tab:: macOS  
+.. code-block:: sh  
 cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
 ./deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]
   
@@ -146,14 +118,10 @@ The following options are available:
 
 The script successfully completes, and the deployment package is generated in the output directory specified.
 
-@sphinxdirective
-  
-.. raw:: html
-  
-    </div>
-  
+@sphinxdirective  
+.. raw:: html  
+    </div>  
 @endsphinxdirective
-
 
 ## Deploy Package on Target Systems
 
@@ -166,21 +134,14 @@ To deploy the Inference Engine components from the development machine to the ta
 2. Unpack the archive into the destination directory on the target system (if your archive name is different from the default shown below, replace the `openvino_deployment_package` with the name you use).
 
 @sphinxdirective
-
-.. tab:: Linux
-  
-.. code-block:: sh
-  
+.. tab:: Linux  
+.. code-block:: sh  
    tar xf openvino_deployment_package.tar.gz -C <destination_dir>
   
-.. tab:: Windows
-  
-   Use the archiver you prefer to unzip the file.
-  
-.. tab:: macOS
-  
-.. code-block:: sh
-  
+.. tab:: Windows  
+   Use the archiver you prefer to unzip the file.  
+.. tab:: macOS  
+.. code-block:: sh  
    tar xf openvino_deployment_package.tar.gz -C <destination_dir>
   
 @endsphinxdirective
@@ -194,9 +155,7 @@ To deploy the Inference Engine components from the development machine to the ta
   3. For Linux, to run inference on a target Intel® GPU, Intel® Movidius™ VPU, or Intel® Vision Accelerator Design with Intel® Movidius™ VPUs, you need to install additional dependencies by running the `install_openvino_dependencies.sh` script on the target machine:
 
 @sphinxdirective
-
-.. code-block:: sh
-  
+.. code-block:: sh  
    cd <destination_dir>/openvino/install_dependencies
    sudo -E ./install_openvino_dependencies.sh
 
@@ -204,26 +163,19 @@ To deploy the Inference Engine components from the development machine to the ta
   
 4. Set up the environment variables:
   
-@sphinxdirective
-  
-.. tab:: Linux
-  
-.. code-block:: sh
-  
+@sphinxdirective  
+.. tab:: Linux  
+.. code-block:: sh  
    cd <destination_dir>/openvino/
    source ./bin/setupvars.sh
   
-.. tab:: Windows
-  
-.. code-block:: bat
-  
+.. tab:: Windows  
+.. code-block:: bat  
    cd <destination_dir>\openvino\
    .\bin\setupvars.bat
   
-.. tab:: macOS
-  
-.. code-block:: sh
-  
+.. tab:: macOS  
+.. code-block:: sh  
    cd <destination_dir>/openvino/
    source ./bin/setupvars.sh
   
