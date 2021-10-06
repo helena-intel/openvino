@@ -25,6 +25,7 @@ The Deployment Manager is a Python\* command-line tool that is delivered within 
 There are two ways to create a deployment package that includes inference-related components of the OpenVINO™ toolkit: you can run the Deployment Manager tool in either interactive or standard CLI mode.
 
 ### Run Interactive Mode
+
 @sphinxdirective
 .. raw:: html
     <div class="collapsible-content”>
@@ -63,7 +64,7 @@ Interactive mode provides a user-friendly command-line interface that will guide
    The target devices you have selected at the previous step appear on the screen. If you want to change the selection, type **b** and press **Enter** to go back to the previous screen. Use the options provided to configure the generation process, or use the default settings.
    *	`o. Change output directory` (optional): Path to the output directory. By default, it set to your home directory.
 
-   *	`u. Provide (or change) path to folder with user data` (optional): Path to a directory with user data (IRs, models, datasets, etc.) required for inference. By default, it's set to `None`, which means you will separately copy the user data to the target system.
+   *	`u. Provide (or change) path to folder with user data` (optional): Path to a directory with user data (IRs, models, datasets, etc.) files and subdirectories required for inference, which will be added to the deployment archive. By default, it's set to `None`, which means you will separately copy the user data to the target system.
 
    *	`t. Change archive name` (optional): Deployment archive name without extension. By default, it is set to `openvino_deployment_package`.
  
@@ -71,6 +72,7 @@ Interactive mode provides a user-friendly command-line interface that will guide
 4. Once all the parameters are set, type **g** and press **Enter** to generate the package for the selected target devices. If you want to interrupt the generation process and exit the program, type **q** and press **Enter**.
 
 The script successfully completes and the deployment package is generated in the output directory specified. 
+
 @sphinxdirective
 .. raw:: html  
     </div>  
@@ -114,7 +116,7 @@ The following options are available:
 
 *	`[--archive_name]` (optional): Deployment archive name without extension. By default, it is set to `openvino_deployment_package`.
 
-*	`[--user_data]` (optional): Path to a directory with user data (IRs, models, datasets, etc.) required for inference. By default, it is set to `None`, which means you will separately copy the user data to the target system.
+*	`[--user_data]` (optional): Path to a directory with user data (IRs, models, datasets, etc.) files and subdirectories required for inference, which will be added to the deployment archive. By default, it's set to `None`, which means you will separately copy the user data to the target system.
 
 The script successfully completes, and the deployment package is generated in the output directory specified.
 
