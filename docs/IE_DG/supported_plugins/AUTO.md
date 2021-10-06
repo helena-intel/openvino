@@ -37,7 +37,9 @@ There are two ways to use Auto-device:
 
 @snippet snippets/AUTO1.cpp part1
 
-Auto-device supports query device optimization capabilities in metric;
+**NOTE:** The Inference Engine lets you use "GPU" as an alias for "GPU.0" in function calls. 
+
+Auto-device supports query device optimization capabilities in metric:
 
 | Parameter name                 | Parameter values         |
 | :---                           | :---                     |
@@ -64,7 +66,7 @@ Available devices:
 ###	Default Auto-Device selecting logic
 
 With the 2021.4 release, Auto-Device selects the most suitable device with following default logic:
-1.	Check if dGPU, iGPU and CPU device are available
+1.	Check if dGPU (discrete Intel® GPU), iGPU (integrated Intel® GPU) and CPU device are available
 2.	Get the precision of the input model, such as FP32
 3.	According to the priority of dGPU, iGPU and CPU (in this order), if the device supports the precision of input network, select it as the most suitable device
 
