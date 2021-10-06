@@ -176,7 +176,7 @@ This application:
 
 1. Gets the boundaries an object identified as a vehicle with the first model.
 2. Uses the vehicle identification as input to the second model, which identifies specific vehicle attributes, including the license plate.
-3. Uses the the license plate as input to the third model, which recognizes specific characters in the license plate.
+3. Uses the license plate as input to the third model, which recognizes specific characters in the license plate.
 
 @sphinxdirective
 .. raw:: html
@@ -313,9 +313,9 @@ This guide uses the OpenVINO™ Model Downloader to get pre-trained models. You 
 @endsphinxdirective
 
 * **Use `grep` to list models that have a specific name pattern**: 
-```
-python3 info_dumper.py --print_all | grep <model_name>
-```
+   ```
+   python3 info_dumper.py --print_all | grep <model_name>
+   ```
 
 Use the Model Downloader to download the models to a models directory. This guide uses `<models_dir>` and `<models_name>' as placeholders for the models directory and model name:
 @sphinxdirective
@@ -482,7 +482,7 @@ Models in the IR format always include an `.xml` and `.bin` file and may also in
 
 REQUIRED: `model_name.xml` 
 REQUIRED: `model_name.bin` 
-OPTIONAL: `model_name.json`,  `model_name.mapping`, etc.
+OPTIONAL: `model_name.json`, `model_name.mapping`, etc.
 
 This tutorial uses the public SqueezeNet 1.1 Caffe* model to run the Image Classification Sample. See the example in the Download Models section of this page to learn how to download this model.
 
@@ -536,7 +536,7 @@ cd <INSTALL_DIR>\deployment_tools\model_optimizer
 python .\mo.py --input_model C:\Users\<username>\Documents\models\public\squeezenet1.1\squeezenet1.1.caffemodel --data_type FP16 --output_dir C:\Users\<username>\Documents\ir
 .. tab:: macOS
 .. code-block:: sh
-cd /opt/intel/openvino/deployment_tools/model_optimizer
+cd <INSTALL_DIR>/openvino/deployment_tools/model_optimizer
 python3 ./mo.py --input_model ~/models/public/squeezenet1.1/squeezenet1.1.caffemodel --data_type FP16 --output_dir ~/ir
 @endsphinxdirective
 
