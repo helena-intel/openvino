@@ -162,7 +162,7 @@ If you want to use a GPU or VPU, or update your Windows* environment variables, 
 - <a href="#hddl-myriad">Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPUs</a>
 - <a href="#Update-Path">Add CMake* or Python* to your Windows* environment variables</a><br>
 
-Or proceed to the <a href="#get-started">Get Started</a> to get started with running code samples and demo applications.
+Or proceed to the <a href="#get-started">Get Started</a> guide to get started with running code samples and demo applications.
 
 ## <a name="optional-steps"></a>Optional Steps
 
@@ -187,7 +187,7 @@ To check if you have this driver installed:
 
    ![](../img/DeviceDriverVersion.PNG)
 
-You are done updating your device driver and are ready to use your GPU. Proceed to the <a href="#get-started">Get Started</a> to get started with running code samples and demo applications.
+You are done updating your device driver and are ready to use your GPU. Proceed to the <a href="#get-started">Get Started</a> guide to get started with running code samples and demo applications.
 
 ### <a name="hddl-myriad"></a> Optional: Additional Installation Steps for the Intel® Vision Accelerator Design with Intel® Movidius™ VPUs
 
@@ -239,7 +239,7 @@ Your `PATH` environment variable is updated. If the changes don't take effect im
 
 Now you are ready to try out the toolkit. To continue, see the following pages:
 * [OpenVINO™ Toolkit Overview](../index.md)
-* [Get Started Guide](../get_started/get_started.md) to see the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
+* [Get Started Guide](../get_started/get_started_guide.md) to see the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
 
 ## <a name="uninstall"></a>Uninstall the Intel® Distribution of OpenVINO™ Toolkit
 
