@@ -30,7 +30,7 @@ The demo scripts can run inference on any [supported target device](https://soft
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 #If you installed in a location other than /opt/intel, substitute that path.
 cd /opt/intel/openvino_2021/deployment_tools/demo/
@@ -38,7 +38,7 @@ cd /opt/intel/openvino_2021/deployment_tools/demo/
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 rem If you installed in a location other than the default, substitute that path.
 cd "C:\Program Files (x86)\Intel\openvino_2021\deployment_tools\demo"
@@ -46,7 +46,7 @@ cd "C:\Program Files (x86)\Intel\openvino_2021\deployment_tools\demo"
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 #If you installed in a location other than /opt/intel, substitute that path.
 cd /opt/intel/openvino_2021/deployment_tools/demo/
@@ -97,20 +97,20 @@ To preview the image that the script will classify:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd /opt/intel/openvino_2021/deployment_tools/demo
    eog car.png
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    car.png
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd /opt/intel/openvino_2021/deployment_tools/demo
    open car.png
@@ -122,19 +122,19 @@ To run the script and perform inference on the CPU:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./demo_squeezenet_download_convert_run.sh
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    .\demo_squeezenet_download_convert_run.bat
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./demo_squeezenet_download_convert_run.sh
 
@@ -145,7 +145,7 @@ When the script completes, you see the label and confidence for the top 10 categ
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 Top 10 results:
 
@@ -171,7 +171,7 @@ classid probability label
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 Top 10 results:
 
@@ -197,7 +197,7 @@ classid probability label
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 Top 10 results:
 
@@ -251,20 +251,20 @@ To run the script performing inference on Intel® Processor Graphics:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ./demo_security_barrier_camera.sh -d GPU
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 .\demo_security_barrier_camera.bat -d GPU
 
 .. tab:: macOS
 
 On macOS, the sample runs only on CPU (not compatible with Intel® GPU).
-.. code-block:: sh
+   .. code-block:: sh
 
 ./demo_security_barrier_camera.sh -d CPU
 
@@ -313,19 +313,19 @@ To run the script that performs measures inference performance:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ./demo_benchmark_app.sh
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 .\demo_benchmark_app.bat
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ./demo_benchmark_app.sh
 
@@ -403,21 +403,21 @@ This guide uses the OpenVINO™ Model Downloader to get pre-trained models. You 
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader/
    python3 info_dumper.py --print_all
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    cd <INSTALL_DIR>\deployment_tools\tools\model_downloader\
    python3 info_dumper.py --print_all
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd /opt/intel/openvino_2021/deployment_tools/tools/model_downloader/
    python3 info_dumper.py --print_all
@@ -434,20 +434,20 @@ Use the Model Downloader to download the models to a models directory. This guid
 .. tab:: Linux
 
 Always run the Model Downloader with the `sudo` command. 
-.. code-block:: sh
+   .. code-block:: sh
 
 sudo python3 ./downloader.py --name <model_name> --output_dir <models_dir>
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 python3 .\downloader.py --name <model_name> --output_dir <models_dir>
 
 .. tab:: macOS
 
 Always run the Model Downloader with the `sudo` command. 
-.. code-block:: sh
+   .. code-block:: sh
 
 sudo python3 ./downloader.py --name <model_name> --output_dir <models_dir>
 
@@ -473,19 +473,19 @@ To download the SqueezeNet 1.1 Caffe* model to the `models` folder:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 sudo python3 ./downloader.py --name squeezenet1.1 --output_dir ~/models
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 python3 .\downloader.py --name squeezenet1.1 --output_dir C:\Users\\<USER_ID>\Documents\models
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 sudo python3 ./downloader.py --name squeezenet1.1 --output_dir ~/models
 
@@ -495,7 +495,7 @@ Your screen looks similar to this after the download and shows the paths of down
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ###############|| Downloading models ||###############
 
@@ -510,7 +510,7 @@ Your screen looks similar to this after the download and shows the paths of down
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 ################|| Downloading models ||################
 
@@ -527,7 +527,7 @@ Your screen looks similar to this after the download and shows the paths of down
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ###############|| Downloading models ||###############
 
@@ -561,19 +561,19 @@ To download all three pre-trained models in FP16 precision to the `models` folde
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 python3 ./downloader.py --name vehicle-license-plate-detection-barrier-0106,vehicle-attributes-recognition-barrier-0039,license-plate-recognition-barrier-0001 --output_dir ~/models --precisions FP16
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 python3 .\downloader.py --name vehicle-license-plate-detection-barrier-0106,vehicle-attributes-recognition-barrier-0039,license-plate-recognition-barrier-0001 --output_dir C:\Users\\<USER_ID>\Documents\models --precisions FP16
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 python3 ./downloader.py --name vehicle-license-plate-detection-barrier-0106,vehicle-attributes-recognition-barrier-0039,license-plate-recognition-barrier-0001 --output_dir ~/models --precisions FP16
 
@@ -584,7 +584,7 @@ Your screen looks similar to this after the download:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ################|| Downloading models ||################
 
@@ -611,7 +611,7 @@ Your screen looks similar to this after the download:
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 ################|| Downloading models ||################
 
@@ -638,7 +638,7 @@ Your screen looks similar to this after the download:
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ################|| Downloading models ||################
 
@@ -690,19 +690,19 @@ Create an `<ir_dir>` directory to contain the model's Intermediate Representatio
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 mkdir ~/ir
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 mkdir C:\Users\\<USER_ID>\Documents\ir
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 mkdir ~/ir
 
@@ -715,21 +715,21 @@ Generic Model Optimizer script:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 cd /opt/intel/openvino/deployment_tools/model_optimizer
 python3 ./mo.py --input_model <model_dir>/<model_file> --data_type <model_precision> --output_dir <ir_dir>
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 cd <INSTALL_DIR>\deployment_tools\model_optimizer
 python3 .\mo.py --input_model <model_dir>\\<model_file> --data_type <model_precision> --output_dir <ir_dir>
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 cd /opt/intel/openvino/deployment_tools/model_optimizer
 python3 ./mo.py --input_model <model_dir>/<model_file> --data_type <model_precision> --output_dir <ir_dir>
@@ -743,21 +743,21 @@ The command with most placeholders filled in and FP16 precision:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 cd /opt/intel/openvino/deployment_tools/model_optimizer
 python3 ./mo.py --input_model ~/models/public/squeezenet1.1/squeezenet1.1.caffemodel --data_type FP16 --output_dir ~/ir
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 cd <INSTALL_DIR>\deployment_tools\model_optimizer
 python3 .\mo.py --input_model C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\squeezenet1.1.caffemodel --data_type FP16 --output_dir C:\Users\\<USER_ID>\Documents\ir
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 cd /opt/intel/openvino/deployment_tools/model_optimizer
 python3 ./mo.py --input_model ~/models/public/squeezenet1.1/squeezenet1.1.caffemodel --data_type FP16 --output_dir ~/ir
@@ -781,7 +781,7 @@ As an alternative, the Intel® Distribution of OpenVINO™ toolkit includes seve
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 * <INSTALL_DIR>\deployment_tools\demo\car.png
 * <INSTALL_DIR>\deployment_tools\demo\car_1.bmp
@@ -790,7 +790,7 @@ As an alternative, the Intel® Distribution of OpenVINO™ toolkit includes seve
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 * `/opt/intel/openvino_2021/deployment_tools/demo/car.png`
 * `/opt/intel/openvino_2021/deployment_tools/demo/car_1.bmp`
@@ -809,19 +809,19 @@ To run the **Image Classification** code sample with an input image using the IR
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    source /opt/intel/openvino/bin/setupvars.sh
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    <INSTALL_DIR>\openvino\bin\setupvars.bat
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    source /opt/intel/openvino/bin/setupvars.sh
 
@@ -831,19 +831,19 @@ To run the **Image Classification** code sample with an input image using the IR
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd ~/inference_engine_cpp_samples_build/intel64/Release
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    cd C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd ~/inference_engine_cpp_samples_build/intel64/Release
 
@@ -854,19 +854,19 @@ To run the **Image Classification** code sample with an input image using the IR
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    classification_sample_async -i <path_to_media> -m <path_to_model> -d <target_device>
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    classification_sample_async.exe -i <path_to_media> -m <path_to_model> -d <target_device>
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    classification_sample_async -i <path_to_media> -m <path_to_model> -d <target_device>
 
@@ -885,19 +885,19 @@ The following commands run the Image Classification Code Sample using the `car.p
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./classification_sample_async -i /opt/intel/openvino/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d CPU
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d CPU
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./classification_sample_async -i /opt/intel/openvino/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d CPU
 
@@ -910,13 +910,13 @@ The following commands run the Image Classification Code Sample using the `car.p
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./classification_sample -i /opt/intel/openvino/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d GPU
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d GPU
 
@@ -930,13 +930,13 @@ The following commands run the Image Classification Code Sample using the `car.p
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./classification_sample -i /opt/intel/openvino/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d MYRIAD
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d MYRIAD
 
@@ -947,7 +947,7 @@ When the sample application is complete, you see the label and confidence for th
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 Top 10 results:
 
@@ -973,7 +973,7 @@ classid probability label
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 Top 10 results:
 
@@ -999,7 +999,7 @@ classid probability label
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 Top 10 results:
 
@@ -1038,19 +1038,19 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    source /opt/intel/openvino/bin/setupvars.sh
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    <INSTALL_DIR>\bin\setupvars.bat
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    source /opt/intel/openvino/bin/setupvars.sh
 
@@ -1060,19 +1060,19 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd ~/inference_engine_demos_build/intel64/Release
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    cd C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_demos_build\intel64\Release
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd ~/inference_engine_demos_build/intel64/Release
 
@@ -1082,19 +1082,19 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./security_barrier_camera_demo -i <path_to_media> -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_vehicle_attributes model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_license_plate_recognition_model>/license-plate-recognition-barrier-0001.xml -d <target_device>
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    .\security_barrier_camera_demo -i <path_to_media> -m <path_to_vehicle-license-plate-detection_model_xml> -m_va <path_to_vehicle_attributes_model_xml> -m_lpr <path_to_license_plate_recognition_model_xml> -d <target_device>
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
       ./security_barrier_camera_demo -i <path_to_media> -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_vehicle_attributes model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_license_plate_recognition_model>/license-plate-recognition-barrier-0001.xml -d <target_device>
 
@@ -1111,19 +1111,19 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ./security_barrier_camera_demo -i /opt/intel/openvino/deployment_tools/demo/car_1.bmp -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_model>/license-plate-recognition-barrier-0001.xml -d CPU
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    .\security_barrier_camera_demo -i <INSTALL_DIR>\deployment_tools\demo\car_1.bmp -m C:\Users\username\Documents\models\intel\vehicle-license-plate-detection-barrier-0106\FP16\vehicle-license-plate-detection-barrier-0106.xml -m_va C:\Users\username\Documents\models\intel\vehicle-attributes-recognition-barrier-0039\FP16\vehicle-attributes-recognition-barrier-0039.xml -m_lpr C:\Users\username\Documents\models\intel\license-plate-recognition-barrier-0001\FP16\license-plate-recognition-barrier-0001.xml -d CPU
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ./security_barrier_camera_demo -i /opt/intel/openvino/deployment_tools/demo/car_1.bmp -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_model>/license-plate-recognition-barrier-0001.xml -d CPU
 
@@ -1136,13 +1136,13 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ./security_barrier_camera_demo -i /opt/intel/openvino/deployment_tools/demo/car_1.bmp -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_model>/license-plate-recognition-barrier-0001.xml -d GPU
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    .\security_barrier_camera_demo -i <INSTALL_DIR>\deployment_tools\demo\car_1.bmp -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_model>/license-plate-recognition-barrier-0001.xml -d GPU
 
@@ -1156,13 +1156,13 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./security_barrier_camera_demo -i /opt/intel/openvino/deployment_tools/demo/car_1.bmp -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_model>/license-plate-recognition-barrier-0001.xml -d MYRIAD
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    .\security_barrier_camera_demo -i <INSTALL_DIR>\deployment_tools\demo\car_1.bmp -m <path_to_model>/vehicle-license-plate-detection-barrier-0106.xml -m_va <path_to_model>/vehicle-attributes-recognition-barrier-0039.xml -m_lpr <path_to_model>/license-plate-recognition-barrier-0001.xml -d MYRIAD
 
@@ -1187,19 +1187,19 @@ In these exercises, you will:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd ~/omz_demos_build/intel64/Release
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    cd C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_demos_build\intel64\Release
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd ~/omz_demos_build/intel64/Release
 
@@ -1211,19 +1211,19 @@ In these exercises, you will:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    source /opt/intel/openvino/bin/setupvars.sh
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    <INSTALL_DIR>\bin\setupvars.bat
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    source /opt/intel/openvino/bin/setupvars.sh
 
@@ -1246,21 +1246,21 @@ Convert a model using the Model Optimizer, then use a sample application to load
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 mkdir ~/squeezenet1.1_FP32
 cd ~/squeezenet1.1_FP32
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 mkdir C:\Users\\<USER_ID>\Documents\squeezenet1.1_FP32
 cd C:\Users\\<USER_ID>\Documents\squeezenet1.1_FP32
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 mkdir ~/squeezenet1.1_FP32
 cd ~/squeezenet1.1_FP32
@@ -1273,19 +1273,19 @@ Use the Model Optimizer to convert a SqueezeNet* Caffe* model into an optimized 
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 python3 /opt/intel/openvino/deployment_tools/model_optimizer/mo.py --input_model ~/models/public/squeezenet1.1/squeezenet1.1.caffemodel --data_type FP32 --output_dir .
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 python3 <INSTALL_DIR>\deployment_tools\model_optimizer\mo.py --input_model C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\squeezenet1.1.caffemodel --data_type FP32 --output_dir .
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 python3 <INSTALL_DIR>/openvino/deployment_tools/model_optimizer/mo.py --input_model ~/models/public/squeezenet1.1/squeezenet1.1.caffemodel --data_type FP32 --output_dir .
 
@@ -1299,19 +1299,19 @@ python3 <INSTALL_DIR>/openvino/deployment_tools/model_optimizer/mo.py --input_mo
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 cp /opt/intel/openvino/deployment_tools/demo/squeezenet1.1.labels .
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 copy <INSTALL_DIR>\deployment_tools\demo\squeezenet1.1.labels .
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 cp /opt/intel/openvino/deployment_tools/demo/squeezenet1.1.labels .
 
@@ -1323,19 +1323,19 @@ cp /opt/intel/openvino/deployment_tools/demo/squeezenet1.1.labels .
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 sudo cp /opt/intel/openvino/deployment_tools/demo/car.png .
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 copy <INSTALL_DIR>\deployment_tools\demo\car.png .
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 sudo cp /opt/intel/openvino/deployment_tools/demo/car.png .
 
@@ -1347,19 +1347,19 @@ Once your setup is complete, you're ready to run a sample application:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ~/inference_engine_samples_build/intel64/Release/classification_sample_async -i car.png -m ~/squeezenet1.1_FP32/squeezenet1.1.xml -d CPU
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
 C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release\classification_sample_async.exe -i car.png -m C:\Users\\<USER_ID>\Documents\squeezenet1.1_FP32\squeezenet1.1.xml -d CPU
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
 ~/inference_engine_samples_build/intel64/Release/classification_sample_async -i car.png -m ~/squeezenet1.1_FP32/squeezenet1.1.xml -d CPU
 
@@ -1369,19 +1369,19 @@ C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\inte
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ~/inference_engine_samples_build/intel64/Release/classification_sample_async -h
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release\classification_sample_async.exe -h
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ~/inference_engine_samples_build/intel64/Release/classification_sample_async -h
 
@@ -1411,19 +1411,19 @@ Example Syntax:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./human_pose_estimation_demo -i <path_to_your_video.mp4> -m <pose_model_path>/human-pose-estimation-0001.xml -d CPU
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    .\human_pose-estimation_demo.exe -i <path_to_your_video.mp4> -m <pose_model_path>\human-pose-estimation-0001.xml -d CPU
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    ./human_pose_estimation_demo -i <path_to_your_video.mp4> -m <pose_model_path>/human-pose-estimation-0001.xml -d CPU
 
@@ -1436,19 +1436,19 @@ Example Syntax:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    source /opt/intel/openvino/bin/setupvars.sh
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    <INSTALL_DIR>\openvino\bin\setupvars.bat
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    source /opt/intel/openvino/bin/setupvars.sh
 
@@ -1459,19 +1459,19 @@ Example Syntax:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd /opt/intel/openvino/deployment_tools/tools/model_downloader/
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    cd <INSTALL_DIR>\deployment_tools\tools\model_downloader\
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd /opt/intel/openvino/deployment_tools/tools/model_downloader/
 
@@ -1483,19 +1483,19 @@ Example Syntax:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    python3 info_dumper.py --print_all | grep pose
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    python3 info_dumper.py --print_all | grep pose
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    python3 info_dumper.py --print_all | grep pose
 
@@ -1508,19 +1508,19 @@ Example Syntax:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    sudo python3 ./downloader.py --name human-pose*
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    python3 .\downloader.py --name human-pose*
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    sudo python3 ./downloader.py --name human-pose*
 
@@ -1531,21 +1531,21 @@ Example Syntax:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    mkdir ~/ir
    cp /opt/intel/openvino/deployment_tools/tools/model_downloader/intel/human-pose-estimation-0001/FP32/human-pose-estimation-0001* ~/ir/
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    mkdir C:\Users\\<USER_ID>\Documents\ir
    copy <INSTALL_DIR>\deployment_tools\tools\model_downloader\intel\human-pose-estimation-0001\FP32\human-pose-estimation-0001* C:\Users\\<USER_ID>\Documents\ir
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    mkdir ~/ir
    cp /opt/intel/openvino/deployment_tools/tools/model_downloader/intel/human-pose-estimation-0001/FP32/human-pose-estimation-0001* ~/ir/
@@ -1560,21 +1560,21 @@ Example Syntax:
 .. tab:: Linux
 
    Rename the video for convenience:
-.. code-block:: sh
+   .. code-block:: sh
 
    mv ~/Downloads/Pexels\ Videos\ 2035509.mp4 ~/Videos/hum-pose.mp4
 
 .. tab:: Windows
 
    Rename the video for convenience:
-.. code-block:: bat
+   .. code-block:: bat
 
    ren "C:\Users\\<USER_ID>\Downloads\Pexels Videos 2035509.mp4" C:\Users\\<USER_ID>\Videos\hum-pose.mp4
 
 .. tab:: macOS
 
    Rename the video for convenience:
-.. code-block:: sh
+   .. code-block:: sh
 
    mv ~/Downloads/Pexels\ Videos\ 2035509.mp4 ~/Videos/hum-pose.mp4
 
@@ -1585,21 +1585,21 @@ Example Syntax:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd ~/omz_demos_build/intel64/Release/
    ./human_pose_estimation_demo -i ~/Videos/hum-pose.mp4 -m ~/ir/human-pose-estimation-0001.xml -d CPU
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    cd C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_demos_build\intel64\Release
    human_pose_estimation_demo.exe -i C:\Users\\<USER_ID>\Videos\hum-pose.mp4 -m C:\Users\\<USER_ID>\Documents\ir\human-pose-estimation-0001.xml -d CPU
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    cd ~/omz_demos_build/intel64/Release/
    ./human_pose_estimation_demo -i ~/Videos/hum-pose.mp4 -m ~/ir/human-pose-estimation-0001.xml -d CPU
@@ -1632,19 +1632,19 @@ Example syntax:
 @sphinxdirective
 .. tab:: Linux
 
-.. code-block:: sh
+   .. code-block:: sh
 
    interactive_face_detection_demo -i <path_to_your_video> -m <path_to_your_model> -d CPU
 
 .. tab:: Windows
 
-.. code-block:: bat
+   .. code-block:: bat
 
    interactive_face_detection_demo.exe -i <path_to_your_video> -m <path_to_your_model> -d CPU
 
 .. tab:: macOS
 
-.. code-block:: sh
+   .. code-block:: sh
 
    interactive_face_detection_demo -i <path_to_your_video> -m <path_to_your_model> -d CPU
 
