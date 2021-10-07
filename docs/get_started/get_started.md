@@ -12,17 +12,17 @@ This guide assumes you completed all installation and configuration steps. If yo
 
 @sphinxdirective
 .. tab:: Linux
-
-See [Install Intel® Distribution of OpenVINO™ toolkit for Linux*](../install_guides/installing-openvino-linux.md)
-
+ 
+  See :doc:`Install Intel® Distribution of OpenVINO™ toolkit for Linux* <openvino_docs_install_guides_installing_openvino_linux>`
+ 
 .. tab:: Windows
-
-See [Install Intel® Distribution of OpenVINO™ toolkit for Windows*](../install_guides/installing-openvino-windows.md)
-
+ 
+  See :doc:`Install Intel® Distribution of OpenVINO™ toolkit for Windows* <openvino_docs_install_guides_installing_openvino_windows>`
+ 
 .. tab:: macOS
-
-See [Install Intel® Distribution of OpenVINO™ toolkit for macOS*](../install_guides/installing-openvino-macos.md)
-
+ 
+  See :doc:`Install Intel® Distribution of OpenVINO™ toolkit for macOS* <openvino_docs_install_guides_installing_openvino_macos>`
+  
 @endsphinxdirective
 
 The demo scripts can run inference on any [supported target device](https://software.intel.com/en-us/openvino-toolkit/hardware). Although the default inference device (i.e., processor) is the CPU, you can add the `-d` parameter to specify a different inference device. The general command to run a demo script is as follows:
@@ -59,19 +59,19 @@ Before running the demo applications on Intel® Processor Graphics or on an Inte
 @sphinxdirective
 .. tab:: Linux
 
-For details, see the following sections in the [installation instructions](../install_guides/installing-openvino-linux.md):
+For details, see the following sections in the :doc:`installation instructions <openvino_docs_install_guides_installing_openvino_linux>`:
 * Steps for Intel® Processor Graphics (GPU) 
 * Steps for Intel® Neural Compute Stick 2
 
 .. tab:: Windows
 
-For details, see the following sections in the [installation instructions](../install_guides/installing-openvino-windows.md):
+For details, see the following sections in the :doc:`installation instructions <openvino_docs_install_guides_installing_openvino_windows>`:
 * Additional Installation Steps for Intel® Processor Graphics (GPU)
 * Additional Installation Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPUs
 
 .. tab:: macOS
 
-For details, see the following sections in the [installation instructions](../install_guides/installing-openvino-macos.md):
+For details, see the following sections in the :doc:`installation instructions <openvino_docs_install_guides_installing_openvino_macos>`:
 * Steps for Intel® Neural Compute Stick 2
 
 @endsphinxdirective
@@ -270,15 +270,15 @@ When the verification script is complete, you see an image that displays the res
 @sphinxdirective
 .. tab:: Linux
 
-![](../img/inference_pipeline_script_lnx.png)
+   .. image:: ../img/inference_pipeline_script_lnx.png
 
 .. tab:: Windows
 
-![](../img/inference_pipeline_script_win.png)
+   .. image:: ../img/inference_pipeline_script_win.png
 
 .. tab:: macOS
 
-![](../img/inference_pipeline_script_mac.png)
+   .. image:: ../img/inference_pipeline_script_mac.png
 
 @endsphinxdirective
 
@@ -352,15 +352,15 @@ To build OpenVINO samples:
 @sphinxdirective
 .. tab:: Linux
 
-Go to the [Inference Engine Samples page](../IE_DG/Samples_Overview.md) and see the "Build the Sample Applications on Linux*" section.
+Go to the :doc:`Inference Engine Samples page <openvino_docs_IE_DG_Samples_Overview>` and see the "Build the Sample Applications on Linux*" section.
 
 .. tab:: Windows
 
-Go to the [Inference Engine Samples page](../IE_DG/Samples_Overview.md) and see the "Build the Sample Applications on Microsoft Windows* OS" section.
+Go to the :doc:`Inference Engine Samples page <openvino_docs_IE_DG_Samples_Overview>` and see the "Build the Sample Applications on Microsoft Windows* OS" section.
 
 .. tab:: macOS
 
-Go to the [Inference Engine Samples page](../IE_DG/Samples_Overview.md) and see the "Build the Sample Applications on macOS*" section. 
+Go to the :doc:`Inference Engine Samples page <openvino_docs_IE_DG_Samples_Overview>` and see the "Build the Sample Applications on macOS*" section. 
 
 @endsphinxdirective
 
@@ -368,15 +368,15 @@ To build OpenVINO demos:
 @sphinxdirective
 .. tab:: Linux
 
-Go to the [Open Model Zoo Demos page](../IE_DG/Samples_Overview.md) and see the "Build the Demo Applications on Linux*" section.
+Go to the :doc:`Open Model Zoo Demos page <omz_demos>` and see the "Build the Demo Applications on Linux*" section.
 
 .. tab:: Windows
 
-Go to the [Open Model Zoo Demos page](../IE_DG/Samples_Overview.md) and see the "Build the Demo Applications on Microsoft Windows* OS" section.
+Go to the :doc:`Open Model Zoo Demos page <omz_demos>` and see the "Build the Demo Applications on Microsoft Windows* OS" section.
 
 .. tab:: macOS
 
-Go to the [Open Model Zoo Demos page](../IE_DG/Samples_Overview.md) and see the "Build the Demo Applications on Linux*" section. You can use the requirements from "To build OpenVINO samples" above and adapt the Linux build steps for macOS*.
+Go to the :doc:`Open Model Zoo Demos page <omz_demos>` and see the "Build the Demo Applications on Linux*" section. You can use the requirements from "To build OpenVINO samples" above and adapt the Linux build steps for macOS*.
 
 @endsphinxdirective
 
@@ -769,28 +769,28 @@ As an alternative, the Intel® Distribution of OpenVINO™ toolkit includes seve
 @sphinxdirective
 .. tab:: Linux
 
-* `/opt/intel/openvino_2021/deployment_tools/demo/car.png`
-* `/opt/intel/openvino_2021/deployment_tools/demo/car_1.bmp`
-* [Sample images and video](https://storage.openvinotoolkit.org/data/test_data/)
-* [Sample videos](https://github.com/intel-iot-devkit/sample-videos)
+* ``/opt/intel/openvino_2021/deployment_tools/demo/car.png``
+* ``/opt/intel/openvino_2021/deployment_tools/demo/car_1.bmp``
+* `Sample images and video <https://storage.openvinotoolkit.org/data/test_data/>`_
+* `Sample videos <https://github.com/intel-iot-devkit/sample-videos>`_
 
 .. tab:: Windows
 
    .. code-block:: bat
 
-* <INSTALL_DIR>\deployment_tools\demo\car.png
-* <INSTALL_DIR>\deployment_tools\demo\car_1.bmp
-* [Sample images and video](https://storage.openvinotoolkit.org/data/test_data/)
-* [Sample videos](https://github.com/intel-iot-devkit/sample-videos)
+* ``<INSTALL_DIR>\deployment_tools\demo\car.png``
+* ``<INSTALL_DIR>\deployment_tools\demo\car_1.bmp``
+* `Sample images and video <https://storage.openvinotoolkit.org/data/test_data/>`_
+* `Sample videos <https://github.com/intel-iot-devkit/sample-videos>`_
 
 .. tab:: macOS
 
    .. code-block:: sh
 
-* `/opt/intel/openvino_2021/deployment_tools/demo/car.png`
-* `/opt/intel/openvino_2021/deployment_tools/demo/car_1.bmp`
-* [Sample images and video](https://storage.openvinotoolkit.org/data/test_data/)
-* [Sample videos](https://github.com/intel-iot-devkit/sample-videos)
+* ``/opt/intel/openvino_2021/deployment_tools/demo/car.png``
+* ``/opt/intel/openvino_2021/deployment_tools/demo/car_1.bmp``
+* `Sample images and video <https://storage.openvinotoolkit.org/data/test_data/>`_
+* `Sample videos <https://github.com/intel-iot-devkit/sample-videos>`_
 
 @endsphinxdirective
 
@@ -922,6 +922,7 @@ The following commands run the Image Classification Code Sample using the `car.p
    >**NOTE**: Running inference on VPU devices (Intel® Movidius™ Neural Compute 
    Stick or Intel® Neural Compute Stick 2) with the MYRIAD plugin requires 
     [additional hardware configuration steps](inference-engine/README.md#optional-additional-installation-steps-for-the-intel-movidius-neural-compute-stick-and-neural-compute-stick-2), as described earlier on this page.
+	
 @sphinxdirective
 .. tab:: Linux
 
