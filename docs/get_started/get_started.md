@@ -667,7 +667,7 @@ To run the **Image Classification** code sample with an input image using the IR
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-content”>
+    <div class="collapsible-content">
 @endsphinxdirective
 **Click for examples of running the Image Classification code sample on different devices**
 
@@ -836,7 +836,7 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-content”>
+    <div class="collapsible-content">
 @endsphinxdirective
 **Click for examples of running the Security Barrier Camera demo application on different devices**
 
