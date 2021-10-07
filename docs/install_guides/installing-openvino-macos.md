@@ -197,13 +197,13 @@ brew install libusb
 ```
 
 You've completed all required configuration steps to perform inference on your Intel® Neural Compute Stick 2. 
-Proceed to the <a href="#get-started">Get Started</a> to get started with running code samples and demo applications.
+Proceed to the <a href="#get-started">Get Started</a> guide to get started with running code samples and demo applications.
 
 ## <a name="get-started"></a>Start Using the Toolkit
 
 Now you are ready to try out the toolkit. To continue, see the following pages:
 * [OpenVINO™ Toolkit Overview](../index.md)
-* [Get Started Guide](../get_started/get_started.md) to see the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
+* [Get Started Guide](../get_started/get_started_guide.md) to see the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
 
 ## <a name="uninstall"></a>Uninstall the Intel® Distribution of OpenVINO™ Toolkit
 
