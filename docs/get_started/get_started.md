@@ -50,6 +50,7 @@ cd "C:\Program Files (x86)\Intel\openvino_2021\deployment_tools\demo"
 
 #If you installed in a location other than /opt/intel, substitute that path.
 cd /opt/intel/openvino_2021/deployment_tools/demo/
+./<script_name> -d [CPU, MYRIAD]
 
 @endsphinxdirective
 
@@ -70,7 +71,8 @@ For details, see the following sections in the [installation instructions](../in
 
 .. tab:: macOS
 
-Intel® Processor Graphics (GPU) and Intel® Neural Compute Stick 2 processors are not compatible with macOS*.
+For details, see the following sections in the [installation instructions](../install_guides/installing-openvino-macos.md):
+* Steps for Intel® Neural Compute Stick 2
 
 @endsphinxdirective
 
@@ -260,13 +262,6 @@ To run the script performing inference on Intel® Processor Graphics:
    .. code-block:: bat
 
 .\demo_security_barrier_camera.bat -d GPU
-
-.. tab:: macOS
-
-On macOS, the sample runs only on CPU (not compatible with Intel® GPU).
-   .. code-block:: sh
-
-./demo_security_barrier_camera.sh -d CPU
 
 @endsphinxdirective
 
@@ -926,7 +921,7 @@ The following commands run the Image Classification Code Sample using the `car.p
 
    >**NOTE**: Running inference on VPU devices (Intel® Movidius™ Neural Compute 
    Stick or Intel® Neural Compute Stick 2) with the MYRIAD plugin requires 
-    [additional hardware configuration steps](inference-engine/README.md#optional-additional-installation-steps-for-the-intel-movidius-neural-compute-stick-and-neural-compute-stick-2), as described earlier on this page. Running on VPU devices is not compatible with macOS*.
+    [additional hardware configuration steps](inference-engine/README.md#optional-additional-installation-steps-for-the-intel-movidius-neural-compute-stick-and-neural-compute-stick-2), as described earlier on this page.
 @sphinxdirective
 .. tab:: Linux
 
@@ -940,9 +935,15 @@ The following commands run the Image Classification Code Sample using the `car.p
 
    .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d MYRIAD
 
+.. tab:: macOS
+
+   .. code-block:: sh
+
+   ./classification_sample -i /opt/intel/openvino/deployment_tools/demo/car.png -m ~/models/public/squeezenet1.1/ir/squeezenet1.1.xml -d MYRIAD
+
 @endsphinxdirective
 
-When the sample application is complete, you see the label and confidence for the top 10 categories on the display. Below is a sample output with inference results on CPU:    
+When the sample application is complete, you see the label and confidence for the top 10 categories on the display. Below is a sample output with inference results on CPU:
 
 @sphinxdirective
 .. tab:: Linux
