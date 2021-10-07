@@ -6,7 +6,6 @@
 
 ## Introduction
 
-
 By default, the [OpenVINO™ Toolkit](https://docs.openvinotoolkit.org/latest/index.html) installation on this page installs the following components:
 
 
@@ -56,8 +55,8 @@ Optimized for these processors:
 
 This guide provides step-by-step instructions on how to install the Intel® Distribution of OpenVINO™ toolkit. Links are provided for each type of compatible hardware including downloads, initialization and configuration steps. The following steps will be covered:
 
-1. <a href="#install-openvino">Install the Intel® Distribution of OpenVINO™ Toolkit </a>
-2. <a href="#install-external-dependencies">Install External Software Eependencies</a>
+1. <a href="#install-openvino">Install the Intel® Distribution of OpenVINO™ Toolkit</a>
+2. <a href="#install-external-dependencies">Install External Software Dependencies</a>
 3. <a href="#set-the-environment-variables">Configure the Environment</a>
 4. Configure inference on non-CPU devices:
    - <a href="#additional-GPU-steps">Steps for Intel® Processor Graphics (GPU)</a>
@@ -70,23 +69,23 @@ This guide provides step-by-step instructions on how to install the Intel® Dist
 
 ## <a name="install-openvino"></a>Step 1: Install the Intel® Distribution of OpenVINO™ Toolkit Core Components
 
-Download the Intel® Distribution of OpenVINO™ toolkit package file from [Intel® Distribution of OpenVINO™ toolkit for Linux*](https://software.intel.com/en-us/openvino-toolkit/choose-download).
-Select the Intel® Distribution of OpenVINO™ toolkit for Linux package from the dropdown menu.
+1. Download the Intel® Distribution of OpenVINO™ toolkit package file from [Intel® Distribution of OpenVINO™ toolkit for Linux*](https://software.intel.com/en-us/openvino-toolkit/choose-download).
+   Select the Intel® Distribution of OpenVINO™ toolkit for Linux package from the dropdown menu.
 
-1. Open a command prompt terminal window.
-2. Change directories to where you downloaded the Intel Distribution of
+2. Open a command prompt terminal window.
+3. Change directories to where you downloaded the Intel Distribution of
 OpenVINO toolkit for Linux\* package file.<br>
    If you downloaded the package file to the current user's `Downloads` directory:
    ```sh
    cd ~/Downloads/
    ```
    By default, the file is saved as `l_openvino_toolkit_p_<version>.tgz`.
-3. Unpack the .tgz file:
+4. Unpack the .tgz file:
    ```sh
    tar -xvzf l_openvino_toolkit_p_<version>.tgz
    ```
    The files are unpacked to the `l_openvino_toolkit_p_<version>` directory.
-4. Go to the `l_openvino_toolkit_p_<version>` directory:
+5. Go to the `l_openvino_toolkit_p_<version>` directory:
    ```sh
    cd l_openvino_toolkit_p_<version>
    ```
@@ -94,7 +93,8 @@ OpenVINO toolkit for Linux\* package file.<br>
 toolkit installed, rename or delete these two directories:
    - `~/inference_engine_samples_build`
    - `~/openvino_models`
-5. Choose your installation option and run the related script as root to use either a GUI installation wizard or command line instructions (CLI).<br>    
+
+6. Choose your installation option and run the related script as root to use either a GUI installation wizard or command line instructions (CLI).<br>    
    Screenshots are provided for the GUI, but not for CLI. The following information also applies to CLI and will be helpful to your installation where you will be presented with the same choices and tasks.
    - **Option 1:** GUI Installation Wizard:
    ```sh
@@ -111,21 +111,21 @@ toolkit installed, rename or delete these two directories:
    ```   
    You can select which OpenVINO components will be installed by modifying the `COMPONENTS` parameter in the `silent.cfg` file. For example, to install only CPU runtime for the Inference Engine, set `COMPONENTS=intel-openvino-ie-rt-cpu__x86_64` in `silent.cfg`. To get a full list of available components for installation, run the `./install.sh --list_components` command from the unpacked OpenVINO™ toolkit package.
 
-6. Follow the instructions on your screen. Watch for informational messages such as the following in case you must complete additional steps:
+7. Follow the instructions on your screen. Watch for informational messages such as the following in case you must complete additional steps:
 
    ![](../img/openvino-install-linux-01.png)
 
-7. By default, the Intel® Distribution of OpenVINO™ is installed to the following directory, referred to as `<INSTALL_DIR>` elsewhere in the documentation:
+8. By default, the Intel® Distribution of OpenVINO™ is installed to the following directory, referred to as `<INSTALL_DIR>` elsewhere in the documentation:
       * For root or administrator: `/opt/intel/openvino_<version>/`
       * For regular users: `/home/<USER>/intel/openvino_<version>/`
 
    For simplicity, a symbolic link to the latest installation is also created: `/opt/intel/openvino_2021/` or `/home/<USER>/intel/openvino_2021/`
 
-8. **Optional**: You can choose **Customize** to change the installation directory or the components you want to install:
+9. **Optional**: You can choose **Customize** to change the installation directory or the components you want to install:
 > **NOTE**: If there is an OpenVINO™ toolkit version previously installed on your system, the installer will use the same destination directory for next installations. If you want to install a newer version to a different directory, you need to uninstall the previously installed versions.
    > **NOTE**: The Intel® Media SDK component is always installed in the `/opt/intel/mediasdk` directory regardless of the OpenVINO installation path chosen.
 
-9. The Finish screen indicates that the core components have been installed:
+10. The Finish screen indicates that the core components have been installed:
 
    ![](../img/openvino-install-linux-04.png)
 
@@ -211,13 +211,7 @@ For more information about the Model Optimizer, refer to the [Model Optimizer De
 
 **Optional:** You can choose to configure each framework separately instead. If you see error messages, make sure you installed all dependencies.
 
-Configure individual frameworks separately **ONLY** if you did not follow the steps above.
-
-1.  Go to the Model Optimizer prerequisites directory:
-   ```sh
-   cd /opt/intel/openvino_2021/deployment_tools/model_optimizer/install_prerequisites
-   ```
-2.  Run the script for your model framework. You can run more than one script.
+1.  From the Model Optimizer prerequisites directory, run the scripts for the model frameworks you want support for. You can run more than one script.
 
 > **NOTE**: You can choose to install Model Optimizer support for only certain frameworks. In the same directory are individual scripts for Caffe, TensorFlow 1.x, TensorFlow 2.x, MXNet, Kaldi*, and ONNX (install_prerequisites_caffe.sh, etc.).
    
@@ -342,7 +336,7 @@ Use the `--trusted-host` parameter if the URL above is `http` instead of `https`
    ```
 ## <a name="uninstall"></a>Uninstall the Intel® Distribution of OpenVINO™ Toolkit
 
-To uninstall, follow the steps on the [Uninstalling page](uninstalling_openvino.md).
+To uninstall the toolkit, follow the steps on the [Uninstalling page](uninstalling_openvino.md).
 
 ## Additional Resources
 
