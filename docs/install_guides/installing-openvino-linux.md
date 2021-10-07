@@ -224,7 +224,7 @@ To enable inference on other hardware, see below:
 - <a href="#additional-NCS-steps">Steps for Intel® Neural Compute Stick 2</a>
 - <a href="#install-VPU">Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPUs</a><br>
 
-Or proceed to <a href="#get-started">Start Using the Toolkit</a> to get started with running code samples and demo applications.
+Or proceed to <a href="#get-started">Start Using the Toolkit</a> to start running code samples and demo applications.
 
 ## <a name="additional-GPU-steps"></a>Steps for Intel® Processor Graphics (GPU)
 
@@ -255,7 +255,7 @@ You can also find the most recent version of the driver, installation procedure 
 4. **Optional** Install header files to allow compiling a new code. You can find the header files at [Khronos OpenCL™ API Headers](https://github.com/KhronosGroup/OpenCL-Headers.git).
 
 You've completed all required configuration steps to perform inference on processor graphics. 
-Proceed to the <a href="#get-started">Get Started</a> to get started with running code samples and demo applications.
+Proceed to <a href="#get-started">Get Started</a> to start running code samples and demo applications.
 
 ## <a name="additional-NCS-steps"></a>Steps for Intel® Neural Compute Stick 2
 
@@ -282,7 +282,7 @@ These steps are only required if you want to perform inference on Intel® Movidi
 > **NOTE**: You may need to reboot your machine for this to take effect.
 
 You've completed all required configuration steps to perform inference on Intel® Neural Compute Stick 2. 
-Proceed to the <a href="#get-started">Get Started</a> to get started with running code samples and demo applications.
+Proceed to <a href="#get-started">Get Started</a> to start running code samples and demo applications.
 
 ## <a name="install-VPU"></a>Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPUs
 
@@ -308,13 +308,13 @@ After configuration is done, you are ready to run the verification scripts with 
    ```
 
 You've completed all required configuration steps to perform inference on Intel® Vision Accelerator Design with Intel® Movidius™ VPUs. 
-Proceed to the <a href="#get-started">Get Started</a> to get started with running code samples and demo applications.
+Proceed to the <a href="#get-started">Get Started</a> to start running code samples and demo applications.
 
 ## <a name="get-started"></a>Start Using the Toolkit
 
 Now you are ready to try out the toolkit. To continue, see the following pages:
 * [OpenVINO™ Toolkit Overview](../index.md)
-* [Get Started Guide](../get_started/get_started.md) to see the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
+* [Get Started Guide](../get_started/get_started_guide.md) to see the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
 
 ## Troubleshooting
 
