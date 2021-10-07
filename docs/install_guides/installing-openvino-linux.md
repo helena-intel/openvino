@@ -18,7 +18,7 @@ By default, the [OpenVINO™ Toolkit](https://docs.openvinotoolkit.org/latest/in
 | [OpenCV](https://docs.opencv.org/master/)                                                           | OpenCV\* community version compiled for Intel® hardware                                                                                                                                                                                                                                                       |
 | [Inference Engine Code Samples](../IE_DG/Samples_Overview.md)           | A set of simple command-line applications demonstrating how to utilize specific OpenVINO capabilities in an application and how to perform specific tasks, such as loading a model, running inference, querying specific device capabilities, and more. |
 | [Demo Applications](@ref omz_demos)           | A set of command-line applications that serve as robust templates to help you implement multi-stage pipelines and specific deep learning scenarios. |
-| Additional Tools                                   | A set of tools to work with your models including [Accuracy Checker utility](@ref omz_tools_accuracy_checker), [Post-Training Optimization Tool](@ref pot_README), [Model Downloader](@ref omz_tools_downloader) and other  |
+| Additional Tools                                   | A set of tools to work with your models including [Accuracy Checker utility](@ref omz_tools_accuracy_checker), [Post-Training Optimization Tool](@ref pot_README), [Model Downloader](@ref omz_tools_downloader) and others  |
 | [Documentation for Pre-Trained Models ](@ref omz_models_group_intel)                                   | Documentation for the pre-trained models available in the [Open Model Zoo repo](https://github.com/openvinotoolkit/open_model_zoo).  |
 | Deep Learning Streamer (DL Streamer)   | Streaming analytics framework, based on GStreamer, for constructing graphs of media analytics components. For the DL Streamer documentation, see [DL Streamer Samples](@ref gst_samples_README), [API Reference](https://openvinotoolkit.github.io/dlstreamer_gst/), [Elements](https://github.com/openvinotoolkit/dlstreamer_gst/wiki/Elements), [Tutorial](https://github.com/openvinotoolkit/dlstreamer_gst/wiki/DL-Streamer-Tutorial). |
 
@@ -47,7 +47,7 @@ Optimized for these processors:
 - Ubuntu 20.04.0 long-term support (LTS), 64-bit
 - CentOS 7.6, 64-bit (for deployment only, not development)
 - Yocto Project v3.0, 64-bit (for deployment only and requires modifications)
-- For deployment on Red Hat* Enterprise Linux* 8.2 (64 bit), you can use the of Intel® Distribution of OpenVINO™ toolkit runtime package that includes the Inference Engine core libraries, nGraph, OpenCV, Python bindings, and CPU and GPU plugins. The package is available as: 
+- For deployment on Red Hat* Enterprise Linux* 8.2 (64 bit), you can use the Intel® Distribution of OpenVINO™ toolkit runtime package that includes the Inference Engine core libraries, nGraph, OpenCV, Python bindings, and CPU and GPU plugins. The package is available as: 
    - [Downloadable archive](https://storage.openvinotoolkit.org/repositories/openvino/packages/2021.3/l_openvino_toolkit_runtime_rhel8_p_2021.3.394.tgz)
    - [PyPi package](https://pypi.org/project/openvino/)
    - [Docker image](https://catalog.redhat.com/software/containers/intel/openvino-runtime/606ff4d7ecb5241699188fb3)
@@ -57,14 +57,13 @@ Optimized for these processors:
 This guide provides step-by-step instructions on how to install the Intel® Distribution of OpenVINO™ toolkit. Links are provided for each type of compatible hardware including downloads, initialization and configuration steps. The following steps will be covered:
 
 1. <a href="#install-openvino">Install the Intel® Distribution of OpenVINO™ Toolkit </a>
-2. <a href="#install-external-dependencies">Install External software dependencies</a>
+2. <a href="#install-external-dependencies">Install External Software Eependencies</a>
 3. <a href="#set-the-environment-variables">Configure the Environment</a>
 4. Configure inference on non-CPU devices:
    - <a href="#additional-GPU-steps">Steps for Intel® Processor Graphics (GPU)</a>
    - <a href="#additional-NCS-steps">Steps for Intel® Neural Compute Stick 2</a>
    - <a href="#install-VPU">Steps for Intel® Vision Accelerator Design with Intel® Movidius™ VPU</a><br>
-   After installing your Intel® Movidius™ VPU, you will return to this guide to complete OpenVINO™ installation.<br>
-   
+   After installing your Intel® Movidius™ VPU, you will return to this guide to complete OpenVINO™ installation.<br>   
 5. <a href="#get-started">Start Using the Toolkit</a>
 
 - [Steps to uninstall the Intel® Distribution of OpenVINO™ Toolkit](../uninstalling-openvino.md)
@@ -116,7 +115,7 @@ toolkit installed, rename or delete these two directories:
 
    ![](../img/openvino-install-linux-01.png)
 
-7. By default, the Intel® Distribution of OpenVINO™ is installed to the following directory, referred to as `<INSTALL_DIR>`:
+7. By default, the Intel® Distribution of OpenVINO™ is installed to the following directory, referred to as `<INSTALL_DIR>` elsewhere in the documentation:
       * For root or administrator: `/opt/intel/openvino_<version>/`
       * For regular users: `/home/<USER>/intel/openvino_<version>/`
 
@@ -132,8 +131,7 @@ toolkit installed, rename or delete these two directories:
 
 > **NOTE**: After you click Finish to close the installation wizard, a new browser window opens with the document you’re reading now (in case you installed without it) and jumps to the section with the next installation steps.
 
-
-The first core components are installed. Continue to the next section to install additional dependencies.
+The core components are now installed. Continue to the next section to install additional dependencies.
 
 ## <a name="install-external-dependencies"></a>Step 2: Install External Software Dependencies
 
@@ -164,14 +162,16 @@ You must update several environment variables before you can compile and run Ope
    vi ~/.bashrc
    ```
 
-2. Add this line to the end of the file:
+2. Press the **i** key to switch to insert mode.
+
+3. Add this line to the end of the file:
    ```sh
    source /opt/intel/openvino_2021/bin/setupvars.sh
    ```
 
-3. Save and close the file: press the **Esc** key and type `:wq`.
+4. Save and close the file: press the **Esc** key and type `:wq`.
 
-4. To test your change, open a new terminal. You will see `[setupvars.sh] OpenVINO environment initialized`.
+5. To verify the change, open a new terminal. You will see `[setupvars.sh] OpenVINO environment initialized`.
 
    **Optional:** As an option if you don't want to change your shell profile, you can run the following script to temporarily set your environment variables:
 
@@ -203,6 +203,7 @@ For more information about the Model Optimizer, refer to the [Model Optimizer De
    ```sh
    cd /opt/intel/openvino_2021/deployment_tools/model_optimizer/install_prerequisites
    ```
+
 2.  Run the script to configure the Model Optimizer for Caffe, TensorFlow 2.x, MXNet, Kaldi\*, and ONNX:
    ```sh
    sudo ./install_prerequisites.sh
@@ -319,8 +320,7 @@ Proceed to the <a href="#get-started">Get Started</a> to get started with runnin
 
 Now you are ready to try out the toolkit. To continue, see the following pages:
 * [OpenVINO™ Toolkit Overview](../index.md)
-* [Get Started Guide for Linux](../get_started/get_started_linux.md) to see the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
-
+* [Get Started Guide](../get_started/get_started.md) to see the basic OpenVINO™ toolkit workflow and run code samples and demo applications with pre-trained models on different inference devices.
 
 ## Troubleshooting
 
@@ -340,6 +340,9 @@ Use the `--trusted-host` parameter if the URL above is `http` instead of `https`
    [install]
    trusted-host = mirrors.aliyun.com
    ```
+## <a name="uninstall"></a>Uninstall the Intel® Distribution of OpenVINO™ Toolkit
+
+To uninstall, follow the steps on the [Uninstalling page](uninstalling_openvino.md).
 
 ## Additional Resources
 
