@@ -37,7 +37,7 @@ Bfloat16 data usage provides the following benefits that increase performance:
 4. Reduced size of data in memory, as a result, larger models fit in the same memory bounds.
 5. Reduced amount of data that must be transferred, as a result, reduced data transition time.
 
-For default optimization on CPU, source model is converted from FP32 or FP16 to BF16 and executed internally on platforms with native BF16 support. In this case, `KEY_ENFORCE_BF16` is set to `YES`.
+For default optimization on CPU, source model is converted from FP32 or FP16 to BF16 and executed internally on platforms with native BF16 support. This is done by setting `KEY_ENFORCE_BF16` `YES` in the `PluginConfigParams` for `GetConfig()`.
 The code below demonstrates how to check if the key is set:
 
 @snippet snippets/Bfloat16Inference1.cpp part1
