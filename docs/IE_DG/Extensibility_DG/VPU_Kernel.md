@@ -1,10 +1,12 @@
 # How to Implement Custom Layers for VPU (Intel® Neural Compute Stick 2) {#openvino_docs_IE_DG_Extensibility_DG_VPU_Kernel}
 
+To enable operations not supported by OpenVINO™ out of the box, you need a custom extension for Model Optimizer, a custom nGraph operation set, and a custom kernel for the device you will target. This page describes custom kernel support for a VPU, the Intel® Neural Compute Stick 2 device, which uses the MYRIAD device plugin.
+
 > **NOTES:** 
 > * OpenCL\* custom layer support is available in the preview mode.
 > * This section assumes you are familiar with developing kernels using OpenCL.
 
-To customize your topology with an OpenCL layer, follow the steps below:
+To customize your topology with an OpenCL layer, carry out the tasks described on this page:
 
 1. Write and compile your OpenCL code with the standalone offline OpenCL compiler (`clc`).
 2. Write a configuration file to bind the OpenCL kernel to the topology file (`.xml`) of the model IR.
@@ -13,11 +15,11 @@ To customize your topology with an OpenCL layer, follow the steps below:
 ## Compile OpenCL code for VPU (Intel® Neural Compute Stick 2)
 
 > **NOTE:** OpenCL compiler, targeting Intel® Neural Compute Stick 2 for the SHAVE* processor only, is redistributed with OpenVINO.
-OpenCL support is provided by ComputeAorta*, and is distributed under a license agreement between Intel® and Codeplay* Software Ltd.
+OpenCL support is provided by ComputeAorta* and is distributed under a license agreement between Intel® and Codeplay* Software Ltd.
 
 The OpenCL toolchain for the Intel® Neural Compute Stick 2 supports offline compilation only, so first compile OpenCL C code using the standalone `clc` compiler. You can find the compiler binary at `<INSTALL_DIR>/deployment_tools/tools/cl_compiler`.
 
-> **NOTE:** By design, custom OpenCL layers support any OpenCL kernels written with 1.2 version assumed. It also supports half float extension and is optimized for this type, because it is a native type for Intel® Movidius™ VPUs.
+> **NOTE:** By design, custom OpenCL layers support any OpenCL kernels written assuming OpenCL version 1.2. It also supports half float extension and is optimized for this type, because it is a native type for Intel® Movidius™ VPUs.
 
 1. Prior to running a compilation, make sure that the following variables are set:
    * `SHAVE_MA2X8XLIBS_DIR=<INSTALL_DIR>/deployment_tools/tools/cl_compiler/lib/`
@@ -62,7 +64,7 @@ Each custom layer is described with the `CustomLayer` node. It has the following
   - Sub-node `Kernel` must contain the following attributes:
     - `entry` – The name of your kernel function as you defined it in a source file. In the example above, it is `reorg_nhwc`.
     - Node `Source` must contain the following attributes:
-      - `filename` – The path to a compiled binary relative to the `.xml` binding file.
+      - `filename` – The path to a compiled binary relative to the XML configuration file.
   - Sub-node `Parameters` – Describes parameters bindings. For more information, see the description below.
   - Sub-node `WorkSizes` – Describes local and global work group sizes and the source for dimension deduction as a pair `direction,port`. In the example above, the work group is described relatively to the dimension of the input tensor that comes through port 0 in the IR. `global` and `local` work group configurations support any simple math expressions with +,-,\*,/, and () from `B`(batch), `Y`(height), `X`(width) and `F`(channels).
   - Sub-node `Where` – Allows to customize bindings with the `key="value"` attribute. For example, to substitute only 3x3 convolutions, write `<Where kernel="3,3"/>` in the binding xml.
@@ -70,8 +72,8 @@ Each custom layer is described with the `CustomLayer` node. It has the following
   Parameter description supports `Tensor` of one of tensor types such as `input`, `output`, `input_buffer`, `output_buffer` or `data`, `Scalar`, or `Data` nodes and has the following format:
   - Each `Tensor` node of `input` or `output` type must contain the following attributes:
     - `arg-name` – The name of a kernel parameter in the kernel signature.
-    - `type` – Node type: `input` or `output` as in the IR.
-    - `port-index` – A number of input/output ports as in the IR.
+    - `type` – Node type: `input` or `output` as specified in the IR.
+    - `port-index` – A number of input/output ports as specified in the IR.
     - `format` – The channel order in the tensor. Optional conversion layers are generated if the custom layer format is not compatible with formats of neighboring layers. `BFXY`, `BYXF`, and `ANY` formats are supported currently.
   - Each `Tensor` node of `input_buffer` or `output_buffer` type must contain the following attributes:
     - `arg-name` – The name of a kernel parameter in the kernel signature.
