@@ -247,6 +247,7 @@ To uninstall the toolkit, follow the steps on the [Uninstalling](uninstalling_op
 
 ## Additional Resources
 
+- Get started with samples and demos: [Get Started Guide](../get_started/get_started_guide.md)
 - Intel® Distribution of OpenVINO™ toolkit home page: [https://software.intel.com/en-us/openvino-toolkit](https://software.intel.com/en-us/openvino-toolkit)
 - OpenVINO™ toolkit online documentation: [https://docs.openvinotoolkit.org](https://docs.openvinotoolkit.org)
 - Convert models for use with OpenVINO™: [Model Optimizer Developer Guide](../MO_DG/Deep_Learning_Model_Optimizer_DevGuide.md)
