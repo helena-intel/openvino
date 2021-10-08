@@ -244,7 +244,8 @@ This application:
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-section">
+
+   <div class="collapsible-section">
 
 @endsphinxdirective
 **Click for an example of Running the Pipeline demo script</strong></summary>**
@@ -284,7 +285,8 @@ When the verification script is complete, you see an image that displays the res
 
 @sphinxdirective
 .. raw:: html
-    </div>
+
+   </div>
 
 @endsphinxdirective
 
@@ -299,7 +301,8 @@ The script:
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-section">
+
+   <div class="collapsible-section">
 
 @endsphinxdirective
 **Click for an example of running the Benchmark demo script**
@@ -329,7 +332,8 @@ To run the script that performs measures inference performance:
 When the verification script is complete, you see the performance counters, resulting latency, and throughput values displayed on the screen.
 @sphinxdirective
 .. raw:: html
-    </div>
+	
+   </div>
 
 @endsphinxdirective
 
@@ -424,7 +428,7 @@ This guide uses the OpenVINO™ Model Downloader to get pre-trained models. You 
    python3 info_dumper.py --print_all | grep <model_name>
    ```
 
-Use the Model Downloader to download the models to a models directory. This guide uses `<models_dir>` and `<models_name>' as placeholders for the models directory and model name:
+Use the Model Downloader to download the models to a models directory. This guide uses `<models_dir>` and `<models_name>` as placeholders for the models directory and model name:
 @sphinxdirective
 .. tab:: Linux
 
@@ -459,7 +463,8 @@ Download the following models to run the Image Classification Sample and Securit
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-section">
+
+   <div class="collapsible-section">
 
 @endsphinxdirective
 **Click for an example of downloading the SqueezeNet Caffe* model**
@@ -540,13 +545,15 @@ Your screen looks similar to this after the download and shows the paths of down
 
 @sphinxdirective
 .. raw:: html
-    </div>
+	
+   </div>
 
 @endsphinxdirective
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-section">
+	
+   <div class="collapsible-section">
 
 @endsphinxdirective
 **Click for an example of downloading models for the Security Barrier Camera Demo application**
@@ -662,7 +669,8 @@ Your screen looks similar to this after the download:
 
 @sphinxdirective
 .. raw:: html
-    </div>
+    
+   </div>
 
 @endsphinxdirective
 
@@ -865,7 +873,8 @@ To run the **Image Classification** code sample with an input image using the IR
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-content">
+   
+   <div class="collapsible-content">
 
 @endsphinxdirective
 **Click for examples of running the Image Classification code sample on different devices**
@@ -1025,7 +1034,8 @@ When the sample application is complete, you see the label and confidence for th
 	
 @sphinxdirective
 .. raw:: html
-    </div>
+    
+   </div>
 
 @endsphinxdirective
 
@@ -1101,7 +1111,8 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-content">
+    
+   <div class="collapsible-content">
 
 @endsphinxdirective
 **Click for examples of running the Security Barrier Camera demo application on different devices**
@@ -1169,7 +1180,8 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 
 @sphinxdirective
 .. raw:: html
-    </div>
+
+   </div>
 
 @endsphinxdirective
 
@@ -1230,7 +1242,8 @@ In these exercises, you will:
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-section">
+	      
+   <div class="collapsible-section">
 
 @endsphinxdirective
     
@@ -1388,13 +1401,15 @@ Once your setup is complete, you're ready to run a sample application:
     
 @sphinxdirective
 .. raw:: html
-    </div>
+
+   </div>
 
 @endsphinxdirective
     
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-section">
+	      
+   <div class="collapsible-section">
 
 @endsphinxdirective
     
@@ -1607,13 +1622,15 @@ Example Syntax:
 
 @sphinxdirective
 .. raw:: html
-    </div>
+
+   </div>
 
 @endsphinxdirective
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-section">
+	      
+   <div class="collapsible-section">
 
 @endsphinxdirective
 ### Exercise 3: Interactive Face Detection
@@ -1661,13 +1678,15 @@ Steps:
 
 @sphinxdirective
 .. raw:: html
-    </div>
+
+   </div>
 
 @endsphinxdirective
 
 @sphinxdirective
 .. raw:: html
-    <div class="collapsible-section">
+	      
+   <div class="collapsible-section">
 
 @endsphinxdirective
 ### Exercise 4: DL Streamer
@@ -1682,7 +1701,8 @@ Follow the links below, read through the documentation, then do the tutorial.
 
 @sphinxdirective
 .. raw:: html
-    </div>
+
+   </div>
 
 @endsphinxdirective
 
