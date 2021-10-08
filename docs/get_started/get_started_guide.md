@@ -248,7 +248,7 @@ This application:
    <div class="collapsible-section">
 
 @endsphinxdirective
-**Click for an example of Running the Pipeline demo script</strong></summary>**
+**Click for an example of Running the Pipeline demo script**
     
 To run the script performing inference on Intel® Processor Graphics:
 @sphinxdirective
