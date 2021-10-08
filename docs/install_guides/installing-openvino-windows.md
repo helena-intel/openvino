@@ -73,6 +73,7 @@ This guide provides step-by-step instructions on how to install the Intel® Dist
    Select the Intel® Distribution of OpenVINO™ toolkit for Windows* package from the dropdown menu.
    
 3. Go to the `Downloads` folder and double-click `w_openvino_toolkit_p_<version>.exe`. A window opens to let you choose your installation directory and components. 
+
    ![](../img/openvino-install-windows-01.png)
    
 4. Follow the instructions on your screen. Watch for informational messages such as the following in case you must complete additional steps:
@@ -102,9 +103,11 @@ The core components are now installed. Continue to the next section to install a
 > **NOTE**: If you installed the Intel® Distribution of OpenVINO™ to a non-default install directory, replace `C:\Program Files (x86)\Intel` with that directory in this guide's instructions.
 
 You must update several environment variables before you can compile and run OpenVINO™ applications. Open the Command Prompt, and run the `setupvars.bat` batch file to temporarily set your environment variables:
+
 ```sh
 "C:\Program Files (x86)\Intel\openvino_2021\bin\setupvars.bat"
 ```
+
 > **IMPORTANT**: Windows PowerShell* is not recommended to run the configuration commands. Please use the command prompt (cmd) instead.
 
 **(Optional)**: OpenVINO toolkit environment variables are removed when you close the command prompt window. As an option, you can permanently set the environment variables manually.
@@ -141,7 +144,7 @@ Type commands in the opened window:
    cd C:\Program Files (x86)\Intel\openvino_2021\deployment_tools\model_optimizer\install_prerequisites
    ```
 
-2.  Run this batch file to configure the Model Optimizer for Caffe, TensorFlow 2.x, MXNet, Kaldi\*, and ONNX:
+2.  Run this batch file to configure the Model Optimizer for Caffe, TensorFlow 2.x, MXNet, Kaldi\*, and ONNX:<br>
    ```sh
    install_prerequisites.bat
    ```
@@ -217,14 +220,17 @@ After configuration is done, you are ready to <a href="#get-started">get started
 Use these steps to update your Windows `PATH` if a command you execute returns an error message stating that an application cannot be found.
 
 1. In your **Search Windows** box, type **Edit the system environment variables** and press **Enter**. A window like the following appears:
+
    ![](../img/System_Properties.PNG)
 
 2. At the bottom of the screen, click **Environment Variables**.
 
 3. Under **System variables**, click **Path** and then **Edit**:
+
    ![](../img/Environment_Variables-select_Path.PNG)
 
 4. In the opened window, click **Browse**. A browse window opens:
+
    ![](../img/Add_Environment_Variable.PNG)
 
 5. If you need to add CMake to the `PATH`, browse to the directory in which you installed CMake. The default directory is `C:\Program Files\CMake`.
