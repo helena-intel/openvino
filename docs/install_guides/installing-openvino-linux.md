@@ -122,7 +122,7 @@ toolkit installed, rename or delete these two directories:
    For simplicity, a symbolic link to the latest installation is also created: `/opt/intel/openvino_2021/` or `/home/<USER>/intel/openvino_2021/`
 
 9. **Optional**: You can choose **Customize** to change the installation directory or the components you want to install:
-> **NOTE**: If there is an OpenVINO™ toolkit version previously installed on your system, the installer will use the same destination directory for next installations. If you want to install a newer version to a different directory, you need to uninstall the previously installed versions.
+> **NOTE**: If there is an OpenVINO™ toolkit version previously installed on your system, the installer will use the same destination directory for the next installation. If you want to install a newer version to a different directory, you need to uninstall the previously installed versions.
    > **NOTE**: The Intel® Media SDK component is always installed in the `/opt/intel/mediasdk` directory regardless of the OpenVINO installation path chosen.
 
 10. The Finish screen indicates that the core components have been installed:
@@ -150,7 +150,8 @@ These dependencies are required for:
 2. Run a script to download and install the external software dependencies:
    ```sh
    sudo -E ./install_openvino_dependencies.sh
-   w```
+   ```
+   
    The dependencies are installed. Continue to the next section to set your environment variables and configure the Model Optimizer utility.
 
 ## <a name="set-the-environment-variables"></a>Step 3: Configure the Environment
@@ -173,7 +174,7 @@ You must update several environment variables before you can compile and run Ope
 
 5. To verify the change, open a new terminal. You will see `[setupvars.sh] OpenVINO environment initialized`.
 
-   **Optional:** As an option if you don't want to change your shell profile, you can run the following script to temporarily set your environment variables:
+   **Optional:** If you don't want to change your shell profile, you can run the following script to temporarily set your environment variables for each terminal instance when working with OpenVINO™:
 
    ```sh
    source /opt/intel/openvino_2021/bin/setupvars.sh
@@ -235,24 +236,25 @@ The steps in this section are required only if you want to enable the toolkit co
    cd /opt/intel/openvino_2021/install_dependencies/
    ```
 
-2. Install the **Intel® Graphics Compute Runtime for OpenCL™** driver components required to use the GPU plugin and write custom layers for Intel® Integrated Graphics. The drivers are not included in the package, to install it, make sure you have the internet connection and run the installation script:
+2. Install the **Intel® Graphics Compute Runtime for OpenCL™** driver components required to use the GPU plugin and write custom layers for Intel® Integrated Graphics. The drivers are not included in the package. To install, run this script:
    ```sh
    sudo -E ./install_NEO_OCL_driver.sh
    ```
+   
    The script compares the driver version on the system to the current version. If the driver version on the system is higher or equal to the current version, the script does 
-not install a new driver. If the version of the driver is lower than the current version, the script uninstalls the lower and installs the current version with your permission:
+not install a new driver. If the version of the driver is lower than the current version, the script uninstalls the lower version and installs the current version with your permission:
 
    ![](../img/NEO_check_agreement.png) 
 
-Higher hardware versions require a higher driver version, namely 20.35 instead of 19.41. If the script fails to uninstall the driver, uninstall it manually. During the script execution, you may see the following command line output:  
+   Higher hardware versions require a higher driver version, namely 20.35 instead of 19.41. If the script fails to uninstall the driver, uninstall it manually. During the script execution, you may see the following command line output:  
    ```sh
    Add OpenCL user to video group    
    ```
    Ignore this suggestion and continue.<br>
 
-You can also find the most recent version of the driver, installation procedure and other information in the [https://github.com/intel/compute-runtime/](https://github.com/intel/compute-runtime/) repository.
+   You can also find the most recent version of the driver, installation procedure and other information in the [https://github.com/intel/compute-runtime/](https://github.com/intel/compute-runtime/) repository.
 
-4. **Optional** Install header files to allow compiling a new code. You can find the header files at [Khronos OpenCL™ API Headers](https://github.com/KhronosGroup/OpenCL-Headers.git).
+3. **Optional** Install header files to allow compiling a new code. You can find the header files at [Khronos OpenCL™ API Headers](https://github.com/KhronosGroup/OpenCL-Headers.git).
 
 You've completed all required configuration steps to perform inference on processor graphics. 
 Proceed to the <a href="#get-started">Get Started</a> guide to start running code samples and demo applications.
@@ -266,7 +268,8 @@ These steps are only required if you want to perform inference on Intel® Movidi
    sudo usermod -a -G users "$(whoami)"
    ```
    Log out and log in for it to take effect.
-2. To perform inference on Intel® Neural Compute Stick 2, install the USB rules as follows:
+   
+2. To enable inference on Intel® Neural Compute Stick 2, install the USB rules as follows:
    ```sh
    sudo cp /opt/intel/openvino_2021/inference_engine/external/97-myriad-usbboot.rules /etc/udev/rules.d/
    ```
@@ -279,6 +282,7 @@ These steps are only required if you want to perform inference on Intel® Movidi
    ```sh
    sudo ldconfig
    ```
+   
 > **NOTE**: You may need to reboot your machine for this to take effect.
 
 You've completed all required configuration steps to perform inference on Intel® Neural Compute Stick 2. 
