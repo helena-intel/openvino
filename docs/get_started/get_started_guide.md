@@ -42,7 +42,7 @@ cd /opt/intel/openvino_2021/deployment_tools/demo/
 
       rem If you installed in a location other than the default, substitute that path.
       cd "C:\Program Files (x86)\Intel\openvino_2021\deployment_tools\demo"
-      .\\<script_name> -d [CPU, GPU, MYRIAD, HDDL]
+      .\<script_name> -d [CPU, GPU, MYRIAD, HDDL]
 
 .. tab:: macOS
 
@@ -476,7 +476,7 @@ To download the SqueezeNet 1.1 Caffe* model to the `models` folder:
 
    .. code-block:: bat
 
-      python3 .\downloader.py --name squeezenet1.1 --output_dir C:\Users\\<USER_ID>\Documents\models
+      python3 .\downloader.py --name squeezenet1.1 --output_dir C:\Users\<USER_ID>\Documents\models
 
 .. tab:: macOS
 
@@ -564,7 +564,7 @@ To download all three pre-trained models in FP16 precision to the `models` folde
 
    .. code-block:: bat
 
-      python3 .\downloader.py --name vehicle-license-plate-detection-barrier-0106,vehicle-attributes-recognition-barrier-0039,license-plate-recognition-barrier-0001 --output_dir C:\Users\\<USER_ID>\Documents\models --precisions FP16
+      python3 .\downloader.py --name vehicle-license-plate-detection-barrier-0106,vehicle-attributes-recognition-barrier-0039,license-plate-recognition-barrier-0001 --output_dir C:\Users\<USER_ID>\Documents\models --precisions FP16
 
 .. tab:: macOS
 
@@ -693,7 +693,7 @@ Create an `<ir_dir>` directory to contain the model's Intermediate Representatio
 
    .. code-block:: bat
 
-      mkdir C:\Users\\<USER_ID>\Documents\ir
+      mkdir C:\Users\<USER_ID>\Documents\ir
 
 .. tab:: macOS
 
@@ -720,7 +720,7 @@ Generic Model Optimizer script:
    .. code-block:: bat
 
       cd <INSTALL_DIR>\deployment_tools\model_optimizer
-      python3 .\mo.py --input_model <model_dir>\\<model_file> --data_type <model_precision> --output_dir <ir_dir>
+      python3 .\mo.py --input_model <model_dir>\<model_file> --data_type <model_precision> --output_dir <ir_dir>
 
 .. tab:: macOS
 
@@ -748,7 +748,7 @@ The command with most placeholders filled in and FP16 precision:
    .. code-block:: bat
 
       cd <INSTALL_DIR>\deployment_tools\model_optimizer
-      python3 .\mo.py --input_model C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\squeezenet1.1.caffemodel --data_type FP16 --output_dir C:\Users\\<USER_ID>\Documents\ir
+      python3 .\mo.py --input_model C:\Users\<USER_ID>\Documents\models\public\squeezenet1.1\squeezenet1.1.caffemodel --data_type FP16 --output_dir C:\Users\<USER_ID>\Documents\ir
 
 .. tab:: macOS
 
@@ -830,7 +830,7 @@ To run the **Image Classification** code sample with an input image using the IR
 
    .. code-block:: bat
 
-      cd C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release
+      cd C:\Users\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release
 
 .. tab:: macOS
 
@@ -884,7 +884,7 @@ The following commands run the Image Classification Code Sample using the `car.p
 
    .. code-block:: bat
 
-      .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d CPU
+      .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d CPU
 
 .. tab:: macOS
 
@@ -909,7 +909,7 @@ The following commands run the Image Classification Code Sample using the `car.p
 
    .. code-block:: bat
 
-      .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d GPU
+      .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d GPU
 
 @endsphinxdirective
    
@@ -930,7 +930,7 @@ The following commands run the Image Classification Code Sample using the `car.p
 
    .. code-block:: bat
 
-      .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d MYRIAD
+      .\classification_sample_async -i <INSTALL_DIR>\deployment_tools\demo\car.png -m C:\Users\<USER_ID>\Documents\models\public\squeezenet1.1\ir\squeezenet1.1.xml -d MYRIAD
 
 .. tab:: macOS
 
@@ -1067,7 +1067,7 @@ To run the **Security Barrier Camera Demo Application** using an input image on 
 
    .. code-block:: bat
 
-      cd C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_demos_build\intel64\Release
+      cd C:\Users\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_demos_build\intel64\Release
 
 .. tab:: macOS
 
@@ -1194,7 +1194,7 @@ In these exercises, you will:
 
    .. code-block:: bat
 
-      cd C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_demos_build\intel64\Release
+      cd C:\Users\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_demos_build\intel64\Release
 
 .. tab:: macOS
 
@@ -1254,8 +1254,8 @@ Convert a model using the Model Optimizer, then use a sample application to load
 
    .. code-block:: bat
 
-      mkdir C:\Users\\<USER_ID>\Documents\squeezenet1.1_FP32
-      cd C:\Users\\<USER_ID>\Documents\squeezenet1.1_FP32
+      mkdir C:\Users\<USER_ID>\Documents\squeezenet1.1_FP32
+      cd C:\Users\<USER_ID>\Documents\squeezenet1.1_FP32
 
 .. tab:: macOS
 
@@ -1280,7 +1280,7 @@ Use the Model Optimizer to convert a SqueezeNet* Caffe* model into an optimized 
 
    .. code-block:: bat
 
-      python3 <INSTALL_DIR>\deployment_tools\model_optimizer\mo.py --input_model C:\Users\\<USER_ID>\Documents\models\public\squeezenet1.1\squeezenet1.1.caffemodel --data_type FP32 --output_dir .
+      python3 <INSTALL_DIR>\deployment_tools\model_optimizer\mo.py --input_model C:\Users\<USER_ID>\Documents\models\public\squeezenet1.1\squeezenet1.1.caffemodel --data_type FP32 --output_dir .
 
 .. tab:: macOS
 
@@ -1354,7 +1354,7 @@ Once your setup is complete, you're ready to run a sample application:
 
    .. code-block:: bat
 
-      C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release\classification_sample_async.exe -i car.png -m C:\Users\\<USER_ID>\Documents\squeezenet1.1_FP32\squeezenet1.1.xml -d CPU
+      C:\Users\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release\classification_sample_async.exe -i car.png -m C:\Users\<USER_ID>\Documents\squeezenet1.1_FP32\squeezenet1.1.xml -d CPU
 
 .. tab:: macOS
 
@@ -1376,7 +1376,7 @@ Once your setup is complete, you're ready to run a sample application:
 
    .. code-block:: bat
 
-      C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release\classification_sample_async.exe -h
+      C:\Users\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release\classification_sample_async.exe -h
 
 .. tab:: macOS
 
@@ -1539,8 +1539,8 @@ Example Syntax:
 
    .. code-block:: bat
 
-      mkdir C:\Users\\<USER_ID>\Documents\ir
-      copy <INSTALL_DIR>\deployment_tools\tools\model_downloader\intel\human-pose-estimation-0001\FP32\human-pose-estimation-0001* C:\Users\\<USER_ID>\Documents\ir
+      mkdir C:\Users\<USER_ID>\Documents\ir
+      copy <INSTALL_DIR>\deployment_tools\tools\model_downloader\intel\human-pose-estimation-0001\FP32\human-pose-estimation-0001* C:\Users\<USER_ID>\Documents\ir
 
 .. tab:: macOS
 
@@ -1568,7 +1568,7 @@ Example Syntax:
    Rename the video for convenience:
    .. code-block:: bat
 
-      ren "C:\Users\\<USER_ID>\Downloads\Pexels Videos 2035509.mp4" C:\Users\\<USER_ID>\Videos\hum-pose.mp4
+      ren "C:\Users\<USER_ID>\Downloads\Pexels Videos 2035509.mp4" C:\Users\<USER_ID>\Videos\hum-pose.mp4
 
 .. tab:: macOS
 
@@ -1593,8 +1593,8 @@ Example Syntax:
 
    .. code-block:: bat
 
-      cd C:\Users\\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_demos_build\intel64\Release
-      human_pose_estimation_demo.exe -i C:\Users\\<USER_ID>\Videos\hum-pose.mp4 -m C:\Users\\<USER_ID>\Documents\ir\human-pose-estimation-0001.xml -d CPU
+      cd C:\Users\<USER_ID>\Documents\Intel\OpenVINO\inference_engine_demos_build\intel64\Release
+      human_pose_estimation_demo.exe -i C:\Users\<USER_ID>\Videos\hum-pose.mp4 -m C:\Users\<USER_ID>\Documents\ir\human-pose-estimation-0001.xml -d CPU
 
 .. tab:: macOS
 
