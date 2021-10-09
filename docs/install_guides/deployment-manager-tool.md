@@ -1,8 +1,6 @@
 # OpenVINO™ Deployment Manager Guide {#openvino_docs_install_guides_deployment_manager_tool}
 
-The Deployment Manager of Intel® Distribution of OpenVINO™ creates a deployment package by assembling the model, IR files, your application, and associated dependencies into a runtime package for your target device.
-
-The Deployment Manager is a Python\* command-line tool that is delivered within the Intel® Distribution of OpenVINO™ toolkit for Linux\* and Windows\* release packages and available after installation in the `<INSTALL_DIR>/deployment_tools/tools/deployment_manager` directory.
+The Deployment Manager is a Python* command-line tool that creates a deployment package by assembling the model, IR files, your application, and associated dependencies into a runtime package for your target device. This tool is delivered within the Intel® Distribution of OpenVINO™ toolkit for Linux\* and Windows\* release packages and is available after installation in the `<INSTALL_DIR>/deployment_tools/tools/deployment_manager` directory.
 
 ## Prerequisites
 
@@ -27,8 +25,11 @@ There are two ways to create a deployment package that includes inference-relate
 ### Run Interactive Mode
 
 @sphinxdirective
+
 .. raw:: html
+
     <div class="collapsible-content”>
+    
 @endsphinxdirective
 Click to expand/collapse
   
@@ -37,18 +38,29 @@ Interactive mode provides a user-friendly command-line interface that will guide
 1. To launch the Deployment Manager in the interactive mode, open a new terminal window, go to the Deployment Manager tool directory and run the tool script without parameters:
   
 @sphinxdirective
+
 .. tab:: Linux  
-.. code-block:: sh  
-   cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
-   ./deployment_manager.py  
+
+   .. code-block:: sh  
+
+      cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
+   
+      ./deployment_manager.py  
+   
 .. tab:: Windows  
-.. code-block:: bat  
-  cd <INSTALL_DIR>\deployment_tools\tools\deployment_manager
-  .\deployment_manager.py  
+
+   .. code-block:: bat  
+   
+     cd <INSTALL_DIR>\deployment_tools\tools\deployment_manager
+     .\deployment_manager.py  
+     
 .. tab:: macOS  
-.. code-block:: sh  
-   cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
-   ./deployment_manager.py  
+
+   .. code-block:: sh  
+   
+      cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
+      ./deployment_manager.py  
+      
 @endsphinxdirective
 
   2. The target device selection dialog is displayed:
@@ -61,28 +73,34 @@ Interactive mode provides a user-friendly command-line interface that will guide
   
    ![Deployment Manager configuration dialog](../img/configuration_dialog.png)
 
-   The target devices you have selected at the previous step appear on the screen. If you want to change the selection, type **b** and press **Enter** to go back to the previous screen. Use the options provided to configure the generation process, or use the default settings.
+   The target devices you have selected at the previous step appear on the screen. To go back and change the selection, type **b** and press **Enter**. Use the options provided to configure the generation process, or use the default settings.
+   
    *	`o. Change output directory` (optional): Path to the output directory. By default, it set to your home directory.
 
    *	`u. Provide (or change) path to folder with user data` (optional): Path to a directory with user data (IRs, models, datasets, etc.) files and subdirectories required for inference, which will be added to the deployment archive. By default, it's set to `None`, which means you will separately copy the user data to the target system.
 
    *	`t. Change archive name` (optional): Deployment archive name without extension. By default, it is set to `openvino_deployment_package`.
  
-   
-4. Once all the parameters are set, type **g** and press **Enter** to generate the package for the selected target devices. If you want to interrupt the generation process and exit the program, type **q** and press **Enter**.
+4. Once all the parameters are set, type **g** and press **Enter** to generate the package for the selected target devices. To interrupt the generation process and exit the program, type **q** and press **Enter**.
 
-The script successfully completes and the deployment package is generated in the output directory specified. 
+   The script successfully completes and the deployment package is generated in the output directory specified. 
 
 @sphinxdirective
+
 .. raw:: html  
+
     </div>  
+    
 @endsphinxdirective
 
 ### Run Standard CLI Mode
   
-@sphinxdirective  
+@sphinxdirective 
+
 .. raw:: html  
+
     <div class="collapsible-content”>  
+    
 @endsphinxdirective
 Click to expand/collapse
 
@@ -91,20 +109,27 @@ Alternatively, you can run the Deployment Manager tool in the standard CLI mode.
 To launch the Deployment Manager tool in the standard mode, open a new terminal window, go to the Deployment Manager tool directory and run the tool command with the following syntax:
 
 @sphinxdirective
+
 .. tab:: Linux
-.. code-block:: sh
-cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
-./deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]  
+
+   .. code-block:: sh
+   
+      cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
+      ./deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]  
   
 .. tab:: Windows  
-.. code-block:: bat  
-cd <INSTALL_DIR>\deployment_tools\tools\deployment_manager
-.\deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]
+
+   .. code-block:: bat  
+
+      cd <INSTALL_DIR>\deployment_tools\tools\deployment_manager
+      .\deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]
   
 .. tab:: macOS  
-.. code-block:: sh  
-cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
-./deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]
+
+   .. code-block:: sh  
+
+      cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
+      ./deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]
   
 @endsphinxdirective
 
@@ -121,8 +146,11 @@ The following options are available:
 The script successfully completes, and the deployment package is generated in the output directory specified.
 
 @sphinxdirective  
+
 .. raw:: html  
+
     </div>  
+    
 @endsphinxdirective
 
 ## Deploy Package on Target Systems
@@ -136,19 +164,26 @@ To deploy the Inference Engine components from the development machine to the ta
 2. Unpack the archive into the destination directory on the target system (if your archive name is different from the default shown below, replace the `openvino_deployment_package` with the name you use).
 
 @sphinxdirective
+
 .. tab:: Linux  
-.. code-block:: sh  
+
+   .. code-block:: sh 
+
    tar xf openvino_deployment_package.tar.gz -C <destination_dir>
   
 .. tab:: Windows  
-   Use the archiver you prefer to unzip the file.  
+
+   Use the archiver of your choice to unzip the file.  
+   
 .. tab:: macOS  
-.. code-block:: sh  
-   tar xf openvino_deployment_package.tar.gz -C <destination_dir>
+
+   .. code-block:: sh  
+      tar xf openvino_deployment_package.tar.gz -C <destination_dir>
   
 @endsphinxdirective
 
    The package is unpacked to the destination directory and the following subdirectories are created:
+   
       * `bin`: Snapshot of the `bin` directory from the OpenVINO installation directory.
       * `deployment_tools/inference_engine`: Contains the Inference Engine binary files.
       * `install_dependencies: Copy of the `install_dependencies` directory from the OpenVINO installation directory.
@@ -157,7 +192,9 @@ To deploy the Inference Engine components from the development machine to the ta
   3. For Linux, to run inference on a target Intel® GPU, Intel® Movidius™ VPU, or Intel® Vision Accelerator Design with Intel® Movidius™ VPUs, you need to install additional dependencies by running the `install_openvino_dependencies.sh` script on the target machine:
 
 @sphinxdirective
+
 .. code-block:: sh  
+
    cd <destination_dir>/openvino/install_dependencies
    sudo -E ./install_openvino_dependencies.sh
 
@@ -166,21 +203,28 @@ To deploy the Inference Engine components from the development machine to the ta
 4. Set up the environment variables:
   
 @sphinxdirective  
+
 .. tab:: Linux  
-.. code-block:: sh  
-   cd <destination_dir>/openvino/
-   source ./bin/setupvars.sh
+
+   .. code-block:: sh  
+   
+      cd <destination_dir>/openvino/
+      source ./bin/setupvars.sh
   
 .. tab:: Windows  
-.. code-block:: bat  
-   cd <destination_dir>\openvino\
-   .\bin\setupvars.bat
+
+   .. code-block:: bat  
+   
+      cd <destination_dir>\openvino\
+      .\bin\setupvars.bat
   
 .. tab:: macOS  
-.. code-block:: sh  
-   cd <destination_dir>/openvino/
-   source ./bin/setupvars.sh
+
+   .. code-block:: sh  
+   
+      cd <destination_dir>/openvino/
+      source ./bin/setupvars.sh
   
 @endsphinxdirective
 
-Congratulations, you have finished the deployment of the Inference Engine components to the target system.
+You have now finished the deployment of the Inference Engine components to the target system.
