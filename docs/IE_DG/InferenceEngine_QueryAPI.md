@@ -2,12 +2,12 @@ Introduction to Inference Engine Device Query API {#openvino_docs_IE_DG_Inferenc
 ===============================
 
 The OpenVINO™ toolkit supports inferencing with several types of devices (processors or accelerators). 
-This section provides a high-level description of the process of querying device properties and configuration values at runtime.
+This page provides a high-level description of the process of querying device properties and configuration values at runtime.
 Refer to the [Hello Query Device Sample](../../inference-engine/samples/hello_query_device/README.md) sources and [Multi-Device Plugin guide](supported_plugins/MULTI.md) for examples of using the Inference Engine Query API in user applications.
 
 ## Using the Inference Engine Query API in Your Code
 
-The Inference Engine `Core` class provides the following [API](https://docs.openvinotoolkit.org/latest/ie_python_api/classie__api_1_1IECore.html) to query device information, set or get different device configuration properties:
+The Inference Engine `Core` class provides the following [API](https://docs.openvinotoolkit.org/latest/classInferenceEngine_1_1Core.html) to query device information, set or get different device configuration properties:
 
 * <code>InferenceEngine::Core::GetAvailableDevices</code> - Provides a list of available devices. If there are more than one instance of a specific device, the devices are enumerated with `.suffix` where `suffix` is a unique string identifier. The device name can be passed to all methods of the `InferenceEngine::Core` class that work with devices, for example `InferenceEngine::Core::LoadNetwork`.
 * <code>InferenceEngine::Core::GetMetric</code> - Provides information about specific device.
@@ -47,7 +47,7 @@ Each device name can then be passed to:
 
 ### GetConfig()
 
-The code below demonstrates how to understand whether `HETERO` device dumps GraphViz `.dot` files with split graphs during the split stage:
+The code below demonstrates how to understand whether the `HETERO` device dumps GraphViz `.dot` files with split graphs during the split stage:
 
 @snippet snippets/InferenceEngine_QueryAPI1.cpp part1
 
@@ -71,7 +71,7 @@ The method is used to get an executable network specific metric such as `METRIC_
 
 @snippet snippets/InferenceEngine_QueryAPI3.cpp part3
 
-Or the current temperature of `MYRIAD` device:
+Or the current temperature of the `MYRIAD` device:
 
 @snippet snippets/InferenceEngine_QueryAPI4.cpp part4
 
