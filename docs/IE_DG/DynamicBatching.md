@@ -4,8 +4,7 @@ The Dynamic Batching feature allows you to dynamically change batch size for inf
 within a preset batch size limit.
 This feature might be useful when batch size is unknown beforehand and using an extra-large batch size is
 undesirable or impossible due to resource limitations.
-For example, face detection with person age, gender, or mood recognition is a typical usage scenario where you may not know in advance how many faces are in a frame when you pass inferencing results to a secondary model.
-
+For example, applying face detection and then mood labeling to a video, you won't know in advance how many frames will contain a face when you pass inferencing results to a secondary model.
 
 ## Usage
 
@@ -13,7 +12,7 @@ You can activate Dynamic Batching by setting <code>KEY_DYN_BATCH_ENABLED</code> 
 passed to the plugin while loading a network.
 This configuration creates an <code>ExecutableNetwork</code> object that will allow setting batch size
 dynamically in all of its infer requests using <code>SetBatch()</code> method.
-The batch size that was set in passed <code>CNNNetwork</code> object will be used as a maximum batch size limit.
+The batch size that was set in the passed <code>CNNNetwork</code> object will be used as a maximum batch size limit.
 
 Here is a code example:
 
@@ -22,7 +21,7 @@ Here is a code example:
 
 ## Limitations
 
-Currently, certain limitations for using Dynamic Batching exist:
+Currently, there certain limitations for using Dynamic Batching:
 
 * Use Dynamic Batching with CPU and GPU plugins only.
 
