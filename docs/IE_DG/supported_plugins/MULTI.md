@@ -2,7 +2,8 @@
 
 ## Introducing the Multi-Device Plugin
 
-The Multi-Device plugin automatically assigns inference requests to available computational devices to execute the requests in parallel. Potential gains are as follows:
+The Multi-Device plugin automatically assigns inference requests to available computational devices to execute the requests in parallel. By contrast, the Heterogeneous plugin can run different layers on different devices but not in parallel. Potential gains with Multi-Device are as follows:
+
 * Improved throughput that multiple devices can deliver (compared to single-device execution)
 * More consistent performance, since the devices can now share the inference burden
 (so that if one device is becoming too busy, another device can take more of the load)
