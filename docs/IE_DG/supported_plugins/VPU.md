@@ -5,16 +5,7 @@ This chapter provides information on the Inference Engine plugins that enable in
 * Intel® Neural Compute Stick 2 powered by the Intel® Movidius™ Myriad™ X — Supported by the [MYRIAD Plugin](MYRIAD.md)
 * Intel® Vision Accelerator Design with Intel® Movidius™ VPUs — Supported by the [HDDL Plugin](HDDL.md)
 
-> **NOTE**: With OpenVINO™ 2020.4 release, Intel® Movidius™ Neural Compute Stick powered by the Intel® Movidius™ Myriad™ 2 is no longer supported.
-
-## Known Layers Limitations
-
-* `ScaleShift` layer is supported for zero value of `broadcast` attribute only.
-* `CTCGreedyDecoder` layer works with `ctc_merge_repeated` attribute equal 1.
-* `DetectionOutput` layer works with zero values of `interpolate_orientation` and `num_orient_classes` parameters only.
-* `MVN` layer uses fixed value for `eps` parameters (1e-9).
-* `Normalize` layer uses fixed value for `eps` parameters (1e-9) and is supported for zero value of `across_spatial` only.
-* `Pad` layer works only with 4D tensors.
+> **NOTE**: With the OpenVINO™ 2020.4 release, Intel® Movidius™ Neural Compute Stick powered by the Intel® Movidius™ Myriad™ 2 is no longer supported.
 
 ## Optimizations
 
@@ -24,7 +15,7 @@ VPU plugins support layer fusion and decomposition.
 
 #### Fusing Rules
 
-Certain layers can be merged into Convolution, ReLU, and Eltwise layers according to the patterns below:
+Certain layers can be merged into convolution, ReLU, and Eltwise layers according to the patterns below:
 
 - Convolution
     - Convolution + ReLU → Convolution
@@ -46,6 +37,7 @@ Certain layers can be merged into Convolution, ReLU, and Eltwise layers accordin
 > **NOTE**: Application of these rules depends on tensor sizes and resources available.
 
 Layers can be joined only when the two conditions below are met:
+
 - Layers are located on topologically independent branches. 
 - Layers can be executed simultaneously on the same hardware units.
 
@@ -63,10 +55,9 @@ Layers can be joined only when the two conditions below are met:
 
 > **NOTE**: VPU plugins can add extra layers like Copy.
 
-
 ## VPU Common Configuration Parameters
 
-The VPU plugins supports the configuration parameters listed below.
+VPU plugins support the configuration parameters listed below.
 The parameters are passed as `std::map<std::string, std::string>` on `InferenceEngine::Core::LoadNetwork`
 or `InferenceEngine::Core::SetConfig`.
 When specifying key values as raw strings (that is, when using Python API), omit the `KEY_` prefix.
@@ -83,20 +74,28 @@ When specifying key values as raw strings (that is, when using Python API), omit
 ## Data Transfer Pipelining <a name="VPU_DATA_TRANSFER_PIPELINING">&nbsp;</a>
 
 MYRIAD plugin tries to pipeline data transfer to/from device with computations.
-While one infer request is executed the data for next infer request can be uploaded to device in parallel.
-Same applicable for result downloading.
+While one infer request is executed, the data for next infer request can be uploaded to device in parallel.
+The same applies to result downloading.
 
 `KEY_VPU_PRINT_RECEIVE_TENSOR_TIME` configuration parameter can be used to check the efficiency of current pipelining.
 The new record in performance counters will show the time that device spent waiting for input before starting the inference.
-In perfect pipeline this time should be near to zero, which means that the data was already transferred when new inference started.
+In a perfect pipeline this time should be near zero, which means that the data was already transferred when new inference started.
 
 ## Troubleshooting
 
 **Get the following message when running inference with the VPU plugin: "[VPU] Cannot convert layer <layer_name> due to unsupported layer type <layer_type>"**
 
 This means that your topology has a layer that is unsupported by your target VPU plugin. To resolve this issue, you can implement the custom layer for the target device using the [Inference Engine Extensibility mechanism](../Extensibility_DG/Intro.md). Or, to quickly get a working prototype, you can use the heterogeneous scenario with the default fallback policy (see the [HETERO Plugin](HETERO.md) section). Use the HETERO plugin with a fallback device that supports this layer, for example, CPU: `HETERO:MYRIAD,CPU`.
-For a list of VPU supported layers, see the Supported Layers section of the [Supported Devices](Supported_Devices.md) topic.
+For a list of VPU-supported layers, see the Supported Layers section of the [Supported Devices](Supported_Devices.md) page.
 
+## Known Layers Limitations
+
+* `ScaleShift` layer is supported for zero value of `broadcast` attribute only.
+* `CTCGreedyDecoder` layer works with the `ctc_merge_repeated` attribute equal to 1.
+* `DetectionOutput` layer works with zero values of `interpolate_orientation` and `num_orient_classes` parameters only.
+* `MVN` layer uses fixed value for `eps` parameters (1e-9).
+* `Normalize` layer uses fixed value for `eps` parameters (1e-9) and is supported for zero value of `across_spatial` only.
+* `Pad` layer works only with 4D tensors.
 
 ## See Also
 
