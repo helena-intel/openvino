@@ -14,7 +14,8 @@ The Deployment Manager is a Python* command-line tool that creates a deployment 
    * **For Windows**, see the following sections in the [installation instructions for Windows](../install_guides/installing-openvino-windows.md):
      * Steps for Intel® Processor Graphics (GPU)
      * Steps for the Intel® Vision Accelerator Design with Intel® Movidius™ VPUs
-   * **For macOS**, the CPU is the only compatible device for running inference.
+   * **For macOS**, see the following section in the [installation instructions for macOS](../install_guides/installing-openvino-macos.md): 
+     * Steps for Intel® Neural Compute Stick 2 section
      
 > **IMPORTANT**: The operating system on the target system must be the same as the development system on which you are creating the package. For example, if the target system is Ubuntu 18.04, the deployment package must be created from the OpenVINO™ toolkit installed on Ubuntu 18.04.     
 
