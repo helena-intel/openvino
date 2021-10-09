@@ -1,6 +1,8 @@
-# How to Implement Custom CPU Operations {#openvino_docs_IE_DG_Extensibility_DG_CPU_Kernel}
+# CPU Kernel Custom Operations {#openvino_docs_IE_DG_Extensibility_DG_CPU_Kernel}
 
-The primary means of the performance of the CPU codepath in the Inference Engine is the Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN), and new CPU kernels extend the Inference Engine plugin for the Intel MKL-DNN. Implementing the InferenceEngine::ILayerExecImpl defines a general CPU-side extension. There are no Intel MKL-DNN specifics in the way you need to implement a kernel.
+To enable operations not supported by OpenVINO™ out of the box, you need a custom extension for Model Optimizer, a custom nGraph operation set, and a custom kernel for the device you will target. This page describes custom kernel support for the CPU device.
+
+The primary means of the performance of the CPU codepath in the Inference Engine is the Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN), and new CPU kernels extend the Inference Engine plugin for the Intel MKL-DNN. Implementing the InferenceEngine::ILayerExecImpl API call defines a general CPU-side extension. There are no Intel MKL-DNN specifics in the way you need to implement a kernel.
 
 ## Implementation Class
 
