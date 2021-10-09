@@ -1,11 +1,10 @@
-Using Dynamic Batching {#openvino_docs_IE_DG_DynamicBatching}
-======================
+# Using Dynamic Batching {#openvino_docs_IE_DG_DynamicBatching}
 
-Dynamic Batching feature allows you to dynamically change batch size for inference calls
-within preset batch size limit.
-This feature might be useful when batch size is unknown beforehand, and using extra large batch size is
-undesired or impossible due to resource limitations.
-For example, face detection with person age, gender, or mood recognition is a typical usage scenario.
+The Dynamic Batching feature allows you to dynamically change batch size for inference calls
+within a preset batch size limit.
+This feature might be useful when batch size is unknown beforehand and using an extra-large batch size is
+undesirable or impossible due to resource limitations.
+For example, face detection with person age, gender, or mood recognition is a typical usage scenario where you may not know in advance how many faces are in a frame when you pass inferencing results to a secondary model.
 
 
 ## Usage
