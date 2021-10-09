@@ -7,6 +7,48 @@ This chapter provides information on the Inference Engine plugins that enable in
 
 > **NOTE**: With the OpenVINO™ 2020.4 release, Intel® Movidius™ Neural Compute Stick powered by the Intel® Movidius™ Myriad™ 2 is no longer supported.
 
+## Supported Networks
+
+**Caffe\***:
+* AlexNet
+* CaffeNet
+* GoogleNet (Inception) v1, v2, v4
+* VGG family (VGG16, VGG19)
+* SqueezeNet v1.0, v1.1
+* ResNet v1 family (18\*\*\*, 50, 101, 152)
+* MobileNet (mobilenet-v1-1.0-224, mobilenet-v2)
+* Inception ResNet v2
+* DenseNet family (121,161,169,201)
+* SSD-300, SSD-512, SSD-MobileNet, SSD-GoogleNet, SSD-SqueezeNet
+
+**TensorFlow\***:
+* AlexNet
+* Inception v1, v2, v3, v4
+* Inception ResNet v2
+* MobileNet v1, v2
+* ResNet v1 family (50, 101, 152)
+* ResNet v2 family (50, 101, 152)
+* SqueezeNet v1.0, v1.1
+* VGG family (VGG16, VGG19)
+* Yolo family (yolo-v2, yolo-v3, tiny-yolo-v1, tiny-yolo-v2, tiny-yolo-v3)
+* faster_rcnn_inception_v2, faster_rcnn_resnet101
+* ssd_mobilenet_v1
+* DeepLab-v3+
+
+**MXNet\***:
+* AlexNet and CaffeNet
+* DenseNet family (121,161,169,201)
+* SqueezeNet v1.1
+* MobileNet v1, v2
+* NiN
+* ResNet v1 (101, 152)
+* ResNet v2 (101)
+* SqueezeNet v1.1
+* VGG family (VGG16, VGG19)
+* SSD-Inception-v3, SSD-MobileNet, SSD-ResNet-50, SSD-300
+
+\*\*\* Network is tested on Intel&reg; Neural Compute Stick 2 with BatchNormalization fusion optimization disabled during Model Optimizer import
+
 ## Optimizations
 
 VPU plugins support layer fusion and decomposition.
