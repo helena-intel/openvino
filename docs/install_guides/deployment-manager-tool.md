@@ -42,7 +42,7 @@ Interactive mode provides a user-friendly command-line interface that will guide
 
 .. tab:: Linux  
 
-   .. code-block:: sh  
+   .. code-block:: sh
 
       cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
    
@@ -57,7 +57,7 @@ Interactive mode provides a user-friendly command-line interface that will guide
      
 .. tab:: macOS  
 
-   .. code-block:: sh  
+   .. code-block:: sh
    
       cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
       ./deployment_manager.py  
@@ -127,7 +127,7 @@ To launch the Deployment Manager tool in the standard mode, open a new terminal 
   
 .. tab:: macOS  
 
-   .. code-block:: sh  
+   .. code-block:: sh
 
       cd <INSTALL_DIR>/deployment_tools/tools/deployment_manager
       ./deployment_manager.py <--targets> [--output_dir] [--archive_name] [--user_data]
@@ -178,7 +178,7 @@ To deploy the Inference Engine components from the development machine to the ta
    
 .. tab:: macOS  
 
-   .. code-block:: sh  
+   .. code-block:: sh
       tar xf openvino_deployment_package.tar.gz -C <destination_dir>
   
 @endsphinxdirective
@@ -194,7 +194,7 @@ To deploy the Inference Engine components from the development machine to the ta
 
 @sphinxdirective
 
-.. code-block:: sh  
+.. code-block:: sh
 
    cd <destination_dir>/openvino/install_dependencies
    sudo -E ./install_openvino_dependencies.sh
@@ -207,7 +207,7 @@ To deploy the Inference Engine components from the development machine to the ta
 
 .. tab:: Linux  
 
-   .. code-block:: sh  
+   .. code-block:: sh
    
       cd <destination_dir>/openvino/
       source ./bin/setupvars.sh
@@ -221,7 +221,7 @@ To deploy the Inference Engine components from the development machine to the ta
   
 .. tab:: macOS  
 
-   .. code-block:: sh  
+   .. code-block:: sh
    
       cd <destination_dir>/openvino/
       source ./bin/setupvars.sh
