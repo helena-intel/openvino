@@ -1,16 +1,12 @@
 # Inference Engine Extensibility Mechanism {#openvino_docs_IE_DG_Extensibility_DG_Intro}
 
-Inference Engine Extensibility API enables you to add support of custom operations to the Inference Engine.
-Extension should contain operation sets with custom operations and execution kernels for custom operations.
-Physically, an extension library can be represented as a dynamic library exporting the single `CreateExtension` function
-that creates a new extension instance.
+If your model contains operations not normally supported by OpenVINO, the Inference Engine Extensibility API lets you add support for those custom operations in a library containg custom nGraph operation sets, corresponding extensions to the Model Optimizer, and a device plugin extension. See the overview in the [Custom Operations Guide](../../HOWTO/Custom_Layers_Guide.md) to learn how these work together.
 
-To load the Extensibility library to the `InferenceEngine::Core` object, use the
-`InferenceEngine::Core::AddExtension` method.
+To load the Extensibility library to the `InferenceEngine::Core` object, use the `InferenceEngine::Core::AddExtension` method.
 
 ## Inference Engine Extension Library
 
-Inference Engine Extension dynamic library contains the following components:
+An Inference Engine Extension dynamic library contains the following components:
 
  * [Extension Library](Extension.md):
     - Contains custom operation sets.
@@ -21,7 +17,7 @@ Inference Engine Extension dynamic library contains the following components:
     - Enables the creation of `ngraph::Function` with unsupported operations.
     - Provides a shape inference mechanism for custom operations.
 
-> **NOTE**: This documentation is written based on the `Template extension`, which demonstrates extension development details. Find the complete code of the `Template extension`, which is fully compilable and up-to-date, at `<dldt source tree>/docs/template_extension`.
+> **NOTE**: This documentation is written based on the `Template extension`, which demonstrates extension development details. You can review the complete code of the [`Template extension`](https://github.com/openvinotoolkit/openvino/tree/master/docs/template_extension), which is fully compilable and up-to-date, to see how it works.
 
 ## Execution Kernels
 
