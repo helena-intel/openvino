@@ -1,5 +1,12 @@
-Introduction to Inference Engine Device Query API {#openvino_docs_IE_DG_InferenceEngine_QueryAPI}
-===============================
+# Introduction to Inference Engine Device Query API {#openvino_docs_IE_DG_InferenceEngine_QueryAPI}
+
+## The Inference Engine Query API (C++)
+
+@sphinxdirective
+.. raw:: html
+
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
 
 The OpenVINO™ toolkit supports inferencing with several types of devices (processors or accelerators). 
 This page provides a high-level description of the process of querying device properties and configuration values at runtime.
