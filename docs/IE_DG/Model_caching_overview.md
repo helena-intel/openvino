@@ -1,28 +1,33 @@
 # Model Caching Overview {#openvino_docs_IE_DG_Model_caching_overview}
 
-## Introduction
+## Introduction (C++)
 
-As described in [Inference Engine Developer Guide](Deep_Learning_Inference_Engine_DevGuide.md), common application flow consists of the following steps:
+@sphinxdirective
+.. raw:: html
 
-1. **Create Inference Engine Core object** - First step to manage available devices and read network objects
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
 
-2. **Read the Intermediate Representation** - Read an Intermediate Representation file into an object of the `InferenceEngine::CNNNetwork`
+As described in the [Inference Engine Developer Guide](Deep_Learning_Inference_Engine_DevGuide.md), common application flow consists of the following steps:
 
-3. **Prepare inputs and outputs** - If needed, manipulate precision, memory layout, size or color format
+1. **Create Inference Engine Core object**: First step to manage available devices and read network objects
 
-4. **Set configuration** Pass device-specific loading configurations to the device
+2. **Read the Intermediate Representation**: Read an Intermediate Representation file into an object of the `InferenceEngine::CNNNetwork`
 
-5. **Compile and Load Network to device** - Use the `InferenceEngine::Core::LoadNetwork()` method with specific device
+3. **Prepare inputs and outputs**: If needed, manipulate precision, memory layout, size or color format
 
-6. **Set input data** - Specify input blob
+4. **Set configuration**: Pass device-specific loading configurations to the device
 
-7. **Execute** - Carry out inference and process results
+5. **Compile and Load Network to device**: Use the `InferenceEngine::Core::LoadNetwork()` method with a specific device
 
-Step #5 can potentially perform several time-consuming device-specific optimizations and network compilations,
+6. **Set input data**: Specify input blob
+
+7. **Execute**: Carry out inference and process results
+
+Step 5 can potentially perform several time-consuming device-specific optimizations and network compilations,
 and such delays can lead to a bad user experience on application startup. To avoid this, some devices offer
 import/export network capability, and it is possible to either use the [Compile tool](../../inference-engine/tools/compile_tool/README.md)
 or enable model caching to export compiled network automatically. Reusing cached networks can significantly reduce load network time.
-
 
 ## Set "CACHE_DIR" config option to enable model caching
 
