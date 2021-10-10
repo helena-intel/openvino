@@ -2,7 +2,7 @@ CPU Plugin {#openvino_docs_IE_DG_supported_plugins_CPU}
 =======
 
 ## Introducing the CPU Plugin
-The CPU plugin was developed to achive high performance of neural networks on CPU, using the Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN). As with other OpenVINO™ device plugins, the Inference Engine automatically loads the correct plugin for the device you specify (or CPU by default).
+The CPU plugin was developed to achieve high performance of neural networks on CPU, using the Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN). As with other OpenVINO™ device plugins, the Inference Engine automatically loads the correct plugin for the device you specify (or CPU by default).
 
 Currently, the CPU plugin uses Intel® Threading Building Blocks (Intel® TBB) in order to parallelize calculations. Please refer to the [Optimization Guide](../../optimization_guide/dldt_optimization_guide.md) for associated performance considerations.
 
@@ -103,7 +103,7 @@ CPU plugin removes a Power layer from a topology if it has the following paramet
 ## Supported Configuration Parameters
 
 The plugin supports the configuration parameters listed below.
-All parameters must be set with the <code>InferenceEngine::Core::LoadNetwork()</code> method.
+All parameters must be set with the ```InferenceEngine::Core::LoadNetwork()``` method.
 When specifying key values as raw strings (that is, when using Python API), omit the `KEY_` prefix.
 Refer to the OpenVINO samples for usage examples: [Benchmark App](../../../inference-engine/samples/benchmark_app/README.md).
 
