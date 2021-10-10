@@ -1,7 +1,12 @@
-Heterogeneous Plugin {#openvino_docs_IE_DG_supported_plugins_HETERO}
-=======
+# Heterogeneous Plugin {#openvino_docs_IE_DG_supported_plugins_HETERO}
 
-## Introducing the Heterogeneous Plugin
+## Introducing the Heterogeneous Plugin (C++)
+
+@sphinxdirective
+.. raw:: html
+
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
 
 The heterogeneous plugin enables computing for inference on one network on several devices.
 The purposes of executing networks in heterogeneous mode:
