@@ -2,6 +2,12 @@
 
 ## Introducing the Multi-Device Plugin
 
+@sphinxdirective
+.. raw:: html
+
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
+
 The Multi-Device plugin automatically assigns inference requests to available computational devices to execute the requests in parallel. By contrast, the Heterogeneous plugin can run different layers on different devices but not in parallel. Potential gains with Multi-Device are as follows:
 
 * Improved throughput that multiple devices can deliver (compared to single-device execution)
