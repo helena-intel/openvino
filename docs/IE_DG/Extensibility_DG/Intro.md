@@ -9,15 +9,15 @@ To load the Extensibility library to the `InferenceEngine::Core` object, use the
 An Inference Engine Extension dynamic library contains the following components:
 
  * [Extension Library](Extension.md):
-    - Contains custom operation sets.
-    - Provides CPU implementations for custom operations.
+    - Contains custom operation sets
+    - Provides CPU implementations for custom operations
  * [Custom nGraph Operation](AddingNGraphOps.md):
     - Enables the use of `InferenceEngine::Core::ReadNetwork` to read Intermediate Representation (IR) with unsupported
-    operations.
-    - Enables the creation of `ngraph::Function` with unsupported operations.
-    - Provides a shape inference mechanism for custom operations.
+    operations
+    - Enables the creation of `ngraph::Function` with unsupported operations
+    - Provides a shape inference mechanism for custom operations
 
-> **NOTE**: This documentation is written based on the `Template extension`, which demonstrates extension development details. You can review the complete code of the [`Template extension`](https://github.com/openvinotoolkit/openvino/tree/master/docs/template_extension), which is fully compilable and up-to-date, to see how it works.
+> **NOTE**: This documentation is written based on the [`Template extension`](https://github.com/openvinotoolkit/openvino/tree/master/docs/template_extension), which demonstrates extension development details. You can review the complete code, which is fully compilable and up-to-date, to see how it works.
 
 ## Execution Kernels
 
