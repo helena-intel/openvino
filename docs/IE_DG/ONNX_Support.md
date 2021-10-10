@@ -1,5 +1,13 @@
 # ONNX native format support {#openvino_docs_IE_DG_ONNX_Support}
 
+## Introduction (C++)
+
+@sphinxdirective
+.. raw:: html
+
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
+
 Starting with the 2020.4 release, OpenVINO™ supports reading native ONNX models in addition to [converting ONNX models](https://docs.openvinotoolkit.org/latest/openvino_docs_MO_DG_prepare_model_convert_model_Convert_Model_From_ONNX.html) with the Model Optimizer.
 The `Core::ReadNetwork()` method provides a uniform way to read models from IR or ONNX format and is the recommended approach for reading models.
 Example:
