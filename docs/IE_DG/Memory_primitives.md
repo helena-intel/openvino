@@ -1,5 +1,12 @@
-Inference Engine Memory primitives {#openvino_docs_IE_DG_Memory_primitives}
-=====================================================================
+# Inference Engine Memory Primitives {#openvino_docs_IE_DG_Memory_primitives}
+
+## Inference Memory Primitives (C++)
+
+@sphinxdirective
+.. raw:: html
+
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
 
 ## Blobs
 
