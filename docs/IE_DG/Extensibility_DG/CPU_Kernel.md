@@ -22,31 +22,32 @@ The provided implementation has several fields:
 
 ### Constructor of Implementation
 
-An implementation constructor checks parameters of an nGraph operation, stores required attributes, and stores an error message in the case of an error.
+An implementation constructor checks parameters of an nGraph operation, stores required attributes, and stores an error message in case of an error.
 
 @snippet template_extension/cpu_kernel.cpp cpu_implementation:ctor
 
 ### `getSupportedConfigurations`
 
-InferenceEngine::ILayerExecImpl::getSupportedConfigurations method returns all supported configuration formats (input/output tensor layouts) for your implementation. To specify formats of data, use InferenceEngine::TensorDesc. Refer to the [Memory Primitives](../Memory_primitives.md) section for instructions.
+The InferenceEngine::ILayerExecImpl::getSupportedConfigurations method returns all supported configuration formats (input/output tensor layouts) for your implementation. To specify formats of data, use InferenceEngine::TensorDesc. Refer to the [Memory Primitives](../Memory_primitives.md) section for instructions.
 
 @snippet template_extension/cpu_kernel.cpp cpu_implementation:getSupportedConfigurations
 
 ### `init`
 
-InferenceEngine::ILayerExecImpl::init method gets a runtime-selected configuration from a vector that is populated from the `getSupportedConfigurations` method and checks the parameters:
+The InferenceEngine::ILayerExecImpl::init method gets a runtime-selected configuration from a vector that is populated from the `getSupportedConfigurations` method and checks the parameters:
 
 @snippet template_extension/cpu_kernel.cpp cpu_implementation:init
 
 ### `execute`
 
-InferenceEngine::ILayerExecImpl::execute method accepts and processes the actual tenors as input/output blobs:
+The InferenceEngine::ILayerExecImpl::execute method accepts and processes the actual tensors as input/output blobs:
 
 @snippet template_extension/cpu_kernel.cpp cpu_implementation:execute
 
 ## Register Implementation in `Extension` Class
 
 To register custom kernel implementation in the [Extension](Extension.md) class, implement the following methods:
+
 * <a href="#getImpTypes">getImplTypes</a>
 * <a href="#getImplementation">getImplementation</a>
 
@@ -68,4 +69,3 @@ InferenceEngine::IExtension::getImplementation returns the kernel implementation
 Use the `AddExtension` method of the general plugin interface to load your primitives:
 
 @snippet snippets/CPU_Kernel.cpp part0
-
