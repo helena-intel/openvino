@@ -210,7 +210,7 @@ __kernel void example_relu_kernel(
 }
 ```
 
-> **NOTE:** As described in the previous section, all things like
+> **NOTE:** As described in the previous section, all items like
 > `INPUT0_TYPE` are actually defined as OpenCL (pre-)compiler inputs by
 > the Inference Engine for efficiency reasons. See [Debugging
 > Tips](#debugging-tips) for information on debugging the results.
@@ -223,10 +223,11 @@ __kernel void example_relu_kernel(
 
 * **Using `printf` in the OpenCL™ Kernels**.
 To debug the specific values, you can use `printf` in your kernels.
-However, be careful: for instance, do not output excessively
-as it would generate too much data. The `printf` output is typical, so
+However, be careful not to output excessively, which
+could generate too much data. The `printf` output is typical, so
 your output can be truncated to fit the buffer. Also, because of
 buffering, you actually get an entire buffer of output when the
 execution ends.<br>
+
 For more information, refer to the [printf
 Function](https://www.khronos.org/registry/OpenCL/sdk/1.2/docs/man/xhtml/printfFunction.html).
