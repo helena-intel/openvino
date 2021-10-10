@@ -1,5 +1,13 @@
 # Using the Static Shape Inference Feature {#openvino_docs_IE_DG_ShapeInference}
 
+## Introduction (C++)
+
+@sphinxdirective
+.. raw:: html
+
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
+
 OpenVINO™ provides two methods for runtime model reshaping: setting a new input shape and setting a new batch dimension value.
 
 ## Set a new input shape** with the `InferenceEngine::CNNNetwork::reshape` method
