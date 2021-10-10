@@ -27,19 +27,19 @@ The OpenCL toolchain for the Intel® Neural Compute Stick 2 supports offline com
    * `SHAVE_MYRIAD_LD_DIR=<INSTALL_DIR>/deployment_tools/tools/cl_compiler/bin/`
    * `SHAVE_MOVIASM_DIR=<INSTALL_DIR>/deployment_tools/tools/cl_compiler/bin/`
 2. Run the compilation with the command below. You should use `--strip-binary-header` to make an OpenCL runtime-agnostic binary runnable with the Inference Engine.
-```bash
-cd <INSTALL_DIR>/deployment_tools/tools/cl_compiler/bin
-./clc --strip-binary-header custom_layer.cl -o custom_layer.bin
-```
+   ```bash
+   cd <INSTALL_DIR>/deployment_tools/tools/cl_compiler/bin
+   ./clc --strip-binary-header custom_layer.cl -o custom_layer.bin
+   ```
 
 ## Write a Configuration File
 
 To tie the topology IR for a layer you customize, prepare a configuration file, so that the Inference Engine can find parameters for your kernel and the execution work grid is described.
-For example, given the following OpenCL kernel signature:
+For example, consider the following OpenCL kernel signature:
 ```cpp
 __kernel void reorg_nhwc(__global const half *src, __global half *out, int w, int h, int c, int stride);
 ```
-Configuration file for this kernel might be the following:
+A configuration file for this kernel might be the following:
 ```xml
 <CustomLayer name="ReorgYolo" type="MVCL" version="1">
    <Kernel entry="reorg_nhwc">
@@ -419,7 +419,7 @@ This decreases the execution time up to 40% against the best performing vectoriz
 stalls completely on memory access without any prefetch. The same recommendation is applicable for scalar load/store
 from/to a `__blobal` pointer since work-group copying could be done in a vector fashion.
 
-10. Use a manual DMA extension. Local (on-chip) memory throughput is up to 24x higher than DDR throughput. Starting from OpenVINO™ 2020.1, VPU OpenCL features manual-DMA kernel extension to copy sub-tensor used by work group into local memory and performing compute without DDR evolved. Here is the simple GRN kernel implementation that runs over DDR. Local size is equal to (width of the input tensor, 1, 1) to define a large enough work group to get code automatically vectorized and unrolled, while global size is (width of the input tensor, height of the input tensor, 1):
+10. Use a manual DMA extension. Local (on-chip) memory throughput is up to 24x higher than DDR throughput. Starting from OpenVINO™ 2020.1, VPU OpenCL features manual-DMA kernel extension to copy sub-tensor used by work group into local memory and performing compute without DDR evolved. Here is the simple GRN kernel implementation that runs over DDR. Local size is in the form (width of the input tensor, 1, 1) to define a large enough work group to get code automatically vectorized and unrolled, while global size is (width of the input tensor, height of the input tensor, 1):
    ```cpp
    __kernel void grn_NCHW(
      __global const half* restrict src_data,
@@ -446,7 +446,9 @@ from/to a `__blobal` pointer since work-group copying could be done in a vector 
      }
    }
    ```
+   
 This kernel can be rewritten to introduce special data binding `__dma_preload` and `__dma_postwrite intrinsics`. This means that instead of one kernel, a group of three kernels should be implemented: `kernelName`, `__dma_preload_kernelName`, and `__dma_postwrite_kernelName`.  `__dma_preload_kernelName` for a particular work group `n` is guaranteed to be executed before the `n`-th work group itself, while `__dma_postwrite_kernelName` is guaranteed to be executed after a corresponding work group. You can define one of those functions that are intended to be used to copy data from-to `__global` and `__local` memory. The syntactics requires exact functional signature match. The example below illustrates how to prepare your kernel for manual-DMA.
+
    ```cpp
    __kernel void __dma_preload_grn_NCHW(
      __global const half* restrict src,
@@ -455,7 +457,7 @@ This kernel can be rewritten to introduce special data binding `__dma_preload` a
      __local        half* restrict local_dst,
      int C,
      float bias)
-   {
+     {
      // ToDO: copy required piece of src tensor into local_src
    }
    
@@ -480,9 +482,9 @@ This kernel can be rewritten to introduce special data binding `__dma_preload` a
    {
      // same as the example above
    }
-   ```
-GRN kernel operates on channel-major tensors to compute average over full channel range and then normalizes input elements to produce the output.
-As a part of manual DMA extension, a group of work group copy functions are introduced in addition to `async_work_group_copy`, which is also mapped to DMA call.
+   ``` 
+The GRN kernel operates on channel-major tensors to compute average over full channel range and then normalizes input elements to produce the output.
+As a part of the manual DMA extension, a group of work group copy functions are introduced in addition to `async_work_group_copy`, which is also mapped to a DMA call.
 
 Here is the list of supported functions:
 ```cpp
@@ -615,7 +617,7 @@ __kernel void grn_NCHW(
 
 Note the `get_local_size` and `get_local_id` usage inside the kernel. 21x speedup is expected for a kernel on enet-curbs setup because it was completely limited by memory usage.
 
-An alternative method of using DMA is to use work item copy extension. Those functions are executed inside a kernel and requires work groups equal to single work item.
+An alternative method to using DMA is to use work item copy extension. Those functions are executed inside a kernel and requires work groups equal to single work item.
 
 Here is the list of supported work item functions:
 ```cpp
