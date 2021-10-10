@@ -11,7 +11,7 @@ To configure your Intel® Vision Accelerator Design With Intel® Movidius™ on 
 ## Supported Configuration Parameters
 
 See VPU common configuration parameters for the [VPU Plugins](VPU.md).
-When specifying key values as raw strings (that is, when using Python API), omit the `KEY_` prefix.
+When specifying key values as raw strings (that is, when using the Python API), omit the `KEY_` prefix.
 
 In addition to common parameters, the MYRIAD plugin accepts the following options:
 
@@ -24,9 +24,9 @@ In addition to common parameters, the MYRIAD plugin accepts the following option
 ## Device allocation <a name="MYRIAD_DEVICE_ALLOC">&nbsp;</a>
 
 Each `IExecutableNetwork` instance tries to allocate new device on `InferenceEngine::Core::LoadNetwork`, but if all available devices are already allocated it will use the one with the minimal number of uploaded networks.
-The maximum number of networks single device can handle depends on device memory capacity and the size of the networks.
+The maximum number of networks a single device can handle depends on device memory capacity and the size of the networks.
 
-If `KEY_VPU_MYRIAD_FORCE_RESET` option is set to `YES` the plugin will reset all VPU devices in the system.
+If the `KEY_VPU_MYRIAD_FORCE_RESET` option is set to `YES`, the plugin will reset all VPU devices in the system.
 
 Single device cannot be shared across multiple processes.
 
