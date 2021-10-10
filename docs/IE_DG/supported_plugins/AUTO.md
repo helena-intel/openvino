@@ -1,6 +1,12 @@
 # Auto-Device Plugin {#openvino_docs_IE_DG_supported_plugins_AUTO}
 
-## Auto-Device Plugin Execution
+## Auto-Device Plugin Execution (C++)
+
+@sphinxdirective
+.. raw:: html
+
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
 
 Auto-device is a new special "virtual" or "proxy" device in the OpenVINO™ toolkit. 
 
@@ -15,8 +21,7 @@ With the 2021.4 release, Auto-device setup is done in three major steps:
 * Step 1: Configure each device as usual (for example, via the conventional <code>SetConfig</code> method)
 * Step 2: Load a network to the Auto-device plugin. This is the only change needed in your application
 * Step 3: Just like with any other executable network (resulted from <code>LoadNetwork</code>), create as many requests as needed to saturate the devices. 
-These steps are covered below in details.
-
+These steps are covered below in detail.
 
 ## Defining and Configuring the Auto-Device Plugin
 Following the OpenVINO notions of “devices”, the Auto-device has “AUTO” name. The only configuration option for Auto-device is a limited device list:
