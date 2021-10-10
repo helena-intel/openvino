@@ -1,5 +1,13 @@
 # Using Dynamic Batching {#openvino_docs_IE_DG_DynamicBatching}
 
+## Dynamic Batching Introduction (C++)
+
+@sphinxdirective
+.. raw:: html
+
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
+
 The Dynamic Batching feature allows you to dynamically change batch size for inference calls
 within a preset batch size limit.
 This feature might be useful when batch size is unknown beforehand and using an extra-large batch size is
