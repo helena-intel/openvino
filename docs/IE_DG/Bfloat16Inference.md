@@ -1,5 +1,13 @@
 # Bfloat16 Inference {#openvino_docs_IE_DG_Bfloat16Inference}
 
+## Bfloat Inference Usage (C++)
+
+@sphinxdirective
+.. raw:: html
+
+    <div id="switcher-cpp" class="switcher-anchor">C++</div>
+@endsphinxdirective
+
 ## Disclaimer
 
 Inference Engine with the bfloat16 inference implemented on CPU must support the native `avx512_bf16` instruction and therefore the bfloat16 data format.
