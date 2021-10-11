@@ -1,4 +1,4 @@
-# Using the Static Shape Inference Feature {#openvino_docs_IE_DG_ShapeInference}
+# Using the Reshape Inference Feature {#openvino_docs_IE_DG_ShapeInference}
 
 ## Introduction (C++)
 
