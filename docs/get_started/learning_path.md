@@ -146,12 +146,6 @@ The primary tools for deploying your models and applications are installed to th
 
 The [Get Started page](../get_started.md) walks you through the exercises that are an introduction to using OpenVINO to run samples and demos, and a quick introduction to basic tools such as the Model Downloader and Model Optimizer. The exercises are intended to become more difficult as you progress. Early exercises provide step-by-step instructions, while later exercises give more general guidance. The goal is to teach developers the concepts and skills needed to use all of the resources available for OpenVINO™.
 
-## Tutorials [Placeholder. Until tutorials are gathered and written, remove this section before publishing]
-
-[**Introductory Tutorials**](../introductory_tutorials.md)
-
-[**Advanced Tutorials**](../advanced_tutorials.md)
-
 ## Additional Resources 
 
 [**OpenVINO toolkit Deployment Tools**](http://google.com/)
