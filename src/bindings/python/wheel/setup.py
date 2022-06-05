@@ -25,6 +25,7 @@ from setuptools.command.install import install
 WHEEL_LIBS_INSTALL_DIR = os.path.join("openvino", "libs")
 WHEEL_LIBS_PACKAGE = "openvino.libs"
 PYTHON_VERSION = f"python{sys.version_info.major}.{sys.version_info.minor}"
+WHEEL_ENABLE_DEVICES = os.getenv("WHEEL_ENABLE_DEVICES","")
 
 LIBS_DIR = "bin" if platform.system() == "Windows" else "lib"
 CONFIG = "Release" if platform.system() in {"Windows", "Darwin"} else ""
@@ -88,8 +89,16 @@ LIB_INSTALL_CFG = {
         "prefix": "libs.tbb",
         "install_dir": TBB_LIBS_DIR,
         "rpath": LIBS_RPATH,
-    },
+    }
 }
+
+if "MYRIAD" in WHEEL_ENABLE_DEVICES:
+    LIB_INSTALL_CFG["myriad_plugin"] = {
+        "name": "myriad",
+        "prefix": "libs.core",
+        "install_dir": OV_RUNTIME_LIBS_DIR,
+        "rpath": LIBS_RPATH,
+    }
 
 PY_INSTALL_CFG = {
     "ie_py": {
