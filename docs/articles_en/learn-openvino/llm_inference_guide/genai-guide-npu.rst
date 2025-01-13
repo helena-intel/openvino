@@ -27,24 +27,17 @@ such as Llama-2-7B, Mistral-0.2-7B, and Qwen-2-7B.
 Export an LLM model via Hugging Face Optimum-Intel
 ##################################################
 
-Since **symmetrically-quantized 4-bit (INT4) models are preffered for inference on NPU**, make
+Since **symmetrically-quantized 4-bit (INT4) models are supported for inference on NPU**, make
 sure to export the model with the proper conversion and optimization settings.
 
 | You may export LLMs via Optimum-Intel, using one of two compression methods:
-| **group quantization** - for both smaller and larger models,
-| **channel-wise quantization** - remarkably effective but for models exceeding 1 billion parameters.
+| **channel-wise quantization** - recommended for larger models (>4B parameters).
+| **group quantization** - recommended for smaller models (<4B parameters),
 
-You select one of the methods by setting the ``--group-size`` parameter to either ``128`` or
-``-1``, respectively. See the following examples:
+You select one of the methods by setting the ``--group-size`` parameter to either ``-1`` or
+``128``, respectively. See the following examples:
 
 .. tab-set::
-
-   .. tab-item:: Group quantization
-
-      .. code-block:: console
-         :name: group-quant
-
-         optimum-cli export openvino -m TinyLlama/TinyLlama-1.1B-Chat-v1.0 --weight-format int4 --sym --ratio 1.0 --group-size 128 TinyLlama-1.1B-Chat-v1.0
 
    .. tab-item:: Channel-wise quantization
 
@@ -69,6 +62,15 @@ You select one of the methods by setting the ``--group-size`` parameter to eithe
                   :name: channel-wise-data-aware-quant
 
                   optimum-cli export openvino -m meta-llama/Llama-2-7b-chat-hf --weight-format int4 --sym --group-size -1 --ratio 1.0 --awq --scale-estimation --dataset wikitext2  Llama-2-7b-chat-hf
+
+
+   .. tab-item:: Group quantization
+
+      .. code-block:: console
+         :name: group-quant
+
+         optimum-cli export openvino -m TinyLlama/TinyLlama-1.1B-Chat-v1.0 --weight-format int4 --sym --ratio 1.0 --group-size 128 TinyLlama-1.1B-Chat-v1.0
+
 
 
       .. important::
