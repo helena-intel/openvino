@@ -35,7 +35,7 @@ jobs:
 
       - name: suggester / clang-format
         if: startsWith(github.event_name, 'pull_request')
-        uses: reviewdog/action-suggester@a3026c6020837c23b61a79d12db223a00df19e6a # v1.19.0
+        uses: reviewdog/action-suggester@87d77977e46ff1b90917c96ee550ac2e297c71a2 # v1.19.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           level: warning
@@ -67,7 +67,7 @@ jobs:
 
       - name: suggester / clang-format
         if: startsWith(github.event_name, 'pull_request')
-        uses: reviewdog/action-suggester@a3026c6020837c23b61a79d12db223a00df19e6a # v1.19.0
+        uses: reviewdog/action-suggester@87d77977e46ff1b90917c96ee550ac2e297c71a2 # v1.19.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           level: warning
