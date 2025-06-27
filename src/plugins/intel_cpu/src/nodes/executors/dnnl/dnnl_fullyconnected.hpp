@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <oneapi/dnnl/dnnl_common_types.h>
 #include <oneapi/dnnl/dnnl_types.h>
 
 #include <memory>
@@ -12,41 +13,28 @@
 
 #include "cpu_memory.h"
 #include "memory_desc/cpu_memory_desc_utils.h"
+#include "memory_desc/dnnl_memory_desc.h"
 #include "nodes/executors/dnnl/dnnl_aliases.hpp"
 #include "nodes/executors/dnnl/dnnl_utils.hpp"
 #include "nodes/executors/executor.hpp"
 #include "nodes/executors/memory_arguments.hpp"
-#include "post_ops.hpp"
+#include "onednn/iml_type_mapper.h"
+#include "utils/debug_capabilities.h"
 
 namespace ov::intel_cpu {
 
-template <typename ExecutorT, typename Attrs, typename ShapeAgnosticData>
-class DefaultInstantiator {
-public:
-    std::shared_ptr<ExecutorT> operator()(const MemoryArgs& memory,
-                                          const Attrs& attrs,
-                                          const ExecutorContext::CPtr context,
-                                          const std::shared_ptr<ShapeAgnosticData>& shapeAgnosticData) {
-        return ExecutorT::create(memory, attrs, context, shapeAgnosticData);
-    }
-};
-
-template <typename Primitive,
-          typename Attrs,
-          typename ShapeAgnosticData,
-          typename Instantiator = DefaultInstantiator<Primitive, Attrs, ShapeAgnosticData>>
+template <typename Primitive, typename Attrs, typename ShapeAgnosticData, typename Instantiator>
 class DnnlExecutor : public Executor {
 public:
     using PrimitivePtr = std::shared_ptr<Primitive>;
-    DnnlExecutor(const Attrs& attrs,
-                 const PostOps& postOps,
+    DnnlExecutor(Attrs attrs,
                  const MemoryArgs& memory,
                  ExecutorContext::CPtr context,
                  const bool cacheWeights,
                  const bool fc3Das2D = false)
-        : m_attrs(attrs),
+        : m_attrs(std::move(attrs)),
           m_context(std::move(context)),
-          m_shapeAgnosticData(Primitive::createShapeAgnosticData(m_attrs, postOps, memory, m_context, cacheWeights)),
+          m_shapeAgnosticData(Primitive::createShapeAgnosticData(m_attrs, memory, m_context, cacheWeights)),
           m_primArgs(m_shapeAgnosticData->m_primAttrs.dnnlArgs),
           m_fc3Das2D(fc3Das2D) {}
     bool update(const MemoryArgs& memory) override {
@@ -95,14 +83,14 @@ public:
         m_scratchPadMemory = m_context->getScratchPad()->createScratchPadMem(newPrimMemDesc);
         m_primArgs[DNNL_ARG_SCRATCHPAD] = m_scratchPadMemory->getPrimitive();
 
-        if (m_primArgs.count(DNNL_ARG_WEIGHTS)) {
-            if (!mbind_move(m_primArgs[DNNL_ARG_WEIGHTS], numaNodeID)) {
+        if (auto it = m_primArgs.find(DNNL_ARG_WEIGHTS); it != m_primArgs.end()) {
+            if (!mbind_move(it->second, numaNodeID)) {
                 DEBUG_LOG("[FullyConnected] move DNNL_ARG_WEIGHTS to node ", numaNodeID, " failed");
             }
         }
 
-        if (m_primArgs.count(DNNL_ARG_BIAS)) {
-            if (!mbind_move(m_primArgs[DNNL_ARG_BIAS], numaNodeID)) {
+        if (auto it = m_primArgs.find(DNNL_ARG_BIAS); it != m_primArgs.end()) {
+            if (!mbind_move(it->second, numaNodeID)) {
                 DEBUG_LOG("[FullyConnected] move DNNL_ARG_BIAS to node ", numaNodeID, " failed");
             }
         }

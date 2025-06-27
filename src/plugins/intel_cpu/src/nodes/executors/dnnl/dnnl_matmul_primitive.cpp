@@ -7,29 +7,38 @@
 #include <oneapi/dnnl/dnnl_types.h>
 
 #include <algorithm>
+#include <cassert>
 #include <common/primitive_attr.hpp>
-#include <common/primitive_desc_iface.hpp>
-#include <common/primitive_iface.hpp>
+#include <common/primitive_hashing_utils.hpp>
+#include <common/utils.hpp>
 #include <cpu/x64/cpu_isa_traits.hpp>
+#include <cstddef>
 #include <memory>
 #include <oneapi/dnnl/dnnl.hpp>
 #include <oneapi/dnnl/dnnl_common.hpp>
+#include <utility>
+#include <vector>
 
 #include "cpu_memory.h"
 #include "cpu_types.h"
 #include "dnnl_extension_utils.h"
 #include "dnnl_postops_composer.h"
 #include "dnnl_utils.hpp"
-#include "memory_desc/cpu_memory_desc.h"
 #include "memory_desc/cpu_memory_desc_utils.h"
 #include "memory_desc/dnnl_memory_desc.h"
+#include "nodes/executors/dnnl/dnnl_aliases.hpp"
 #include "nodes/executors/dnnl/dnnl_shape_agnostic_data.hpp"
 #include "nodes/executors/executor.hpp"
 #include "nodes/executors/fullyconnected_config.hpp"
 #include "nodes/executors/matmul_config.hpp"
 #include "nodes/executors/memory_arguments.hpp"
+#include "onednn/iml_type_mapper.h"
+#include "openvino/core/except.hpp"
+#include "openvino/core/type/element_type.hpp"
+#include "post_ops.hpp"
 #include "utils/cpu_utils.hpp"
 #include "utils/debug_capabilities.h"
+#include "utils/general_utils.h"
 
 namespace ov::intel_cpu {
 
@@ -155,16 +164,13 @@ static DnnlPrimitiveAttrs createPrimitiveAttrs(const PostOps& postOps,
     const auto maxRank =
         std::max({srcDesc->getShape().getRank(), weiDesc->getShape().getRank(), dstDesc->getShape().getRank()});
     const auto normWeiDims = normalizeToRank(weiDesc->getShape().getStaticDims(), maxRank);
-    if (memory.count(ARG_WEI | ARG_ATTR_SCALES)) {
+    if (auto it = memory.find(ARG_WEI | ARG_ATTR_SCALES); it != memory.end()) {
         auto dstPrc = ov::element::f32;
-        dnnlpoc.appendDecompressionScales(memory.at(ARG_WEI | ARG_ATTR_SCALES),
-                                          !weightsNonTransposed,
-                                          dstPrc,
-                                          normWeiDims);
+        dnnlpoc.appendDecompressionScales(it->second, !weightsNonTransposed, dstPrc, normWeiDims);
     }
-    if (memory.count(ARG_WEI | ARG_ATTR_ZERO_POINTS)) {
+    if (auto it = memory.find(ARG_WEI | ARG_ATTR_ZERO_POINTS); it != memory.end()) {
         // TODO: clarify oneDNN requirements on ZP precision
-        auto zp = memory.at(ARG_WEI | ARG_ATTR_ZERO_POINTS);
+        auto zp = it->second;
         auto zpPrc = zp->getPrecision();
         auto dstPrc = one_of(zpPrc, i32, i8, u8, i4, u4) ? zpPrc : i32;
         dnnlpoc.appendDecompressionZeroPoints(zp, !weightsNonTransposed, dstPrc, normWeiDims);
@@ -280,7 +286,6 @@ bool DnnlMatMulPrimitive::useWeightsDecompressionImpl(const ov::element::Type in
 }
 
 DnnlShapeAgnosticDataPtr DnnlMatMulPrimitive::createShapeAgnosticData(const FCAttrs& attrs,
-                                                                      const PostOps& postOps,
                                                                       const MemoryArgs& memory,
                                                                       const ExecutorContext::CPtr& context,
                                                                       const bool cacheWeights) {
@@ -292,7 +297,7 @@ DnnlShapeAgnosticDataPtr DnnlMatMulPrimitive::createShapeAgnosticData(const FCAt
 
     const auto useWeightsDecompression = useWeightsDecompressionImpl(srcDesc->getPrecision(), weiDesc->getPrecision());
     const auto postOpData =
-        createPrimitiveAttrs(postOps, memory, context, useWeightsDecompression, attrs.weightsNonTransposed);
+        createPrimitiveAttrs(attrs.postOps, memory, context, useWeightsDecompression, attrs.weightsNonTransposed);
 
     if (!cacheWeights) {
         return std::make_shared<DnnlShapeAgnosticData>(postOpData);

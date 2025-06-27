@@ -5,12 +5,16 @@
 #pragma once
 
 #include <cstdlib>
-#include <oneapi/dnnl/dnnl.hpp>
+#include <memory>
+#include <optional>
+#include <vector>
 
 #include "cpu_types.h"
 #include "memory_desc/cpu_memory_desc.h"
+#include "nodes/common/blocked_desc_creator.h"
 #include "nodes/executors/dnnl/dnnl_fullyconnected.hpp"
 #include "nodes/executors/dnnl/dnnl_shape_agnostic_data.hpp"
+#include "nodes/executors/executor.hpp"
 #include "nodes/executors/executor_config.hpp"
 #include "nodes/executors/memory_arguments.hpp"
 #include "nodes/executors/precision_translation.hpp"
@@ -90,7 +94,7 @@ size_t weiMemSize(const Config& config) {
 
 template <typename Config>
 size_t postOpsNumbers(const Config& config) {
-    return config.postOps.size();
+    return config.attrs.postOps.size();
 }
 
 template <typename Attrs>
@@ -109,20 +113,26 @@ struct SupportsAnyConfig {
 
 template <typename Attrs>
 struct AcceptsAnyShape {
-    bool operator()([[maybe_unused]] const Attrs& attrs,
-                    [[maybe_unused]] const PostOps& postOps,
-                    [[maybe_unused]] const MemoryArgs& memory) const {
+    bool operator()([[maybe_unused]] const Attrs& attrs, [[maybe_unused]] const MemoryArgs& memory) const {
         return true;
     }
 };
 
 template <typename Primitive, typename Attrs>
 struct CreateDefault {
-    ExecutorPtr operator()(const Attrs& attrs,
-                           const PostOps& postOps,
-                           const MemoryArgs& memory,
-                           const ExecutorContext::CPtr& context) const {
-        return std::make_shared<Primitive>(attrs, postOps, memory, context);
+    ExecutorPtr operator()(const Attrs& attrs, const MemoryArgs& memory, const ExecutorContext::CPtr& context) const {
+        return std::make_shared<Primitive>(attrs, memory, context);
+    }
+};
+
+template <typename ExecutorT, typename Attrs, typename ShapeAgnosticData>
+class DefaultInstantiator {
+public:
+    std::shared_ptr<ExecutorT> operator()(const MemoryArgs& memory,
+                                          const Attrs& attrs,
+                                          const ExecutorContext::CPtr context,
+                                          const std::shared_ptr<ShapeAgnosticData>& shapeAgnosticData) {
+        return ExecutorT::create(memory, attrs, context, shapeAgnosticData);
     }
 };
 
@@ -131,16 +141,21 @@ template <typename Primitive,
           typename ShapeAgnosticData = DnnlShapeAgnosticData,
           typename Instantiator = DefaultInstantiator<Primitive, Attrs, ShapeAgnosticData>>
 struct CreateDnnlDefault {
-    ExecutorPtr operator()(const Attrs& attrs,
-                           const PostOps& postOps,
-                           const MemoryArgs& memory,
-                           const ExecutorContext::CPtr& context) const {
+    CreateDnnlDefault(bool cacheWeights, bool fc3Das2D) : m_cacheWeights(cacheWeights), m_fc3Das2D(fc3Das2D) {}
+    CreateDnnlDefault() = default;
+
+    ExecutorPtr operator()(const Attrs& attrs, const MemoryArgs& memory, const ExecutorContext::CPtr& context) const {
         return std::make_shared<DnnlExecutor<Primitive, Attrs, DnnlShapeAgnosticData, Instantiator>>(attrs,
-                                                                                                     postOps,
                                                                                                      memory,
                                                                                                      context,
-                                                                                                     false);
+                                                                                                     m_cacheWeights,
+                                                                                                     m_fc3Das2D);
     }
+
+private:
+    bool m_cacheWeights = false;
+    // WA for dnnl fullyconnected primitive
+    bool m_fc3Das2D = false;
 };
 
 template <typename Attrs>
@@ -213,8 +228,7 @@ std::optional<executor::Config<Attrs>> requiresFallbackCommon(const executor::Co
 
     const auto optimalDescriptors = createOptimalDescriptors(config.descs, typeConfig, layoutConfig, notation);
 
-    return std::optional<executor::Config<Attrs>>(
-        executor::Config<Attrs>{optimalDescriptors, config.attrs, config.postOps});
+    return std::optional<executor::Config<Attrs>>(executor::Config<Attrs>{optimalDescriptors, config.attrs});
 }
 
 }  // namespace ov::intel_cpu

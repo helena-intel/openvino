@@ -34,12 +34,17 @@ void FilteredConfig::update(const ConfigMap& options, OptionMode mode) {
             const auto opt = _desc->get(p.first, mode);
             _impl[opt.key().data()] = opt.validateAndParse(p.second);
         } else {
-            OPENVINO_ASSERT("[ NOT_FOUND ] Option '", p.first.c_str(), "' is not supported for current configuration");
+            OPENVINO_THROW("[ NOT_FOUND ] Option " + p.first + " is not supported for current configuration");
         }
     }
 }
 
 bool FilteredConfig::isAvailable(std::string key) const {
+    // NPUW properties are requested by OV Core during caching and have no effect on the NPU plugin. But we still need
+    // to enable those for OV Core to query.
+    if (key.find("NPUW") != key.npos) {
+        return true;  // always available
+    }
     auto it = _enabled.find(key);
     if (it != _enabled.end() && hasOpt(key)) {
         return it->second;
