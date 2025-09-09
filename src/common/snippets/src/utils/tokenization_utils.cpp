@@ -47,13 +47,10 @@ using namespace ov::snippets::pass;
 
 namespace {
 auto has_result_child(const std::shared_ptr<const Node>& node) -> bool {
-    // TODO: fix segmentation fault in case of std::any_of
-    for (const auto& child : node->get_users()) {  // NOLINT
-        if (ov::is_type<ov::opset1::Result>(child)) {
-            return true;
-        }
-    }
-    return false;
+    const auto& users = node->get_users();
+    return std::any_of(users.begin(), users.end(), [](const std::shared_ptr<Node>& child) {
+        return ov::is_type<ov::op::v0::Result>(child);
+    });
 }
 
 auto get_num_result_children(const std::shared_ptr<const Node>& node) -> size_t {
@@ -170,7 +167,7 @@ bool tokenize_node(const std::shared_ptr<ov::Node>& node, const SnippetsTokeniza
 
     for (const auto& input_node : ov::as_node_vector(input_values)) {
         if (auto subgraph = ov::as_type_ptr<op::Subgraph>(input_node)) {
-            if ((clones.count(input_node) == 0u) &&
+            if ((clones.count(input_node) == 0U) &&
                 GetSnippetsSubgraphType(subgraph) != SnippetsSubgraphType::Completed) {
                 auto f = subgraph->body().clone();
                 f->set_friendly_name(subgraph->body_ptr()->get_friendly_name());

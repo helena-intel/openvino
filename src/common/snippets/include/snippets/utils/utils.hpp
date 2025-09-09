@@ -80,24 +80,22 @@ inline auto normalize_rank(int32_t allocation_rank, const size_t shape_rank) -> 
     return allocation_rank < 0 ? allocation_rank + static_cast<int32_t>(shape_rank) + 1 : allocation_rank;
 }
 
-template <typename T, typename P>
-constexpr bool one_of(T val, P item) {
-    return val == item;
+template <typename T, typename... Args>
+constexpr bool any_of(T val, Args... items) {
+    static_assert(sizeof...(Args) > 0, "'any_of' requires at least one item to compare against.");
+    return ((val == items) || ...);
 }
 
-template <typename T, typename P, typename... Args>
-constexpr bool one_of(T val, P item, Args... item_others) {
-    return val == item || one_of(val, item_others...);
+template <typename T, typename... Args>
+constexpr bool none_of(T val, Args... items) {
+    static_assert(sizeof...(Args) > 0, "'none_of' requires at least one item to compare against.");
+    return !any_of(val, items...);
 }
 
-template <typename T, typename P>
-constexpr bool everyone_is(T val, P item) {
-    return val == item;
-}
-
-template <typename T, typename P, typename... Args>
-constexpr bool everyone_is(T val, P item, Args... item_others) {
-    return val == item && everyone_is(val, item_others...);
+template <typename T, typename... Args>
+constexpr bool all_of(T val, Args... items) {
+    static_assert(sizeof...(Args) > 0, "'all_of' requires at least one item to compare against.");
+    return ((val == items) && ...);
 }
 
 constexpr bool implication(bool cause, bool cond) {
@@ -107,8 +105,8 @@ constexpr bool implication(bool cause, bool cond) {
 template <typename T, typename U>
 static inline auto div_up(const T lhs, const U rhs) -> decltype((lhs + rhs - 1) / rhs) {
     OPENVINO_ASSERT(rhs != 0, "Divider must not be zero");
-    if (((std::is_same_v<T, size_t> || std::is_same_v<T, int64_t>)&&utils::is_dynamic_value(lhs)) ||
-        ((std::is_same_v<U, size_t> || std::is_same_v<U, int64_t>)&&utils::is_dynamic_value(rhs))) {
+    if (((std::is_same_v<T, size_t> || std::is_same_v<T, int64_t>) && utils::is_dynamic_value(lhs)) ||
+        ((std::is_same_v<U, size_t> || std::is_same_v<U, int64_t>) && utils::is_dynamic_value(rhs))) {
         return utils::get_dynamic_value<T>();
     }
     return (lhs + rhs - 1) / rhs;
@@ -117,8 +115,8 @@ static inline auto div_up(const T lhs, const U rhs) -> decltype((lhs + rhs - 1) 
 template <typename T, typename U>
 static inline auto rnd_up(const T lhs, const U rhs) -> decltype(div_up(lhs, rhs) * rhs) {
     const T div_up_res = div_up(lhs, rhs);
-    if (((std::is_same_v<T, size_t> || std::is_same_v<T, int64_t>)&&utils::is_dynamic_value(div_up_res)) ||
-        ((std::is_same_v<U, size_t> || std::is_same_v<U, int64_t>)&&utils::is_dynamic_value(rhs))) {
+    if (((std::is_same_v<T, size_t> || std::is_same_v<T, int64_t>) && utils::is_dynamic_value(div_up_res)) ||
+        ((std::is_same_v<U, size_t> || std::is_same_v<U, int64_t>) && utils::is_dynamic_value(rhs))) {
         return utils::get_dynamic_value<T>();
     }
     return div_up_res * rhs;
